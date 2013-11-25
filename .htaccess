@@ -1,0 +1,9 @@
+RewriteEngine on
+
+#if the url contains PIE.php redirect to the folder containing PIE.php
+RewriteCond %{REQUEST_URI} PIE.php$
+RewriteRule ^.*$ includes/js/pie/PIE.php [NC,L]
+
+RewriteCond $1 !^(index\.php|robots\.txt|includes|captcha|favicon\.png)
+
+RewriteRule ^(.*)$ index.php/$1 [L]
