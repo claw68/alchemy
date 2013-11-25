@@ -1,2 +1,3 @@
-<div>Created by: claw68</div>
-<div>November 25, 2013</div>
+<div>
+	<span>xTemplate v1.0 by claw68</span>
+</div>
