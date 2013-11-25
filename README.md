@@ -1,5 +1,5 @@
-[My Project Template]
-=============================
+My Project Template
+===================
 
 What is it?
 ------------
