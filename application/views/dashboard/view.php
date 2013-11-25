@@ -11,6 +11,11 @@
 			<td>v2.1.4</td>
 		</tr>
 		<tr>
+			<td>PHPUnit for CodeIgniter</td>
+			<td><a target="_blank" href="https://github.com/redvel/PHPUnit-for-CodeIgniter">https://github.com/redvel/PHPUnit-for-CodeIgniter</a></td>
+			<td>v1.0</td>
+		</tr>
+		<tr>
 			<td>jQuery</td>
 			<td><a target="_blank" href="http://jquery.com">http://jquery.com</a></td>
 			<td>v1.10.2</td>

@@ -17,6 +17,7 @@ Credits
 Source:
 
 - [CodeIgniter](http://ellislab.com/codeigniter) v2.1.4
+- [PHPUnit for CodeIgniter](https://github.com/redvel/PHPUnit-for-CodeIgniter) v1.0
 - [jQuery](http://jquery.com/) v1.10.2
 - [jQuery UI](http://jqueryui.com) v1.10.3 
 - [CSS Reset](http://meyerweb.com/eric/tools/css/reset/) v2.0 
