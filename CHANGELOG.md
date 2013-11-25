@@ -2,6 +2,7 @@
 
 Features:
 
+- Added PHPUnit for CodeIgniter [8d62c1b](https://bitbucket.org/claw68/template/commits/8d62c1b292789ca95c5da7c9eb627fa05e3348e5)
 - Added Basic CRUD demo [65169d9](https://bitbucket.org/claw68/template/commits/65169d9f1e071b4704a96a5c4a04473c5e2886d0)
 - Added temporary template design [18e52b6](https://bitbucket.org/claw68/template/commits/18e52b6d386cc4936ff5b734db724b0c879a73e1)
 - Added navigation and render helpers [101fb96](https://bitbucket.org/claw68/template/commits/101fb9667fe10ae668d4946003fbc666d9dcc32f)
