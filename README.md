@@ -17,4 +17,5 @@ Credits
 Source:
 
 - [CodeIgniter](http://ellislab.com/codeigniter) v2.1.4
+- [jQuery](http://jqueryui.com/) v1.10.2
 - [CSS Reset](http://meyerweb.com/eric/tools/css/reset/) v2.0 
