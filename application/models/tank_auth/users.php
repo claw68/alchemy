@@ -31,7 +31,7 @@ class Users extends CI_Model
 	 * @param	bool
 	 * @return	object
 	 */
-	function get_user_by_id($user_id, $activated)
+	function get_user_by_id($user_id, $activated = TRUE)
 	{
 		$this->db->where('id', $user_id);
 		$this->db->where('activated', $activated ? 1 : 0);
@@ -125,14 +125,15 @@ class Users extends CI_Model
 	 * @param	bool
 	 * @return	array
 	 */
-	function create_user($data, $activated = TRUE)
+	function create_user($data, $post, $activated = TRUE)
 	{
 		$data['created'] = date('Y-m-d H:i:s');
 		$data['activated'] = $activated ? 1 : 0;
 
 		if ($this->db->insert($this->table_name, $data)) {
 			$user_id = $this->db->insert_id();
-			if ($activated)	$this->create_profile($user_id);
+			$this->create_profile($user_id);
+			$this->update_profile($user_id, $post);
 			return array('user_id' => $user_id);
 		}
 		return NULL;
@@ -165,8 +166,10 @@ class Users extends CI_Model
 			$this->db->set('new_email_key', NULL);
 			$this->db->where('id', $user_id);
 			$this->db->update($this->table_name);
-
-			$this->create_profile($user_id);
+			
+			/*removed on activate -> create profile, profile created on create user*/
+			//$this->create_profile($user_id); 
+			
 			return TRUE;
 		}
 		return FALSE;
@@ -368,7 +371,15 @@ class Users extends CI_Model
 			'ban_reason'	=> NULL,
 		));
 	}
-
+	
+	function get_profile_by_user_id($user_id)
+	{
+		$this->db->where('user_id', $user_id);
+		$query = $this->db->get($this->profile_table_name);
+		if ($query->num_rows() == 1) return $query->row();
+		return NULL;
+	}
+	
 	/**
 	 * Create an empty profile for a new user
 	 *
@@ -380,7 +391,25 @@ class Users extends CI_Model
 		$this->db->set('user_id', $user_id);
 		return $this->db->insert($this->profile_table_name);
 	}
-
+	
+	/**
+	 * Update the user profile
+	 *
+	 * @param	int
+	 * @return	bool
+	 */
+	function update_profile($user_id, $data)
+	{
+		unset($data['username']);
+		unset($data['email']);
+		unset($data['password']);
+		unset($data['confirm_password']);
+		unset($data['register']);
+		
+		$this->db->where('user_id', $user_id);
+		return $this->db->update($this->profile_table_name, $data);
+	}
+	
 	/**
 	 * Delete user profile
 	 *
