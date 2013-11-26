@@ -1,3 +1,15 @@
+## 1.2.0 - November 26, 2013
+
+Features:
+
+- Added Sample upload for a CRUD [1a78fc1](https://bitbucket.org/claw68/template/commits/1a78fc14c52ccf86e4605475a588d69169cf8306)
+- Added Custom upload helper [0299945](https://bitbucket.org/claw68/template/commits/0299945fd4103893d4f320f32d592ba0bee80ea5)
+- Added Edit profile page [b24dcef](https://bitbucket.org/claw68/template/commits/b24dcefce3f7392f55fdc237a82b754b32f60684)
+- Added Tank_auth [4a4ead8](https://bitbucket.org/claw68/template/commits/4a4ead8e91baaf36d6d50fb009dd7794f9c26931)
+
+Fixes:
+- Fixed autoload to load helpers [4baaab7](https://bitbucket.org/claw68/template/commits/4baaab73462360a9b9966f30bb7fb131a55d9e71)
+
 ## 1.1.0 - November 25, 2013
 
 Features:
