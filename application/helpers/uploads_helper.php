@@ -96,12 +96,10 @@
 	{
 		$directory = 'includes/images/default';
 		
-		if($table == 'team')
-			$path = $directory.'/team.png';
-		else if($table == 'player')
-			$path = $directory.'/player.png';
-		else
-			$path = $directory.'/league.png';
+		$path = $directory.'/uploads.png';
+		
+		if($table == 'gallery')
+			$path = $directory.'/gallery.png';
 		
 		return $path;
 	}
