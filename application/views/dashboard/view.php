@@ -16,6 +16,11 @@
 			<td>v1.0</td>
 		</tr>
 		<tr>
+			<td>Tank_auth</td>
+			<td><a target="_blank" href="http://konyukhov.com/soft/tank_auth">http://konyukhov.com/soft/tank_auth</a></td>
+			<td>v1.0.9</td>
+		</tr>
+		<tr>
 			<td>jQuery</td>
 			<td><a target="_blank" href="http://jquery.com">http://jquery.com</a></td>
 			<td>v1.10.2</td>
