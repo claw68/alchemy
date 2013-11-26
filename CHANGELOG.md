@@ -8,6 +8,7 @@ Features:
 - Added Tank_auth [4a4ead8](https://bitbucket.org/claw68/template/commits/4a4ead8e91baaf36d6d50fb009dd7794f9c26931)
 
 Fixes:
+
 - Fixed autoload to load helpers [4baaab7](https://bitbucket.org/claw68/template/commits/4baaab73462360a9b9966f30bb7fb131a55d9e71)
 
 ## 1.1.0 - November 25, 2013
