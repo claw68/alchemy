@@ -126,6 +126,10 @@ class Tank_auth
 	 */
 	function is_logged_in($activated = TRUE)
 	{
+		if($this->ci->session->userdata('status') == FALSE && (current_url()."/" != site_url()) && (current_url()."/" != site_url()."auth/login/"))
+		{
+			$this->ci->session->set_userdata('currentUrl',current_url());
+		}
 		return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
 	}
 
@@ -159,7 +163,7 @@ class Tank_auth
 	 * @param	bool
 	 * @return	array
 	 */
-	function create_user($username, $email, $password, $email_activation)
+	function create_user($username, $email, $password, $email_activation, $post) //added post param
 	{
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
@@ -184,7 +188,7 @@ class Tank_auth
 			if ($email_activation) {
 				$data['new_email_key'] = md5(rand().microtime());
 			}
-			if (!is_null($res = $this->ci->users->create_user($data, !$email_activation))) {
+			if (!is_null($res = $this->ci->users->create_user($data, $post, !$email_activation))) {
 				$data['user_id'] = $res['user_id'];
 				$data['password'] = $password;
 				unset($data['last_ip']);
