@@ -58,6 +58,24 @@ CREATE TABLE `login_attempts` (
 
 /*Data for the table `login_attempts` */
 
+/*Table structure for table `uploads` */
+
+DROP TABLE IF EXISTS `uploads`;
+
+CREATE TABLE `uploads` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(255) NOT NULL,
+  `table_id` int(255) NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `filename` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `user_id` int(255) NOT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `uploads` */
+
 /*Table structure for table `user_autologin` */
 
 DROP TABLE IF EXISTS `user_autologin`;
@@ -88,11 +106,11 @@ CREATE TABLE `user_profiles` (
   `user_id` int(11) NOT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_profiles` */
 
-insert  into `user_profiles`(`id`,`first_name`,`last_name`,`gender`,`birthdate`,`country`,`state`,`user_id`,`create_date`) values (11,'Franz Andrew','Vallente','M','1991-12-14','Philippines','Makati',1,'2013-11-26 16:10:31');
+insert  into `user_profiles`(`id`,`first_name`,`last_name`,`gender`,`birthdate`,`country`,`state`,`user_id`,`create_date`) values (1,'Franz Andrew','Vallente','M','1991-12-14','Philippines','Makati',1,'2013-11-26 16:10:31');
 
 /*Table structure for table `users` */
 
@@ -119,7 +137,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`email`,`activated`,`banned`,`ban_reason`,`new_password_key`,`new_password_requested`,`new_email`,`new_email_key`,`last_ip`,`last_login`,`created`,`modified`) values (1,'admin','$2a$08$3GqdJ0PRvk5axGx/vWRQiuH5NeU9TAUY0qbhBNeWo501XPCFb9BX2','franzandrew68@gmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2013-11-26 16:11:14','2013-11-26 16:10:31','2013-11-26 16:11:14');
+insert  into `users`(`id`,`username`,`password`,`email`,`activated`,`banned`,`ban_reason`,`new_password_key`,`new_password_requested`,`new_email`,`new_email_key`,`last_ip`,`last_login`,`created`,`modified`) values (1,'admin','$2a$08$3GqdJ0PRvk5axGx/vWRQiuH5NeU9TAUY0qbhBNeWo501XPCFb9BX2','franzandrew68@gmail.com',1,0,NULL,NULL,NULL,NULL,NULL,'::1','2013-11-26 16:48:29','2013-11-26 16:10:31','2013-11-26 16:48:29');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
