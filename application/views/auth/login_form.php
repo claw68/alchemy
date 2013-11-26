@@ -35,8 +35,6 @@ $captcha = array(
 <table id="login-table">
 	<tr>
 		<td><?php echo form_label($login_label, $login['id']); ?></td>
-	</tr>
-	<tr>
 		<td><?php echo form_input($login); ?></td>
 	</tr>
 	<script>
@@ -51,8 +49,6 @@ $captcha = array(
 	</script>
 	<tr>
 		<td><?php echo form_label('Password', $password['id']); ?></td>
-	</tr>
-	<tr>
 		<td><?php echo form_password($password); ?></td>
 	</tr>
 	<script>
