@@ -79,11 +79,16 @@ DROP TABLE IF EXISTS `user_profiles`;
 
 CREATE TABLE `user_profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_profiles` */
 
