@@ -1,4 +1,9 @@
 <div>
+	Logged in as: <a href="<?php echo site_url(); ?>dashboard/profile"><?php echo $username; ?></a>
+	<br />
+	Hi, <strong><?php echo $profile->first_name." ".$profile->last_name; ?></strong>!
+	<br />
+	<br />
 	<table>
 		<tr>
 			<th>Modules Loaded</th>
@@ -14,6 +19,11 @@
 			<td>PHPUnit for CodeIgniter</td>
 			<td><a target="_blank" href="https://github.com/redvel/PHPUnit-for-CodeIgniter">https://github.com/redvel/PHPUnit-for-CodeIgniter</a></td>
 			<td>v1.0</td>
+		</tr>
+		<tr>
+			<td>Tank_auth</td>
+			<td><a target="_blank" href="http://konyukhov.com/soft/tank_auth">http://konyukhov.com/soft/tank_auth</a></td>
+			<td>v1.0.9</td>
 		</tr>
 		<tr>
 			<td>jQuery</td>

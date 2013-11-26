@@ -6,6 +6,10 @@ class Demo extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('demo_m', 'demo');
+		
+		if (!$this->tank_auth->is_logged_in()) {
+			redirect('/auth/login/');
+		}
 	}
 
 	public function index()
