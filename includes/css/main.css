@@ -10,10 +10,6 @@ a {
 	font-weight: normal;
 }
 
-table {
-	width: 100%;
-}
-
 table th {
 	font-weight: bold;
 }
@@ -60,6 +56,10 @@ table th, table td {
 
 #content {
 	margin: 0 0 20px 0;
+}
+
+#uploaded {
+	width: 100px;
 }
 
 #footer{
