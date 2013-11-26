@@ -11,12 +11,14 @@ class Auth extends CI_Controller
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
+		
+		$this->form_validation->set_error_delimiters('','');
 	}
 
 	function index()
 	{
 		if ($message = $this->session->flashdata('message')) {
-			$this->load->view('auth/general_message', array('message' => $message));
+			render_auth_layout('auth/general_message', array('message' => $message));
 		} else {
 			redirect('/auth/login/');
 		}
@@ -68,7 +70,17 @@ class Auth extends CI_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('');
+						
+						/*URL Redirection*/
+						$currentPg = $this->session->userdata('currentUrl');
+						if(isset($currentPg))
+						{
+							$redirectMe = $currentPg;
+							$this->session->unset_userdata('currentUrl');
+							redirect($redirectMe);
+						}else
+							redirect('');
+						/*END: URL Redirection*/
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -92,7 +104,7 @@ class Auth extends CI_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-			$this->load->view('auth/login_form', $data);
+			render_auth_layout('auth/login_form', $data);
 		}
 	}
 
@@ -125,6 +137,8 @@ class Auth extends CI_Controller
 			$this->_show_message($this->lang->line('auth_message_registration_disabled'));
 
 		} else {
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
 			$use_username = $this->config->item('use_username', 'tank_auth');
 			if ($use_username) {
 				$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|min_length['.$this->config->item('username_min_length', 'tank_auth').']|max_length['.$this->config->item('username_max_length', 'tank_auth').']|alpha_dash');
@@ -132,6 +146,10 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
 			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
+			$this->form_validation->set_rules('gender', 'Gender', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('birthdate', 'Birthdate', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('country', 'Country', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('state', 'State', 'trim|required|xss_clean');
 
 			$captcha_registration	= $this->config->item('captcha_registration', 'tank_auth');
 			$use_recaptcha			= $this->config->item('use_recaptcha', 'tank_auth');
@@ -151,7 +169,8 @@ class Auth extends CI_Controller
 						$use_username ? $this->form_validation->set_value('username') : '',
 						$this->form_validation->set_value('email'),
 						$this->form_validation->set_value('password'),
-						$email_activation))) {									// success
+						$email_activation,
+						$this->input->post()))) {									// success
 
 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
 
@@ -188,7 +207,7 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
-			$this->load->view('auth/register_form', $data);
+			render_auth_layout('auth/register_form', $data);
 		}
 	}
 
@@ -223,7 +242,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/send_again_form', $data);
+			render_auth_layout('auth/send_again_form', $data);
 		}
 	}
 
@@ -283,7 +302,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/forgot_password_form', $data);
+			render_auth_layout('auth/forgot_password_form', $data);
 		}
 	}
 
@@ -329,7 +348,7 @@ class Auth extends CI_Controller
 				$this->_show_message($this->lang->line('auth_message_new_password_failed'));
 			}
 		}
-		$this->load->view('auth/reset_password_form', $data);
+		render_auth_layout('auth/reset_password_form', $data);
 	}
 
 	/**
@@ -360,7 +379,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/change_password_form', $data);
+			render_auth_layout('auth/change_password_form', $data);
 		}
 	}
 
@@ -397,7 +416,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/change_email_form', $data);
+			render_auth_layout('auth/change_email_form', $data);
 		}
 	}
 
@@ -448,7 +467,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('auth/unregister_form', $data);
+			render_auth_layout('auth/unregister_form', $data);
 		}
 	}
 
