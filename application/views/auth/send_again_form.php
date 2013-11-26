@@ -7,6 +7,7 @@ $email = array(
 	'size'	=> 30,
 );
 ?>
+<div class="auth-title">Send Again</div>
 <?php echo form_open($this->uri->uri_string()); ?>
 <table>
 	<tr>

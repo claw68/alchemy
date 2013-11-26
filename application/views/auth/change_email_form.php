@@ -12,6 +12,7 @@ $email = array(
 	'size'	=> 30,
 );
 ?>
+<div class="auth-title">Change Email</div>
 <?php echo form_open($this->uri->uri_string()); ?>
 <table>
 	<tr>

@@ -12,6 +12,7 @@ if ($this->config->item('use_username', 'tank_auth')) {
 	$login_label = 'Email';
 }
 ?>
+<div class="auth-title">Forgot Password</div>
 <?php echo form_open($this->uri->uri_string()); ?>
 <table>
 	<tr>

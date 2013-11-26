@@ -12,6 +12,7 @@ $confirm_new_password = array(
 	'size' 	=> 30,
 );
 ?>
+<div class="auth-title">Reset Password</div>
 <?php echo form_open($this->uri->uri_string()); ?>
 <table>
 	<tr>

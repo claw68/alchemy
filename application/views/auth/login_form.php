@@ -31,18 +31,40 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
-<table>
+<form id="login-form" action="<?php echo base_url(); ?>auth/login" method="post" accept-charset="utf-8">
+<table id="login-table">
 	<tr>
 		<td><?php echo form_label($login_label, $login['id']); ?></td>
-		<td><?php echo form_input($login); ?></td>
-		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
 	</tr>
 	<tr>
-		<td><?php echo form_label('Password', $password['id']); ?></td>
-		<td><?php echo form_password($password); ?></td>
-		<td style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></td>
+		<td><?php echo form_input($login); ?></td>
 	</tr>
+	<script>
+		$(function(){
+			var title = "<?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>";
+			if(title.length > 0) {
+				$("#login").attr('title', title);
+				$("#login").css('border-color', '#FF7427');
+				$("#login").tooltip();
+			}
+		});
+	</script>
+	<tr>
+		<td><?php echo form_label('Password', $password['id']); ?></td>
+	</tr>
+	<tr>
+		<td><?php echo form_password($password); ?></td>
+	</tr>
+	<script>
+		$(function(){
+			var title = "<?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?>";
+			if(title.length > 0) {
+				$("#password").attr('title', title);
+				$("#password").css('border-color', '#FF7427');
+				$("#password").tooltip();
+			}
+		});
+	</script>
 
 	<?php if ($show_captcha) {
 		if ($use_recaptcha) { ?>
