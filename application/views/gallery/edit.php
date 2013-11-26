@@ -35,6 +35,16 @@ function validate()
 			<td><label for='desc'>Description</label></td>
 			<td><input type='text' value='<?php echo htmlspecialchars($gallery['desc'], ENT_QUOTES); ?>' id='desc' name='desc' /></td>
 		</tr>
+		<tr>
+			<td>
+				<label for='picture'>Picture</label>
+				<br />
+				<img id='uploaded' src="<?php echo site_url().$gallery['picture']; ?>" />
+			</td>
+			<td>
+				<input type='file' id='picture' name='picture' />
+			</td>
+		</tr>
 	</table>
 	<br />
 	<input class="submit" type="submit" name="" value="Submit" />

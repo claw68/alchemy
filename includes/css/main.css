@@ -58,6 +58,10 @@ table th, table td {
 	margin: 0 0 20px 0;
 }
 
+#uploaded {
+	width: 100px;
+}
+
 #footer{
 	text-align: right;
 	font-size: 11px;
