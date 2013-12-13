@@ -140,7 +140,7 @@ class CIUnit {
 				}
 				else
 				{
-					include_once(APPPATH . 'controllers/' . $controller . EXT);
+					include_once(APPPATH . 'controllers'. DIRECTORY_SEPARATOR . $controller . EXT);
 				}
 			}
 			
