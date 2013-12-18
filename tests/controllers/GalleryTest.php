@@ -4,15 +4,15 @@
  * @group Controller
  */
 
-class SomeControllerTest extends CIUnit_TestCase
+class GalleryTest extends CIUnit_TestCase
 {
 	public function setUp()
 	{
 		// Set the tested controller
-		$this->CI = set_controller('welcome');
+		$this->CI = set_controller('gallery');
 	}
 	
-	public function testWelcomeController()
+	public function testIndex()
 	{
 		// Call the controllers method
 		$this->CI->index();
