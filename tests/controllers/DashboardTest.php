@@ -14,6 +14,9 @@ class DashboardTest extends CIUnit_TestCase
 	
 	public function testIndex()
 	{
+		$this->CI->session->set_userdata('user_id','1');
+		$this->CI->session->set_userdata('username','admin');
+		
 		// Call the controllers method
 		$this->CI->index();
 		
