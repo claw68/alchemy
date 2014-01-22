@@ -17,6 +17,7 @@
 			<td>
 				<a class="delete" href="<?php echo site_url('')."object/delete/".$row['id']; ?>">X</a>&nbsp;
 				<a class="edit" href="<?php echo site_url('')."object/edit/".$row['id']; ?>">Edit</a>
+				<a class="view" href="<?php echo site_url('').$row["name"]; ?>">View</a>
 			</td>
 		</tr>
 		<?php } ?>
