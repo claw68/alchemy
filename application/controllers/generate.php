@@ -6,6 +6,7 @@ class Generate extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('generate_m', 'generate');
+		$this->load->model('object_m', 'object');
 		
 		if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
@@ -22,7 +23,7 @@ class Generate extends CI_Controller
 	
 	public function doGenerate()
 	{
-		$object = $this->input->post('object');
+		$object = strtolower($this->input->post('name'));
 		
 		$template = 'resource/template/controller.php';
 		$target = 'application/controllers/'.$object.'.php';
@@ -48,7 +49,9 @@ class Generate extends CI_Controller
 		$file = $this->generateByTemplate($template, $object, $target);
 		$this->executeSQL($file);
 		
-		redirect('/generate');
+		$post = $this->input->post();
+		$this->object->add($post);
+		redirect('/object');
 	}
 	
 	private function generateByTemplate($template, $object, $target)
