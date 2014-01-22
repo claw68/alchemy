@@ -14,10 +14,6 @@ class Generate extends CI_Controller
 	public function index()
 	{
 		$data = new stdClass();
-		$user_id = $this->tank_auth->get_user_id();
-		
-		$data->username = $this->tank_auth->get_username();
-		$data->profile = $this->users->get_profile_by_user_id($user_id);
 		
 		$navigation = navigation();
 		render_layout('generate/view', $data, $navigation);
