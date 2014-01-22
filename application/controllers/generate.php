@@ -5,6 +5,7 @@ class Generate extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('generate_m', 'generate');
 		
 		if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
@@ -41,14 +42,19 @@ class Generate extends CI_Controller
 		$this->generateByTemplate($template, $object, $target_dir.'edit.php');
 		$template = 'resource/template/views/list.php';
 		$this->generateByTemplate($template, $object, $target_dir.'list.php');
+		
+		$template = 'resource/template/sql.sql';
+		$target = 'application/sql/'.$object.'.sql';
+		$file = $this->generateByTemplate($template, $object, $target);
+		$this->executeSQL($file);
+		
+		redirect('/generate');
 	}
 	
 	private function generateByTemplate($template, $object, $target)
 	{
 		$file = read_file($template);
-		
-		echo $file;
-		
+				
 		$find = Array('__Object', '__object');
 		$replace = Array(ucfirst($object), $object);
 		
@@ -59,6 +65,18 @@ class Generate extends CI_Controller
 		return $target;
 	}
 	
+	private function executeSQL($file)
+	{
+		$query = read_file($file);
+		
+		$sqls = explode(';', trim($query));
+		
+		foreach($sqls as $sql) {
+			if($sql) {
+				$this->generate->executeSQL($sql);
+			}
+		}
+	}
 }
 
 /* End of file generate.php */
