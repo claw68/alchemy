@@ -33,25 +33,33 @@ table th, table td {
 	margin: 10px 0px 20px;
 }
 
-#navigation {
+.navigation {
 	height: 20px;
 	display: block;
 	list-style: none;
 	position: relative;
 }
 
-#navigation > li {
+.navigation > li {
 	display: block;
 	float: left;
 	margin-right: 10px;
 }
 
-#navigation > li > a {
+.navigation > li > a {
 	text-decoration: none;
 }
 
-#navigation > li.nav-active > a {
+.navigation > li.nav-active > a {
 	text-decoration: underline;
+}
+
+#navigation {
+	float: left;
+}
+
+#user-info {
+	float: right;
 }
 
 #content {

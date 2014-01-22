@@ -1,7 +1,7 @@
 <div>
-	<p style="font-weight: bold;">Add Demo</p>
+	<p style="font-weight: bold;">Add __Object</p>
 	<br />
-	<a class="add" href='<?php echo site_url(); ?>demo'>Back to List</a>
+	<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
 	<br />
 	<br />
 	<script>
@@ -26,11 +26,11 @@
 		}
 	}
 	</script>
-	<form onSubmit='return validate()' action="<?php echo site_url()?>demo/doEdit/<?php echo $id; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+	<form onSubmit='return validate()' action="<?php echo site_url()?>__object/doEdit/<?php echo $id; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><label for='name'>Name</label></td>
-				<td><input type='text' value='<?php echo htmlspecialchars($demo['name'], ENT_QUOTES); ?>' id='name' name='name' /></td>
+				<td><input type='text' value='<?php echo htmlspecialchars($__object['name'], ENT_QUOTES); ?>' id='name' name='name' /></td>
 			</tr>
 		</table>
 		<br />
