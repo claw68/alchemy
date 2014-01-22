@@ -1,51 +1,70 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Generator
-{
-	private $error = array();
-
+class Generate {
+	
 	function __construct()
 	{
-		$this->ci->load->model('generate_m', 'generate');
+		$this->ci =& get_instance();
+		$this->ci->load->model('generate_m','gen');
 	}
 	
-	public function generate()
+	function create($object)
 	{
-		$object = strtolower($this->input->post('name'));
+		$object = strtolower($object);
 		
-		$template = 'resource/template/controller.php';
+		$this->generateController($object);
+		$this->generateModel($object);
+		$this->generateViews($object);
+		$file = $this->generateSQL($object);
+		$this->executeSQL($file);
+	}
+
+	private function generateController($object)
+	{
+		$template = 'application/libraries/resources/template/controller.php';
 		$target = 'application/controllers/'.$object.'.php';
 		$this->generateByTemplate($template, $object, $target);
-		
-		$template = 'resource/template/model.php';
+	}
+	
+	private function generateModel($object)
+	{
+		$template = 'application/libraries/resources/template/model.php';
 		$target = 'application/models/'.$object.'_m.php';
 		$this->generateByTemplate($template, $object, $target);
-		
+	}
+	
+	private function generateViews($object)
+	{
 		$target_dir = 'application/views/'.$object.'/';
 		if (!file_exists($target_dir)) 
    			mkdir($target_dir, 0755, TRUE);
 		
-		$template = 'resource/template/views/add.php';
+		//generate add
+		$template = 'application/libraries/resources/template/views/add.php';
 		$this->generateByTemplate($template, $object, $target_dir.'add.php');
-		$template = 'resource/template/views/edit.php';
-		$this->generateByTemplate($template, $object, $target_dir.'edit.php');
-		$template = 'resource/template/views/list.php';
-		$this->generateByTemplate($template, $object, $target_dir.'list.php');
 		
-		$template = 'resource/template/sql.sql';
+		//generate edit
+		$template = 'application/libraries/resources/template/views/edit.php';
+		$this->generateByTemplate($template, $object, $target_dir.'edit.php');
+		
+		//generate list
+		$template = 'application/libraries/resources/template/views/list.php';
+		$this->generateByTemplate($template, $object, $target_dir.'list.php');
+	}
+	
+	private function generateSQL($object)
+	{
+		$template = 'application/libraries/resources/template/sql.sql';
 		$target = 'application/sql/'.$object.'.sql';
 		$file = $this->generateByTemplate($template, $object, $target);
-		$this->executeSQL($file);
 		
-		$post = $this->input->post();
-		$this->object->add($post);
-		redirect('/object');
+		return $file;
 	}
 	
 	private function generateByTemplate($template, $object, $target)
 	{
 		$file = read_file($template);
-				
+		
 		$find = Array('__Object', '__object');
 		$replace = Array(ucfirst($object), $object);
 		
@@ -64,7 +83,7 @@ class Generator
 		
 		foreach($sqls as $sql) {
 			if($sql) {
-				$this->generate->executeSQL($sql);
+				$this->ci->gen->executeSQL($sql);
 			}
 		}
 	}
