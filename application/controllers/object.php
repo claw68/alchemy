@@ -6,6 +6,7 @@ class Object extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('object_m', 'object');
+		$this->load->library('generate');
 		
 		if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
@@ -32,6 +33,7 @@ class Object extends CI_Controller
 	function doAdd()
 	{
 		$post = $this->input->post();
+		$this->generate->create($post['name']);
 		$this->object->add($post);
 		redirect('/object');
 	}
