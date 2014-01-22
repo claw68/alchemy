@@ -15,8 +15,8 @@
 			<td><?php echo htmlspecialchars($row["id"], ENT_QUOTES); ?></td>
 			<td><?php echo htmlspecialchars($row["name"], ENT_QUOTES); ?></td>
 			<td>
-				<a class="delete" href="<?php echo site_url('')."__object/delete/".$row['id']?>">X</a>&nbsp;
-				<a class="edit" href="<?php echo site_url('')."__object/edit/".$row['id']?>">Edit</a>
+				<a class="delete" href="<?php echo site_url('')."__object/delete/".$row['id']; ?>">X</a>&nbsp;
+				<a class="edit" href="<?php echo site_url('')."__object/edit/".$row['id']; ?>">Edit</a>
 			</td>
 		</tr>
 		<?php } ?>
