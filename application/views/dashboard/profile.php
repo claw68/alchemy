@@ -1,6 +1,5 @@
 <div>
-	Profile
-	<br />
+	<p style="font-weight: bold;">Profile</p>
 	<br />
 	<script>
 	function validate()

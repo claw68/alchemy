@@ -1,8 +1,5 @@
 <div>
-	Logged in as: <a href="<?php echo site_url(); ?>dashboard/profile"><?php echo $username; ?></a>
-	<br />
-	Hi, <strong><?php echo $profile->first_name." ".$profile->last_name; ?></strong>!
-	<br />
+	<p style="font-weight: bold;">Dashboard</p>
 	<br />
 	<table>
 		<tr>

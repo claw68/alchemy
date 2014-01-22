@@ -1,37 +1,39 @@
-<p style="font-weight: bold;">Add Demo</p>
-<br />
-<a class="add" href='<?php echo site_url(); ?>demo'>Back to List</a>
-<br />
-<br />
-<script>
-function validate()
-{
-	var message  ="";
-	
-	if($('#name').val() == '' || $('#name').val() == null)
-	{
-		message += 'Name should have a value\n';
-	}
-	
-	if(message == "")
-	{
-		return true;
-	}
-	
-	else
-	{
-		alert(message);
-		return false;
-	}
-}
-</script>
-<form onSubmit='return validate()' action="<?php echo site_url()?>demo/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-	<table>
-		<tr>
-			<td><label for='name'>Name</label></td>
-			<td><input type='text' value='' id='name' name='name' /></td>
-		</tr>
-	</table>
+<div>
+	<p style="font-weight: bold;">Add Demo</p>
 	<br />
-	<input class="submit" type="submit" name="" value="Submit"  />
-</form>
+	<a class="add" href='<?php echo site_url(); ?>demo'>Back to List</a>
+	<br />
+	<br />
+	<script>
+	function validate()
+	{
+		var message  ="";
+		
+		if($('#name').val() == '' || $('#name').val() == null)
+		{
+			message += 'Name should have a value\n';
+		}
+		
+		if(message == "")
+		{
+			return true;
+		}
+		
+		else
+		{
+			alert(message);
+			return false;
+		}
+	}
+	</script>
+	<form onSubmit='return validate()' action="<?php echo site_url()?>demo/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><label for='name'>Name</label></td>
+				<td><input type='text' value='' id='name' name='name' /></td>
+			</tr>
+		</table>
+		<br />
+		<input class="submit" type="submit" name="" value="Submit"  />
+	</form>
+</div>
