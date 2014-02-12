@@ -19,6 +19,7 @@ class Object extends CI_Controller
 		$data->object = $this->object->all();
 		
 		$navigation = navigation();
+		
 		render_layout('object/list', $data, $navigation);
 	}
 	
@@ -27,6 +28,7 @@ class Object extends CI_Controller
 		$data = new stdClass();
 		
 		$navigation = navigation();
+		
 		render_layout('object/add', $data, $navigation);
 	}
 	
@@ -35,6 +37,7 @@ class Object extends CI_Controller
 		$post = $this->input->post();
 		$this->generate->create($post['name']);
 		$this->object->add($post);
+		
 		redirect('/object');
 	}
 	

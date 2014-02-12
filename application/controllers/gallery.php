@@ -18,6 +18,7 @@ class Gallery extends CI_Controller
 		$data->gallery = $this->gallery->all();
 		
 		$navigation = navigation();
+		
 		render_layout('gallery/list', $data, $navigation);
 	}
 	
@@ -27,6 +28,7 @@ class Gallery extends CI_Controller
 		$data->gallery['picture'] = get_default_image('gallery');
 		
 		$navigation = navigation();
+		
 		render_layout('gallery/add', $data, $navigation);
 	}
 	

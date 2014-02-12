@@ -18,6 +18,7 @@ class Demo extends CI_Controller
 		$data->demo = $this->demo->all();
 		
 		$navigation = navigation();
+		
 		render_layout('demo/list', $data, $navigation);
 	}
 	
@@ -26,6 +27,7 @@ class Demo extends CI_Controller
 		$data = new stdClass();
 		
 		$navigation = navigation();
+		
 		render_layout('demo/add', $data, $navigation);
 	}
 	
@@ -41,10 +43,12 @@ class Demo extends CI_Controller
 		$data = new stdClass();
 		$data->id = $id;
 		$data->demo = $this->demo->get($id);
+		
 		if (!$data->demo)
 			redirect('/demo');
 		
 		$navigation = navigation();
+		
 		render_layout('demo/edit', $data, $navigation);
 	}
 	

@@ -26,13 +26,16 @@ class __Object extends CI_Controller
 		$data = new stdClass();
 		
 		$navigation = navigation();
+		
 		render_layout('__object/add', $data, $navigation);
 	}
 	
 	function doAdd()
 	{
 		$post = $this->input->post();
+		
 		$this->__object->add($post);
+		
 		redirect('/__object');
 	}
 	
@@ -46,19 +49,23 @@ class __Object extends CI_Controller
 			redirect('/__object');
 		
 		$navigation = navigation();
+		
 		render_layout('__object/edit', $data, $navigation);
 	}
 	
 	function doEdit()
 	{
 		$post = $this->input->post();
+		
 		$this->__object->update($post["id"], $post);
+		
 		redirect('/__object');
 	}
 	
 	function delete($id)
 	{
 		$this->__object->delete($id);
+		
 		redirect('/__object');
 	}
 }
