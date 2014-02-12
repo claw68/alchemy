@@ -41,7 +41,7 @@ class Demo extends CI_Controller
 		$data = new stdClass();
 		$data->id = $id;
 		$data->demo = $this->demo->get($id);
-		if(!$data->demo)
+		if (!$data->demo)
 			redirect('/demo');
 		
 		$navigation = navigation();

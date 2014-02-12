@@ -43,7 +43,7 @@ class Object extends CI_Controller
 		$data = new stdClass();
 		$data->id = $id;
 		$data->object = $this->object->get($id);
-		if(!$data->object)
+		if (!$data->object)
 			redirect('/object');
 		
 		$navigation = navigation();

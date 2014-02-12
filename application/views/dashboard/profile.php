@@ -6,43 +6,33 @@
 	{
 		var message  ="";
 		
-		if($('#first_name').val() == '' || $('#first_name').val() == null)
-		{
+		if ($('#first_name').val() == '' || $('#first_name').val() == null) {
 			message += 'First Name should have a value\n';
 		}
 		
-		if($('#last_name').val() == '' || $('#last_name').val() == null)
-		{
+		if ($('#last_name').val() == '' || $('#last_name').val() == null) {
 			message += 'Last Name should have a value\n';
 		}
 		
-		if($('#gender').val() == '' || $('#gender').val() == null)
-		{
+		if ($('#gender').val() == '' || $('#gender').val() == null) {
 			message += 'Gender should have a value\n';
 		}
 		
-		if($('#birthdate').val() == '' || $('#birthdate').val() == null)
-		{
+		if ($('#birthdate').val() == '' || $('#birthdate').val() == null) {
 			message += 'Birthdate should have a value\n';
 		}
 		
-		if($('#country').val() == '' || $('#country').val() == null)
-		{
+		if ($('#country').val() == '' || $('#country').val() == null) {
 			message += 'Country should have a value\n';
 		}
 		
-		if($('#state').val() == '' || $('#state').val() == null)
-		{
+		if ($('#state').val() == '' || $('#state').val() == null) {
 			message += 'State should have a value\n';
 		}
 				
-		if(message == "")
-		{
+		if (message == "") {
 			return true;
-		}
-		
-		else
-		{
+		} else {
 			alert(message);
 			return false;
 		}
@@ -71,7 +61,7 @@
 						<option value="F">Female</option>
 					</select>
 					<script>
-						$(function(){
+						$(function() {
 							$('#gender').val('<?php echo $profile->gender; ?>');
 						});
 					</script>
@@ -82,7 +72,7 @@
 				<td>
 					<input type="text" value="<?php echo $profile->birthdate; ?>" id="birthdate" name="birthdate" />
 					<script>
-						$(function(){
+						$(function() {
 							$('#birthdate').datepicker({
 								dateFormat: 'yy-mm-dd',
 								changeMonth: true,

@@ -35,8 +35,8 @@ class Gallery extends CI_Controller
 		$post = $this->input->post();
 		$id = $this->gallery->add($post);
 		
-		if(is_uploaded_file($_FILES['picture']['tmp_name']))
-		upload_image('gallery', 'picture', $id);
+		if (is_uploaded_file($_FILES['picture']['tmp_name']))
+			upload_image('gallery', 'picture', $id);
 		
 		redirect('/gallery');
 	}
@@ -48,7 +48,7 @@ class Gallery extends CI_Controller
 		$data->gallery = $this->gallery->get($id);
 		$data->gallery['picture'] = get_latest_image('gallery', $id);
 		
-		if(!$data->gallery)
+		if (!$data->gallery)
 			redirect('/gallery');
 		
 		$navigation = navigation();
@@ -60,8 +60,8 @@ class Gallery extends CI_Controller
 		$post = $this->input->post();
 		$this->gallery->update($post["id"], $post);
 		
-		if(is_uploaded_file($_FILES['picture']['tmp_name']))
-		upload_image('gallery', 'picture', $post["id"], TRUE);
+		if (is_uploaded_file($_FILES['picture']['tmp_name']))
+			upload_image('gallery', 'picture', $post["id"], TRUE);
 		
 		redirect('/gallery');
 	}

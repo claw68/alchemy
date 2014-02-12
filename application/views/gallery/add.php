@@ -9,29 +9,23 @@
 	{
 		var message  ="";
 		
-		if($('#name').val() == '' || $('#name').val() == null)
-		{
+		if ($('#name').val() == '' || $('#name').val() == null) {
 			message += 'Name should have a value\n';
 		}
 		
-		if($('#desc').val() == '' || $('#desc').val() == null)
-		{
+		if ($('#desc').val() == '' || $('#desc').val() == null) {
 			message += 'Description should have a value\n';
 		}
 		
-		if(message == "")
-		{
+		if (message == "") {
 			return true;
-		}
-		
-		else
-		{
+		} else {
 			alert(message);
 			return false;
 		}
 	}
 	</script>
-	<form onSubmit='return validate()' action="<?php echo site_url()?>gallery/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+	<form onSubmit='return validate()' action="<?php echo site_url(); ?>gallery/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><label for='name'>Name</label></td>

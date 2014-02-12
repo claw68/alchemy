@@ -38,7 +38,7 @@ class __Object_m extends CI_Model
 	{
 		$query = $this->db->get_where($this->table, array('id' => $id));
 		$results =  $query->result_array();
-		if($query->num_rows() > 0)
+		if ($query->num_rows() > 0)
 			return $results[0];
 		else
 			return FALSE;

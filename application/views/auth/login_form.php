@@ -38,9 +38,9 @@ $captcha = array(
 		<td><?php echo form_input($login); ?></td>
 	</tr>
 	<script>
-		$(function(){
+		$(function() {
 			var title = "<?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?>";
-			if(title.length > 0) {
+			if (title.length > 0) {
 				$("#login").attr('title', title);
 				$("#login").css('border-color', '#FF7427');
 				$("#login").tooltip();
@@ -52,9 +52,9 @@ $captcha = array(
 		<td><?php echo form_password($password); ?></td>
 	</tr>
 	<script>
-		$(function(){
+		$(function() {
 			var title = "<?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?>";
-			if(title.length > 0) {
+			if (title.length > 0) {
 				$("#password").attr('title', title);
 				$("#password").css('border-color', '#FF7427');
 				$("#password").tooltip();

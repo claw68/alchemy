@@ -11,7 +11,7 @@
 			<th>Description</th>
 			<th>Actions</th>
 		</tr>
-		<?php foreach($gallery as $row) { ?>
+		<?php foreach ($gallery as $row) { ?>
 		<tr>
 			<td><?php echo htmlspecialchars($row["id"], ENT_QUOTES); ?></td>
 			<td><?php echo htmlspecialchars($row["name"], ENT_QUOTES); ?></td>

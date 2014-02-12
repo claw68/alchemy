@@ -81,8 +81,8 @@ class Generate {
 		
 		$sqls = explode(';', trim($query));
 		
-		foreach($sqls as $sql) {
-			if($sql) {
+		foreach ($sqls as $sql) {
+			if ($sql) {
 				$this->ci->gen->executeSQL($sql);
 			}
 		}
