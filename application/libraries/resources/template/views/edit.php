@@ -1,5 +1,5 @@
 <div>
-	<p style="font-weight: bold;">Add __Object</p>
+	<p style="font-weight: bold;">Edit __Object</p>
 	<br />
 	<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
 	<br />
