@@ -10,6 +10,18 @@ class Demo_m extends CI_Model
 		$this->load->database();
 	}
 	
+	function _strip_keys($data)
+	{
+		$allowed_keys = $this->db->list_fields($this->table);
+		
+		foreach ($data as $key => $value) {
+			if (!in_array($key, $allowed_keys))
+				unset($data[$key]);
+		}
+		
+		return $data;
+	}
+	
 	function delete($id)
 	{
 		$this->db->delete($this->table, array('id' => $id));
@@ -17,6 +29,7 @@ class Demo_m extends CI_Model
 	
 	function add($data)
 	{
+		$data = $this->_strip_keys($data);
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();
 	}
@@ -30,6 +43,7 @@ class Demo_m extends CI_Model
 	
 	function update($id, $data)
 	{
+		$data = $this->_strip_keys($data);
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data);
 	}
