@@ -1,9 +1,10 @@
 <div>
-	<p style="font-weight: bold;">List __Object</p>
-	<br />
-	<a class="add" href='<?php echo site_url(); ?>__object/add'>Add __object</a>
-	<br />
-	<br />
+	<div style="padding-bottom: 15px;">
+		<p style="font-weight: bold;">List __Object</p>
+	</div>
+	<div style="padding-bottom: 20px;">
+		<a class="add" href='<?php echo site_url(); ?>__object/add'>Add __object</a>
+	</div>
 	<table class="list">
 		<tr>
 			<th>ID</th>

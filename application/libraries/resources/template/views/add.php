@@ -1,9 +1,10 @@
 <div>
-	<p style="font-weight: bold;">Add __Object</p>
-	<br />
-	<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
-	<br />
-	<br />
+	<div style="padding-bottom: 15px;">
+		<p style="font-weight: bold;">Add __Object</p>
+	</div>
+	<div style="padding-bottom: 20px;">
+		<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
+	</div>
 	<script>
 	function validate() {
 		var message  ="";
@@ -27,7 +28,8 @@
 				<td><input type='text' value='' id='name' name='name' /></td>
 			</tr>
 		</table>
-		<br />
-		<input class="submit" type="submit" name="" value="Submit" />
+		<div style="padding-top: 15px;">
+			<input class="submit" type="submit" name="" value="Submit" />
+		</div>
 	</form>
 </div>

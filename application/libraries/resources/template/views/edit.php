@@ -1,9 +1,10 @@
 <div>
-	<p style="font-weight: bold;">Edit __Object</p>
-	<br />
-	<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
-	<br />
-	<br />
+	<div style="padding-bottom: 15px;">
+		<p style="font-weight: bold;">Edit __Object</p>
+	</div>
+	<div style="padding-bottom: 20px;">
+		<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
+	</div>
 	<script>
 	function validate() {
 		var message  ="";
@@ -27,8 +28,9 @@
 				<td><input type='text' value='<?php echo htmlspecialchars($__object['name'], ENT_QUOTES); ?>' id='name' name='name' /></td>
 			</tr>
 		</table>
-		<br />
-		<input class="submit" type="submit" name="" value="Submit" />
-		<input type='hidden' id='id' name='id' value='<?php echo htmlspecialchars($id, ENT_QUOTES); ?>' />
+		<div style="padding-top: 15px;">
+			<input class="submit" type="submit" name="" value="Submit" />
+			<input type='hidden' id='id' name='id' value='<?php echo htmlspecialchars($id, ENT_QUOTES); ?>' />
+		</div>
 	</form>
 </div>
