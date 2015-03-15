@@ -12,7 +12,7 @@
    			mkdir($upload_dir, 0755, TRUE);
 		
 		$config['upload_path'] = $upload_dir;
-		$config['allowed_types'] = 'jpg|jpeg|png';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png';
 		$config['encrypt_name'] = TRUE;
 		$config['overwrite'] = FALSE;
 		$ci->load->library('upload', $config);
