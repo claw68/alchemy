@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.6.11 : Database - template
+MySQL - 5.5.32 : Database - template
 *********************************************************************
 */
 
@@ -56,6 +56,8 @@ CREATE TABLE `gallery` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Data for the table `gallery` */
+
 /*Table structure for table `login_attempts` */
 
 DROP TABLE IF EXISTS `login_attempts`;
@@ -69,6 +71,19 @@ CREATE TABLE `login_attempts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `login_attempts` */
+
+/*Table structure for table `object` */
+
+DROP TABLE IF EXISTS `object`;
+
+CREATE TABLE `object` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `object` */
 
 /*Table structure for table `uploads` */
 
