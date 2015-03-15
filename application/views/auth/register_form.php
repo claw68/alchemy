@@ -82,8 +82,8 @@ $captcha = array(
 <form id="register-form" action="<?php echo base_url(); ?>auth/register" method="post" accept-charset="utf-8">
 	<div id="register-title">Registration</div>
 	<script>
-	function display_error(id,msg) {
-		if(msg.length > 0) {
+	function display_error(id, msg) {
+		if (msg.length > 0) {
 			$("#"+id).attr('title', msg);
 			$("#"+id).css('border-color', '#FF7427');
 			$("#"+id).tooltip();
@@ -95,9 +95,9 @@ $captcha = array(
 		<td><?php echo form_label('First Name', $first_name['id']); ?></td>
 		<td><?php echo form_input($first_name); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($first_name['name']); ?><?php echo isset($errors[$first_name['name']])?$errors[$first_name['name']]:''; ?>";
-				display_error('first_name',msg);
+			$(function() {
+				var msg = "<?php echo form_error($first_name['name']); ?><?php echo isset($errors[$first_name['name']]) ? $errors[$first_name['name']] : ''; ?>";
+				display_error('first_name', msg);
 			});
 		</script>
 	</tr>
@@ -105,9 +105,9 @@ $captcha = array(
 		<td><?php echo form_label('Last Name', $last_name['id']); ?></td>
 		<td><?php echo form_input($last_name); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($last_name['name']); ?><?php echo isset($errors[$last_name['name']])?$errors[$last_name['name']]:''; ?>";
-				display_error('last_name',msg);
+			$(function() {
+				var msg = "<?php echo form_error($last_name['name']); ?><?php echo isset($errors[$last_name['name']]) ? $errors[$last_name['name']] : ''; ?>";
+				display_error('last_name', msg);
 			});
 		</script>
 	</tr>
@@ -116,9 +116,9 @@ $captcha = array(
 		<td><?php echo form_label('Username', $username['id']); ?></td>
 		<td><?php echo form_input($username); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($username['name']); ?><?php echo isset($errors[$username['name']])?$errors[$username['name']]:''; ?>";
-				display_error('username',msg);
+			$(function() {
+				var msg = "<?php echo form_error($username['name']); ?><?php echo isset($errors[$username['name']]) ? $errors[$username['name']] : ''; ?>";
+				display_error('username', msg);
 			});
 		</script>
 	</tr>
@@ -127,9 +127,9 @@ $captcha = array(
 		<td><?php echo form_label('Email Address', $email['id']); ?></td>
 		<td><?php echo form_input($email); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']])?$errors[$email['name']]:''; ?>";
-				display_error('email',msg);
+			$(function() {
+				var msg = "<?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']]) ? $errors[$email['name']] : ''; ?>";
+				display_error('email', msg);
 			});
 		</script>
 	</tr>
@@ -137,9 +137,9 @@ $captcha = array(
 		<td><?php echo form_label('Password', $password['id']); ?></td>
 		<td><?php echo form_password($password); ?></td>
 		<script>
-			$(function(){
+			$(function() {
 				var msg = "<?php echo form_error($password['name']); ?>";
-				display_error('password',msg);
+				display_error('password', msg);
 			});
 		</script>
 	</tr>
@@ -147,19 +147,19 @@ $captcha = array(
 		<td><?php echo form_label('Confirm Password', $confirm_password['id']); ?></td>
 		<td><?php echo form_password($confirm_password); ?></td>
 		<script>
-			$(function(){
+			$(function() {
 				var msg = "<?php echo form_error($confirm_password['name']); ?>";
-				display_error('confirm_password',msg);
+				display_error('confirm_password', msg);
 			});
 		</script>
 	</tr>
 	<tr>
 		<td><?php echo form_label('Gender', $gender['id']); ?></td>
-		<td><?php echo form_dropdown($gender['name'],$gender_opt,set_value('gender'),'id="'.$gender['id'].'"'); ?></td>
+		<td><?php echo form_dropdown($gender['name'], $gender_opt, set_value('gender'), 'id="'.$gender['id'].'"'); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($gender['name']); ?><?php echo isset($errors[$gender['name']])?$errors[$gender['name']]:''; ?>";
-				display_error('gender',msg);
+			$(function() {
+				var msg = "<?php echo form_error($gender['name']); ?><?php echo isset($errors[$gender['name']]) ? $errors[$gender['name']] : ''; ?>";
+				display_error('gender', msg);
 			});
 		</script>
 	</tr>
@@ -168,7 +168,7 @@ $captcha = array(
 		<td>
 			<?php echo form_input($birthdate); ?>
 			<script>
-				$(function(){
+				$(function() {
 					$('#<?php echo $birthdate['id'];?>').datepicker({
 						dateFormat: 'yy-mm-dd',
 						changeMonth: true,
@@ -178,9 +178,9 @@ $captcha = array(
 			</script>
 		</td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($birthdate['name']); ?><?php echo isset($errors[$birthdate['name']])?$errors[$birthdate['name']]:''; ?>";
-				display_error('birthdate',msg);
+			$(function() {
+				var msg = "<?php echo form_error($birthdate['name']); ?><?php echo isset($errors[$birthdate['name']]) ? $errors[$birthdate['name']] : ''; ?>";
+				display_error('birthdate', msg);
 			});
 		</script>
 	</tr>
@@ -188,9 +188,9 @@ $captcha = array(
 		<td><?php echo form_label('Country', $country['id']); ?></td>
 		<td><?php echo form_input($country); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($country['name']); ?><?php echo isset($errors[$country['name']])?$errors[$country['name']]:''; ?>";
-				display_error('country',msg);
+			$(function() {
+				var msg = "<?php echo form_error($country['name']); ?><?php echo isset($errors[$country['name']]) ? $errors[$country['name']] : ''; ?>";
+				display_error('country', msg);
 			});
 		</script>
 	</tr>
@@ -198,9 +198,9 @@ $captcha = array(
 		<td><?php echo form_label('State', $state['id']); ?></td>
 		<td><?php echo form_input($state); ?></td>
 		<script>
-			$(function(){
-				var msg = "<?php echo form_error($state['name']); ?><?php echo isset($errors[$state['name']])?$errors[$state['name']]:''; ?>";
-				display_error('state',msg);
+			$(function() {
+				var msg = "<?php echo form_error($state['name']); ?><?php echo isset($errors[$state['name']]) ? $errors[$state['name']] : ''; ?>";
+				display_error('state', msg);
 			});
 		</script>
 	</tr>

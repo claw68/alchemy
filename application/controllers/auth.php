@@ -73,12 +73,11 @@ class Auth extends CI_Controller
 						
 						/*URL Redirection*/
 						$currentPg = $this->session->userdata('currentUrl');
-						if(isset($currentPg))
-						{
+						if (isset($currentPg)) {
 							$redirectMe = $currentPg;
 							$this->session->unset_userdata('currentUrl');
 							redirect($redirectMe);
-						}else
+						} else
 							redirect('');
 						/*END: URL Redirection*/
 

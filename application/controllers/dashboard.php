@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller
 		$data = new stdClass();
 		
 		$navigation = navigation();
+		
 		render_layout('dashboard/view', $data, $navigation);
 	}
 	
@@ -28,6 +29,7 @@ class Dashboard extends CI_Controller
 		$data->profile = $this->users->get_profile_by_user_id($user_id);
 		
 		$navigation = navigation();
+		
 		render_layout('dashboard/profile', $data, $navigation);
 	}
 	
@@ -37,6 +39,7 @@ class Dashboard extends CI_Controller
 		
 		$post = $this->input->post();
 		$this->users->update_profile($user_id, $post);
+		
 		redirect('/dashboard');
 	}
 }

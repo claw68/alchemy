@@ -17,17 +17,13 @@
 		$config['overwrite'] = FALSE;
 		$ci->load->library('upload', $config);
 
-		if ( ! $ci->upload->do_upload($file)) 
-		{
+		if ( ! $ci->upload->do_upload($file)) {
 			$info = $ci->upload->display_errors();
 			$filename = "";
-		}
-		
-		else 
-		{
+		} else {
 			$info = $ci->upload->data();
 			$filename = $info['file_name'];
-			if($replace)
+			if ($replace)
 				replace_latest_image($table, $id, $filename, $upload_dir, $user_id);
 			else
 				add_image($table, $id, $filename, $upload_dir, $user_id);
@@ -57,9 +53,8 @@
 		$ci->load->model('uploads_m','uploads');
 		
 		$image = $ci->uploads->get_by_table_id($table, $id, 'image');
-		if($image)
-		{
-			if(file_exists($image['path']))
+		if ($image) {
+			if (file_exists($image['path']))
 			unlink($image['path']); 
 			
 			$post['table_name'] = $table;
@@ -70,9 +65,7 @@
 			$post['user_id'] = $user_id;
 			
 			$ci->uploads->update($image['id'], $post);
-		}
-		else 
-		{
+		} else {
 			add_image($table, $id, $filename, $upload_dir, $user_id);
 		}
 	}
@@ -86,7 +79,7 @@
 		
 		$img = $ci->uploads->get_by_table_id($table, $id, $type);
 		
-		if($img)
+		if ($img)
 			return $img['path'];
 		else
 			return get_default_image($table);
@@ -98,7 +91,7 @@
 		
 		$path = $directory.'/uploads.png';
 		
-		if($table == 'gallery')
+		if ($table == 'gallery')
 			$path = $directory.'/gallery.png';
 		
 		return $path;

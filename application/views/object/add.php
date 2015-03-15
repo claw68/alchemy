@@ -1,7 +1,7 @@
 <div>
-	<p style="font-weight: bold;">Add __Object</p>
+	<p style="font-weight: bold;">Add Object</p>
 	<br />
-	<a class="add" href='<?php echo site_url(); ?>__object'>Back to List</a>
+	<a class="add" href='<?php echo site_url(); ?>object'>Back to List</a>
 	<br />
 	<br />
 	<script>
@@ -9,24 +9,19 @@
 	{
 		var message  ="";
 		
-		if($('#name').val() == '' || $('#name').val() == null)
-		{
+		if ($('#name').val() == '' || $('#name').val() == null) {
 			message += 'Name should have a value\n';
 		}
 		
-		if(message == "")
-		{
+		if (message == "") {
 			return true;
-		}
-		
-		else
-		{
+		} else {
 			alert(message);
 			return false;
 		}
 	}
 	</script>
-	<form onSubmit='return validate()' action="<?php echo site_url()?>__object/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+	<form onSubmit='return validate()' action="<?php echo site_url(); ?>object/doAdd" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><label for='name'>Name</label></td>
