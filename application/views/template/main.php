@@ -8,10 +8,6 @@
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.css" />
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/foundation/css/normalize.min.css" />
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/css/main.css" />
-		
-		<script src="<?php echo site_url(''); ?>includes/js/jquery.js"></script>
-		<script src="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.js"></script>
-		<script src="<?php echo site_url(''); ?>includes/js/main.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -23,5 +19,8 @@
 				<?php echo $footer; ?>
 			</div>
 		</div>
+		<script src="<?php echo site_url(''); ?>includes/js/jquery.js"></script>
+		<script src="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.js"></script>
+		<script src="<?php echo site_url(''); ?>includes/js/main.js"></script>
 	</body>
 </html>
