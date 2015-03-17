@@ -7,7 +7,7 @@
 		
 		<link rel="shortcut icon" href="<?php echo site_url(''); ?>includes/images/favicon.ico">
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.css" />
-		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/foundation/css/normalize.min.css" />
+		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/foundation/css/normalize.css" />
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/foundation/css/foundation.min.css" />
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/css/main.css" />
 		
