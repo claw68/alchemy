@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/foundation/css/foundation.min.css" />
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/css/main.css" />
 		
-		<script src="includes/foundation/js/vendor/modernizr.js"></script>
+		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/modernizr.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/js/jquery.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/jquery.placeholder.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.js"></script>
