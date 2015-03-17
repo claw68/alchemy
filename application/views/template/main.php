@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Template</title>
+		<title>Skyrim Alchemy</title>
 		
 		<link rel="shortcut icon" href="<?php echo site_url(''); ?>includes/images/favicon.ico">
 		<link rel="stylesheet" href="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.css" />
