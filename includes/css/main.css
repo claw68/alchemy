@@ -24,8 +24,6 @@ table th, table td {
 }
 
 #wrapper {
-	margin: auto;
-	width: 960px;
 	color: #6f6f6f;
 }
 
@@ -56,6 +54,7 @@ table th, table td {
 
 #navigation {
 	float: left;
+	margin-left: 0px;
 }
 
 #user-info {

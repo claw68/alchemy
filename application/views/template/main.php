@@ -21,12 +21,12 @@
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/rem.js"></script>
 	</head>
 	<body>
-		<div id="wrapper">
+		<div id="wrapper" class="row container">
 			<?php echo $navigation; ?>
-			<div id="content">
+			<div id="content" class="row container">
 				<?php echo $content; ?>
 			</div>
-			<div id="footer">
+			<div id="footer" class="row container">
 				<?php echo $footer; ?>
 			</div>
 		</div>
