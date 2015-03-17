@@ -60,6 +60,19 @@ CREATE TABLE `effects` (
 
 insert  into `effects`(`id`,`name`,`create_date`) values (1,'Cure Disease','2015-03-17 18:52:55'),(2,'Damage Health','2015-03-17 18:52:55'),(3,'Damage Magicka','2015-03-17 18:52:55'),(4,'Damage Magicka Regen','2015-03-17 18:52:55'),(5,'Damage Stamina','2015-03-17 18:52:55'),(6,'Damage Stamina Regen','2015-03-17 18:52:55'),(7,'Fear','2015-03-17 18:52:55'),(8,'Fortify Alteration','2015-03-17 18:52:55'),(9,'Fortify Barter','2015-03-17 18:52:55'),(10,'Fortify Block','2015-03-17 18:52:55'),(11,'Fortify Carry Weight','2015-03-17 18:52:55'),(12,'Fortify Conjuration','2015-03-17 18:52:55'),(13,'Fortify Destruction','2015-03-17 18:52:55'),(14,'Fortify Enchanting','2015-03-17 18:52:55'),(15,'Fortify Health','2015-03-17 18:52:55'),(16,'Fortify Heavy Armor','2015-03-17 18:52:55'),(17,'Fortify Illusion','2015-03-17 18:52:55'),(18,'Fortify Light Armor','2015-03-17 18:52:55'),(19,'Fortify Lockpicking','2015-03-17 18:52:55'),(20,'Fortify Magicka','2015-03-17 18:52:55'),(21,'Fortify Marksman','2015-03-17 18:52:55'),(22,'Fortify One-handed','2015-03-17 18:52:55'),(23,'Fortify Pickpocket','2015-03-17 18:52:55'),(24,'Fortify Restoration','2015-03-17 18:52:55'),(25,'Fortify Smithing','2015-03-17 18:52:55'),(26,'Fortify Sneak','2015-03-17 18:52:55'),(27,'Fortify Stamina','2015-03-17 18:52:55'),(28,'Fortify Two-handed','2015-03-17 18:52:55'),(29,'Frenzy','2015-03-17 18:52:55'),(30,'Invisibility','2015-03-17 18:52:55'),(31,'Lingering Damage Health','2015-03-17 18:52:55'),(32,'Lingering Damage Magicka','2015-03-17 18:52:55'),(33,'Lingering Damage Stamina','2015-03-17 18:52:55'),(34,'Paralysis','2015-03-17 18:52:55'),(35,'Ravage Health','2015-03-17 18:52:55'),(36,'Ravage Magicka','2015-03-17 18:52:55'),(37,'Ravage Stamina','2015-03-17 18:52:55'),(38,'Regenerate Health','2015-03-17 18:52:55'),(39,'Regenerate Magicka','2015-03-17 18:52:55'),(40,'Regenerate Stamina','2015-03-17 18:52:55'),(41,'Resist Fire','2015-03-17 18:52:55'),(42,'Resist Frost','2015-03-17 18:52:55'),(43,'Resist Magic','2015-03-17 18:52:55'),(44,'Resist Poison','2015-03-17 18:52:55'),(45,'Resist Shock','2015-03-17 18:52:55'),(46,'Restore Health','2015-03-17 18:52:55'),(47,'Restore Magicka','2015-03-17 18:52:55'),(48,'Restore Stamina','2015-03-17 18:52:55'),(49,'Slow','2015-03-17 18:52:55'),(50,'Waterbreathing','2015-03-17 18:52:55'),(51,'Weakness to Fire','2015-03-17 18:52:55'),(52,'Weakness to Frost','2015-03-17 18:52:55'),(53,'Weakness to Magic','2015-03-17 18:52:55'),(54,'Weakness to Poison','2015-03-17 18:52:55'),(55,'Weakness to Shock','2015-03-17 18:52:55');
 
+/*Table structure for table `effects_map` */
+
+DROP TABLE IF EXISTS `effects_map`;
+
+CREATE TABLE `effects_map` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `effects_map` */
+
 /*Table structure for table `gallery` */
 
 DROP TABLE IF EXISTS `gallery`;
@@ -112,11 +125,11 @@ CREATE TABLE `object` (
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `object` */
 
-insert  into `object`(`id`,`name`,`create_date`) values (1,'ingredients','2015-03-17 17:27:55'),(2,'effects','2015-03-17 17:33:07');
+insert  into `object`(`id`,`name`,`create_date`) values (1,'ingredients','2015-03-17 17:27:55'),(2,'effects','2015-03-17 17:33:07'),(3,'effects_map','2015-03-17 19:50:58');
 
 /*Table structure for table `uploads` */
 
@@ -203,4 +216,3 @@ insert  into `users`(`id`,`username`,`password`,`email`,`activated`,`banned`,`ba
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
