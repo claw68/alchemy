@@ -45,6 +45,19 @@ CREATE TABLE `demo` (
 
 /*Data for the table `demo` */
 
+/*Table structure for table `effects` */
+
+DROP TABLE IF EXISTS `effects`;
+
+CREATE TABLE `effects` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `effects` */
+
 /*Table structure for table `gallery` */
 
 DROP TABLE IF EXISTS `gallery`;
@@ -58,6 +71,19 @@ CREATE TABLE `gallery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `gallery` */
+
+/*Table structure for table `ingredients` */
+
+DROP TABLE IF EXISTS `ingredients`;
+
+CREATE TABLE `ingredients` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `ingredients` */
 
 /*Table structure for table `login_attempts` */
 
@@ -82,9 +108,11 @@ CREATE TABLE `object` (
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `object` */
+
+insert  into `object`(`id`,`name`,`create_date`) values (1,'ingredients','2015-03-17 17:27:55'),(2,'effects','2015-03-17 17:33:07');
 
 /*Table structure for table `uploads` */
 
