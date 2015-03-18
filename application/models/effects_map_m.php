@@ -47,41 +47,56 @@ class Effects_map_m extends CI_Model
 			SELECT
 				i.id,
 				i.name AS ingredient,
-				ef1.`effect_name` AS `primary`,
-				ef2.`effect_name` AS secondary,
-				ef3.`effect_name` AS tertiary,
-				ef4.`effect_name` AS quarternary
+				em1.`effect_name` AS `primary`,
+				em2.`effect_name` AS secondary,
+				em3.`effect_name` AS tertiary,
+				em4.`effect_name` AS quarternary
 			FROM
 				ingredients i
 					LEFT JOIN (
 						SELECT 
-							ef.* , e.`name` AS effect_name 
-						FROM effects_map ef, effects e 
-						WHERE ef.`effect` = e.`id`) ef1 
-					ON i.`id` = ef1.`ingredient` AND ef1.`position` = 1
+							em.* , e.`name` AS effect_name 
+						FROM effects_map em, effects e 
+						WHERE em.`effect` = e.`id`) em1 
+						ON i.`id` = em1.`ingredient` AND em1.`position` = 1
 					
 					LEFT JOIN (
 						SELECT
-							ef.* , e.`name` AS effect_name
-						FROM effects_map ef, effects e 
-						WHERE ef.`effect` = e.`id`) ef2
-						ON i.`id` = ef2.`ingredient` AND ef2.`position` = 2
+							em.* , e.`name` AS effect_name
+						FROM effects_map em, effects e 
+						WHERE em.`effect` = e.`id`) em2
+						ON i.`id` = em2.`ingredient` AND em2.`position` = 2
 						
 					LEFT JOIN (
 						SELECT
-							ef.* , e.`name` AS effect_name 
-						FROM effects_map ef, effects e
-						WHERE ef.`effect` = e.`id`) ef3 
-						ON i.`id` = ef3.`ingredient` AND ef3.`position` = 3
+							em.* , e.`name` AS effect_name 
+						FROM effects_map em, effects e
+						WHERE em.`effect` = e.`id`) em3 
+						ON i.`id` = em3.`ingredient` AND em3.`position` = 3
 					
 					LEFT JOIN (
 						SELECT 
-							ef.* , e.`name` AS effect_name
-						FROM effects_map ef, effects e
-						WHERE ef.`effect` = e.`id`) ef4 
-						ON i.`id` = ef4.`ingredient` AND ef4.`position` = 4";
+							em.* , e.`name` AS effect_name
+						FROM effects_map em, effects e
+						WHERE em.`effect` = e.`id`) em4 
+						ON i.`id` = em4.`ingredient` AND em4.`position` = 4";
 						
 		$query =  $this->db->query($sql);
+		$results =  $query->result_array();
+		return $results;
+	}
+	
+	function list_ingredients_by_effect($effect)
+	{
+		$sql = "
+			SELECT i.id, i.name
+			FROM 
+				effects_map ef,
+				ingredients i
+			WHERE
+				ef.`ingredient` = i.`id` AND
+				ef.`effect` = ?";
+		$query =  $this->db->query($sql, Array($effect));
 		$results =  $query->result_array();
 		return $results;
 	}

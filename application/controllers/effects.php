@@ -6,6 +6,7 @@ class Effects extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('effects_m', 'effects');
+		$this->load->model('effects_map_m', 'effects_map');
 		
 		if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
@@ -19,6 +20,21 @@ class Effects extends CI_Controller
 		
 		$navigation = navigation();
 		render_layout('effects/list', $data, $navigation);
+	}
+	
+	function table()
+	{
+		$effects = $this->effects->all();
+		
+		foreach ($effects as $key => $row) {
+			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect($row['id']);
+		}
+		
+		$data = new stdClass();
+		$data->effects = $effects;
+		
+		$navigation = navigation();
+		render_layout('effects/table', $data, $navigation);
 	}
 	
 	function add()
