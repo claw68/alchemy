@@ -5,9 +5,6 @@
 	<div class="medium-12 columns">
 		<table>
 			<tr>
-				<th><?php echo $effect['name']; ?></th>
-			</tr>
-			<tr>
 				<td>
 					<?php foreach ($ingredients as $row) { ?>
 						<?php echo $row['name']; ?><br />
