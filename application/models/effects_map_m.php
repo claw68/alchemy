@@ -101,6 +101,21 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
+	function list_effects_by_ingredient($ingredient)
+	{
+		$sql = "
+			SELECT e.id, e.name
+			FROM 
+				effects_map ef,
+				effects e
+			WHERE
+				ef.`effect` = e.`id` AND
+				ef.`ingredient` = ?";
+		$query =  $this->db->query($sql, Array($ingredient));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
 	function update($id, $data)
 	{
 		$data = $this->_strip_keys($data);
