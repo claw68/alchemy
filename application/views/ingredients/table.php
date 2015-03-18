@@ -14,10 +14,25 @@
 			<?php foreach ($ingredients as $row) { ?>
 				<tr>
 					<td><?php echo htmlspecialchars($row["ingredient"], ENT_QUOTES); ?></td>
-					<td><?php echo htmlspecialchars($row["primary"], ENT_QUOTES); ?></td>
-					<td><?php echo htmlspecialchars($row["secondary"], ENT_QUOTES); ?></td>
-					<td><?php echo htmlspecialchars($row["tertiary"], ENT_QUOTES); ?></td>
-					<td><?php echo htmlspecialchars($row["quarternary"], ENT_QUOTES); ?></td>
+					<td><a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+							<?php echo htmlspecialchars($row["primary"], ENT_QUOTES); ?>
+						</a>
+					</td>
+					<td>
+						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+							<?php echo htmlspecialchars($row["secondary"], ENT_QUOTES); ?>
+						</a>
+					</td>
+					<td>
+						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+							<?php echo htmlspecialchars($row["tertiary"], ENT_QUOTES); ?>
+						</a>
+					</td>
+					<td>
+						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+							<?php echo htmlspecialchars($row["quarternary"], ENT_QUOTES); ?>
+						</a>
+					</td>
 				</tr>
 			<?php } ?>
 		</table>
