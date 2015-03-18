@@ -34,15 +34,15 @@ class Effects extends CI_Controller
 	}
 	
 	function view($id){
-		$effects = $this->effects->get($id);
+		$effect = $this->effects->get($id);
 		
-		if (!$effects)
+		if (!$effect)
 			redirect('/effects/table');
 		
 		$ingredients = $this->effects_map->list_ingredients_by_effect($id);
 		
 		$data = new stdClass();
-		$data->effects = $effects;
+		$data->effect = $effect;
 		$data->ingredients = $ingredients;
 		
 		$navigation = navigation();

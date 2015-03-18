@@ -5,7 +5,7 @@
 	<div class="medium-12 columns">
 		<table>
 			<tr>
-				<th><?php echo $effects['name']; ?></th>
+				<th><?php echo $effect['name']; ?></th>
 			</tr>
 			<tr>
 				<td>
