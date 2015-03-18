@@ -6,6 +6,7 @@ class Ingredients extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('ingredients_m', 'ingredients');
+		$this->load->model('effects_map_m', 'effects_map');
 		
 		if (!$this->tank_auth->is_logged_in()) {
 			redirect('/auth/login/');
@@ -19,6 +20,17 @@ class Ingredients extends CI_Controller
 		
 		$navigation = navigation();
 		render_layout('ingredients/list', $data, $navigation);
+	}
+	
+	function table()
+	{
+		$ingredients = $this->effects_map->ingredients_table();
+		
+		$data = new stdClass();
+		$data->ingredients = $ingredients;
+		
+		$navigation = navigation();
+		render_layout('ingredients/table', $data, $navigation);
 	}
 	
 	function add()
