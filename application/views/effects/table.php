@@ -4,13 +4,11 @@
 	</div>
 	<table class="list">
 		<tr>
-			<th>ID</th>
 			<th>Name</th>
 			<th>Ingredients</th>
 		</tr>
 		<?php foreach ($effects as $row) { ?>
 			<tr>
-				<td><?php echo htmlspecialchars($row["id"], ENT_QUOTES); ?></td>
 				<td><?php echo htmlspecialchars($row["name"], ENT_QUOTES); ?></td>
 				<td>
 					<?php foreach ($row['ingredients'] as $col) { ?>
