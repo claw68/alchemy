@@ -101,6 +101,22 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
+	function list_ingredients_by_effect_not($effect, $not)
+	{
+		$sql = "
+			SELECT i.id, i.name
+			FROM 
+				effects_map ef,
+				ingredients i
+			WHERE
+				ef.`ingredient` = i.`id` AND
+				ef.`effect` = ? AND
+				i.id != ?";
+		$query =  $this->db->query($sql, Array($effect, $not));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
 	function list_effects_by_ingredient($ingredient)
 	{
 		$sql = "
