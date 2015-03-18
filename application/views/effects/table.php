@@ -4,7 +4,7 @@
 	</div>
 	<table class="list">
 		<tr>
-			<th>Name</th>
+			<th>Effect</th>
 			<th>Ingredients</th>
 		</tr>
 		<?php foreach ($effects as $row) { ?>

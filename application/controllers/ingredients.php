@@ -7,10 +7,6 @@ class Ingredients extends CI_Controller
 		parent::__construct();
 		$this->load->model('ingredients_m', 'ingredients');
 		$this->load->model('effects_map_m', 'effects_map');
-		
-		if (!$this->tank_auth->is_logged_in()) {
-			redirect('/auth/login/');
-		}
 	}
 
 	public function index()

@@ -1,6 +1,6 @@
 <div>
 	<div style="padding-bottom: 15px;">
-		<p style="font-weight: bold;">Ingredients - Effects Table</p>
+		<p style="font-weight: bold;">Ingredients Table</p>
 	</div>
 	<table class="list">
 		<tr>
