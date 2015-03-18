@@ -65,6 +65,10 @@ table th, table td {
 	margin: 0 0 20px 0;
 }
 
+#content a {
+	color: #222;
+}
+
 #effects_table table.list {
 	width: 100%;
 }
