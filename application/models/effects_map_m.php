@@ -47,36 +47,36 @@ class Effects_map_m extends CI_Model
 			SELECT
 				i.id,
 				i.name AS ingredient,
-				em1.`effect_name` AS `primary`,
-				em2.`effect_name` AS secondary,
-				em3.`effect_name` AS tertiary,
-				em4.`effect_name` AS quarternary
+				em1.eid as em1id, em1.`effect_name` AS `primary`,
+				em2.eid as em2id, em2.`effect_name` AS secondary,
+				em3.eid as em3id, em3.`effect_name` AS tertiary,
+				em4.eid as em4id, em4.`effect_name` AS quarternary
 			FROM
 				ingredients i
 					LEFT JOIN (
 						SELECT 
-							em.* , e.`name` AS effect_name 
+							em.*, e.`name` AS effect_name, e.id as eid
 						FROM effects_map em, effects e 
 						WHERE em.`effect` = e.`id`) em1 
 						ON i.`id` = em1.`ingredient` AND em1.`position` = 1
 					
 					LEFT JOIN (
 						SELECT
-							em.* , e.`name` AS effect_name
+							em.*, e.`name` AS effect_name, e.id as eid
 						FROM effects_map em, effects e 
 						WHERE em.`effect` = e.`id`) em2
 						ON i.`id` = em2.`ingredient` AND em2.`position` = 2
 						
 					LEFT JOIN (
 						SELECT
-							em.* , e.`name` AS effect_name 
+							em.*, e.`name` AS effect_name, e.id as eid
 						FROM effects_map em, effects e
 						WHERE em.`effect` = e.`id`) em3 
 						ON i.`id` = em3.`ingredient` AND em3.`position` = 3
 					
 					LEFT JOIN (
 						SELECT 
-							em.* , e.`name` AS effect_name
+							em.*, e.`name` AS effect_name, e.id as eid
 						FROM effects_map em, effects e
 						WHERE em.`effect` = e.`id`) em4 
 						ON i.`id` = em4.`ingredient` AND em4.`position` = 4";

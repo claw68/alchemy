@@ -13,23 +13,27 @@
 			</tr>
 			<?php foreach ($ingredients as $row) { ?>
 				<tr>
-					<td><?php echo htmlspecialchars($row["ingredient"], ENT_QUOTES); ?></td>
-					<td><a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+					<td>
+						<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
+							<?php echo htmlspecialchars($row["ingredient"], ENT_QUOTES); ?></td>
+						</a>
+					<td>
+						<a href="<?php echo site_url("effects/view/".$row['em1id']); ?>">
 							<?php echo htmlspecialchars($row["primary"], ENT_QUOTES); ?>
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+						<a href="<?php echo site_url("effects/view/".$row['em2id']); ?>">
 							<?php echo htmlspecialchars($row["secondary"], ENT_QUOTES); ?>
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+						<a href="<?php echo site_url("effects/view/".$row['em3id']); ?>">
 							<?php echo htmlspecialchars($row["tertiary"], ENT_QUOTES); ?>
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+						<a href="<?php echo site_url("effects/view/".$row['em4id']); ?>">
 							<?php echo htmlspecialchars($row["quarternary"], ENT_QUOTES); ?>
 						</a>
 					</td>
