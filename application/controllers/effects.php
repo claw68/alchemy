@@ -21,6 +21,15 @@ class Effects extends CI_Controller
 		render_layout('effects/list', $data, $navigation);
 	}
 	
+	function table()
+	{
+		$data = new stdClass();
+		$data->effects = $this->effects->all();
+		
+		$navigation = navigation();
+		render_layout('effects/table', $data, $navigation);
+	}
+	
 	function add()
 	{
 		$data = new stdClass();
