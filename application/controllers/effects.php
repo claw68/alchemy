@@ -7,10 +7,6 @@ class Effects extends CI_Controller
 		parent::__construct();
 		$this->load->model('effects_m', 'effects');
 		$this->load->model('effects_map_m', 'effects_map');
-		
-		if (!$this->tank_auth->is_logged_in()) {
-			redirect('/auth/login/');
-		}
 	}
 
 	public function index()
