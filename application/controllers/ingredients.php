@@ -29,6 +29,27 @@ class Ingredients extends CI_Controller
 		render_layout('ingredients/table', $data, $navigation);
 	}
 	
+	function view($id)
+	{
+		$ingredient = $this->ingredients->get($id);
+		
+		if (!$ingredient)
+			redirect('/ingredients/table');
+		
+		$effects = $this->effects_map->list_effects_by_ingredient($id);
+		foreach ($effects as $key => $row) {
+			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect_not($row['id'], $id);
+		}
+		
+		$data = new stdClass();
+		$data->ingredient = $ingredient;
+		$data->effects = $effects;
+		
+		$navigation = navigation();
+		
+		render_layout('ingredients/view', $data, $navigation);
+	}
+	
 	function add()
 	{
 		$data = new stdClass();
