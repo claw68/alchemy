@@ -65,6 +65,14 @@ table th, table td {
 	margin: 0 0 20px 0;
 }
 
+#effects_table table.list {
+	width: 100%;
+}
+
+#ingredients_table table.list {
+	width: 100%;
+}
+
 #uploaded {
 	width: 100px;
 }
