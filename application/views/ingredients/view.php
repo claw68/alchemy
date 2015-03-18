@@ -2,8 +2,8 @@
 	<div class="medium-12 columns">
 		<p><?php echo $ingredient['name']; ?> - Effects List</p>
 	</div>
-	<div class="medium-12 columns">
-		<?php foreach ($effects as $effect) { ?>
+	<?php foreach ($effects as $effect) { ?>
+		<div class="medium-3 columns">
 			<table>
 				<tr>
 					<th><?php echo $effect['name']; ?></th>
@@ -16,6 +16,6 @@
 					</td>
 				</tr>
 			</table>
-		<?php } ?>
-	</div>
+		</div>
+	<?php } ?>
 </div>
