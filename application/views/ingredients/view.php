@@ -10,6 +10,11 @@
 			<?php foreach ($compatible as $row) { ?>
 				<tr>
 					<td><?php echo $row['name']; ?></td>
+					<td>
+						<?php foreach ($row['effects'] as $key => $col) { ?>
+							<?php echo $col['name']; if($key < sizeof($row['effects']) - 1) echo ", "; ?>
+						<?php } ?>
+					</td>
 				</tr>
 			<?php } ?>
 		</table>
