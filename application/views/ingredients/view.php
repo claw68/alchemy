@@ -2,6 +2,18 @@
 	<div class="medium-12 columns">
 		<p><?php echo $ingredient['name']; ?> - Effects List</p>
 	</div>
+	<div class="medium-12 columns">
+		<table>
+			<tr>
+				<th colspan="2">Compatible Ingredients</th>
+			</tr>
+			<?php foreach ($compatible as $row) { ?>
+				<tr>
+					<td><?php echo $row['name']; ?></td>
+				</tr>
+			<?php } ?>
+		</table>
+	</div>
 	<?php foreach ($effects as $effect) { ?>
 		<div class="medium-3 columns">
 			<table>
