@@ -6,12 +6,18 @@
 		<div class="medium-3 columns">
 			<table>
 				<tr>
-					<th><?php echo $effect['name']; ?></th>
+					<th>
+						<a href="<?php echo site_url("effects/view/".$effect['id']); ?>">
+							<?php echo $effect['name']; ?>
+						</a>
+					</th>
 				</tr>
 				<tr>
 					<td>
 						<?php foreach ($effect['ingredients'] as $row) { ?>
-							<?php echo $row['name']; ?><br />
+							<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
+								<?php echo $row['name']; ?>
+							</a><br />
 						<?php } ?>
 					</td>
 				</tr>
