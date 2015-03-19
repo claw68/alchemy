@@ -5,7 +5,7 @@
 	<div class="medium-12 columns">
 		<table>
 			<tr>
-				<th colspan="2">Compatible Ingredients</th>
+				<th colspan="2"><?php if(!$compatible) echo "No"; ?> Compatible Ingredients</th>
 			</tr>
 			<?php foreach ($compatible as $row) { ?>
 				<tr>
