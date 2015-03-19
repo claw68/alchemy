@@ -149,7 +149,8 @@ class Effects_map_m extends CI_Model
 				GROUP BY ingredient
 			) em
 			LEFT JOIN ingredients i ON em.ingredient = i.id
-			WHERE compatible > 1";
+			WHERE compatible > 1
+			ORDER BY compatible DESC";
 		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
 		$results =  $query->result_array();
 		return $results;
