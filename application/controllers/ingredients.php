@@ -36,6 +36,8 @@ class Ingredients extends CI_Controller
 		if (!$ingredient)
 			redirect('/ingredients/table');
 		
+		$compatible = $this->effects_map->list_compatible_ingredients($id);
+		
 		$effects = $this->effects_map->list_effects_by_ingredient($id);
 		foreach ($effects as $key => $row) {
 			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect_not($row['id'], $id);
@@ -44,6 +46,7 @@ class Ingredients extends CI_Controller
 		$data = new stdClass();
 		$data->ingredient = $ingredient;
 		$data->effects = $effects;
+		$data->compatible = $compatible;
 		
 		$navigation = navigation();
 		
