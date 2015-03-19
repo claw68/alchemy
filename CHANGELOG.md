@@ -1,3 +1,9 @@
+## 1.3.1 - March 19, 2015
+
+Features:
+
+- Added Compatible Ingredients List
+
 ## 1.3.0 - March 19, 2015
 
 Features:
