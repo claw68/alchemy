@@ -6,9 +6,11 @@
 		<table>
 			<tr>
 				<td>
-					<?php foreach ($ingredients as $row) { ?>
-						<?php echo $row['name']; ?><br />
-					<?php } ?>
+				<?php foreach ($ingredients as $row) { ?>
+					<a href="<?php echo site_url("ingredients/view/".$effect['id']); ?>">
+						<?php echo $row['name']; ?>
+					</a><br />
+				<?php } ?>
 				</td>
 			</tr>
 		</table>
