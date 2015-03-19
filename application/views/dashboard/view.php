@@ -1,8 +1,5 @@
 <div>
-	Logged in as: <a href="<?php echo site_url(); ?>dashboard/profile"><?php echo $username; ?></a>
-	<br />
-	Hi, <strong><?php echo $profile->first_name." ".$profile->last_name; ?></strong>!
-	<br />
+	<p style="font-weight: bold;">Dashboard</p>
 	<br />
 	<table>
 		<tr>
@@ -36,9 +33,9 @@
 			<td>v1.10.3</td>
 		</tr>
 		<tr>
-			<td>CSS Reset</td>
-			<td><a target="_blank" href="http://meyerweb.com/eric/tools/css/reset">http://meyerweb.com/eric/tools/css/reset</a></td>
-			<td>v2.0</td>
+			<td>Foundation 5</td>
+			<td><a target="_blank" href="http://foundation.zurb.com/">http://foundation.zurb.com/</a></td>
+			<td>v5.5.1</td>
 		</tr>
 	</table>
 </div>

@@ -1,24 +1,15 @@
-My Project Template
+Skyrim Alchemy Database
 ===================
 
 What is it?
 ------------
 
-A Project template used to generate new project. Instead of starting from scratch, this will be the base.
-
-Installation
-------------
-
-The database backup, template.sql, located in the root directory must be run on the database server to make it work.
+A mini site intended to guide Skyrim Alchemist in crafting poisons and potions. 
 
 Credits
 --------
 
-Source:
+Data Source:
 
-- [CodeIgniter](http://ellislab.com/codeigniter) v2.1.4
-- [PHPUnit for CodeIgniter](https://github.com/redvel/PHPUnit-for-CodeIgniter) v1.0
-- [Tank_auth](http://konyukhov.com/soft/tank_auth/) v1.0.9
-- [jQuery](http://jquery.com/) v1.10.2
-- [jQuery UI](http://jqueryui.com) v1.10.3 
-- [CSS Reset](http://meyerweb.com/eric/tools/css/reset/) v2.0 
+- [Ingredients (Skyrim) - The Elder Scrolls Wiki](http://elderscrolls.wikia.com/wiki/Ingredients_%28Skyrim%29)
+- [Skyrim Alchemy](http://www.skyrimalchemy.com)

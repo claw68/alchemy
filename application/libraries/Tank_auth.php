@@ -126,9 +126,8 @@ class Tank_auth
 	 */
 	function is_logged_in($activated = TRUE)
 	{
-		if($this->ci->session->userdata('status') == FALSE && (current_url()."/" != site_url()) && (current_url()."/" != site_url()."auth/login/"))
-		{
-			$this->ci->session->set_userdata('currentUrl',current_url());
+		if ($this->ci->session->userdata('status') == FALSE && (current_url()."/" != site_url()) && (current_url()."/" != site_url()."auth/login/")) {
+			$this->ci->session->set_userdata('currentUrl', current_url());
 		}
 		return $this->ci->session->userdata('status') === ($activated ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED);
 	}

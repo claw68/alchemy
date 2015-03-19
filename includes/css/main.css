@@ -24,8 +24,6 @@ table th, table td {
 }
 
 #wrapper {
-	margin: auto;
-	width: 960px;
 	color: #6f6f6f;
 }
 
@@ -33,29 +31,59 @@ table th, table td {
 	margin: 10px 0px 20px;
 }
 
-#navigation {
+.navigation {
 	height: 20px;
 	display: block;
 	list-style: none;
 	position: relative;
 }
 
-#navigation > li {
+.navigation > li {
 	display: block;
 	float: left;
 	margin-right: 10px;
 }
 
-#navigation > li > a {
+.navigation > li > a {
 	text-decoration: none;
 }
 
-#navigation > li.nav-active > a {
+.navigation > li.nav-active > a {
 	text-decoration: underline;
+}
+
+#navigation {
+	float: left;
+	margin-left: 0px;
+}
+
+#user-info {
+	float: right;
 }
 
 #content {
 	margin: 0 0 20px 0;
+}
+
+#content a {
+	color: #222;
+}
+
+#effects_table table.list {
+	width: 100%;
+}
+
+#effects_view p, #ingredients_view p {
+	font-weight: bold;
+	color: #222;
+}
+
+#ingredients_table table.list {
+	width: 100%;
+}
+
+#ingredients_view table th a {
+	font-weight: bold;
 }
 
 #uploaded {

@@ -10,6 +10,18 @@ class Uploads_m extends CI_Model
 		$this->load->database();
 	}
 	
+	function _strip_keys($data)
+	{
+		$allowed_keys = $this->db->list_fields($this->table);
+		
+		foreach ($data as $key => $value) {
+			if (!in_array($key, $allowed_keys))
+				unset($data[$key]);
+		}
+		
+		return $data;
+	}
+	
 	function delete($id)
 	{
 		$this->db->delete($this->table, array('id' => $id));
@@ -22,6 +34,7 @@ class Uploads_m extends CI_Model
 	
 	function add($data)
 	{
+		$data = $this->_strip_keys($data);
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();
 	}
@@ -35,6 +48,7 @@ class Uploads_m extends CI_Model
 	
 	function update($id, $data)
 	{
+		$data = $this->_strip_keys($data);
 		$this->db->where('id', $id);
 		$this->db->update($this->table, $data);
 	}
@@ -43,7 +57,7 @@ class Uploads_m extends CI_Model
 	{
 		$query = $this->db->get_where($this->table, array('id' => $id));
 		$results =  $query->result_array();
-		if($query->num_rows() > 0)
+		if ($query->num_rows() > 0)
 			return $results[0];
 		else
 			return FALSE;
@@ -54,7 +68,7 @@ class Uploads_m extends CI_Model
 		$this->db->order_by("create_date", "desc");
 		$query = $this->db->get_where($this->table, array('table_name'=> $table_name, 'table_id' => $table_id, 'type' => $type));
 		$results =  $query->result_array();
-		if($query->num_rows() > 0)
+		if ($query->num_rows() > 0)
 			return $results[0];
 		else
 			return FALSE;
