@@ -80,6 +80,14 @@ table th, table td {
 	color: #222;
 }
 
+.page-title {
+	padding-bottom: 5px;
+}
+
+.page-title p {
+	font-weight: bold;
+}
+
 #effects_table table.list {
 	width: 100%;
 }
