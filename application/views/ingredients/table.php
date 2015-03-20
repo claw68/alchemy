@@ -40,10 +40,12 @@
 						</a>
 					</td>
 					<td>
-						<a href="<?php echo site_url("effects/view/".$row['max_id']); ?>">
-							<?php echo htmlspecialchars($row["max_name"], ENT_QUOTES); ?>
-							(<?php echo htmlspecialchars($row["max_price"], ENT_QUOTES); ?>)
-						</a>
+						<?php foreach($row['best'] as $key => $col) { ?>
+							<a href="<?php echo site_url("effects/view/".$col['eid']); ?>">
+								<?php echo htmlspecialchars($col["effect_name"], ENT_QUOTES); if($key < sizeof($row['best']) - 1) echo ", "; ?>
+							</a>
+						<?php } ?>
+						(<?php echo htmlspecialchars($row["max_price"], ENT_QUOTES);?>)
 					</td>
 					<td>
 						<?php echo htmlspecialchars($row["price_total"], ENT_QUOTES); ?>

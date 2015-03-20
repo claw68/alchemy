@@ -104,6 +104,25 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
+	function list_best_effects_by_ingredient($ingredient)
+	{
+		$sql = "
+			SELECT
+				em.*, e.`name` AS effect_name, e.id AS eid, e.price
+			FROM effects e, effects_map em 
+				LEFT JOIN (
+					SELECT em.`ingredient`, MAX(e.`price`) price
+					FROM effects_map em, effects e
+					WHERE em.`effect` = e.`id`
+					GROUP BY em.`ingredient`
+				) emax
+				ON em.`ingredient` = emax.ingredient
+			WHERE em.`effect` = e.`id` AND e.`price` = emax.price AND em.`ingredient` = ?";
+		$query =  $this->db->query($sql, Array($ingredient));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
 	function list_ingredients_by_effect($effect)
 	{
 		$sql = "
