@@ -7,6 +7,7 @@ class Ingredients extends CI_Controller
 		parent::__construct();
 		$this->load->model('ingredients_m', 'ingredients');
 		$this->load->model('effects_map_m', 'effects_map');
+		$this->load->model('effects_m', 'effects');
 	}
 
 	public function index()
@@ -54,6 +55,23 @@ class Ingredients extends CI_Controller
 		$navigation = navigation();
 		
 		render_layout('ingredients/view', $data, $navigation);
+	}
+	
+	function tips()
+	{
+		//most valuable single effects
+		$valuable = Array(34, 4, 6, 30, 49, 11, 38, 39, 40);
+		$effects = Array();
+		foreach ($valuable as $id) {
+			$effects[] = $this->effects->get($id);
+		}
+		
+		$data = new stdClass();
+		$data->effects = $effects;
+		
+		$navigation = navigation();
+		
+		render_layout('ingredients/tips', $data, $navigation);
 	}
 	
 	function add()
