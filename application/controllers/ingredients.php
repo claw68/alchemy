@@ -83,9 +83,26 @@ class Ingredients extends CI_Controller
 			}
 		}
 		
+		//best value ingredients combination: without giant's toe
+		$ingredient = Array();
+		$ingredient[] = Array(22, 42, 106);
+		$ingredient[] = Array(22, 66, 106);
+		$ingredient[] = Array(22, 66, 70);
+		$ingredient[] = Array(29, 31, 86);
+		$ingredient[] = Array(25, 68, 87);
+		
+		$without_giant = Array();
+		foreach ($ingredient as $key => $ids) {
+			$without_giant[$key] = Array();
+			foreach ($ids as $id) {
+				$without_giant[$key][] = $this->ingredients->get($id);
+			}
+		}
+		
 		$data = new stdClass();
 		$data->effects = $effects;
 		$data->with_giant = $with_giant;
+		$data->without_giant = $without_giant;
 		
 		$navigation = navigation();
 		
