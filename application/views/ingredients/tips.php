@@ -1,6 +1,6 @@
 <div id="ingredients_tips" class="row">
 	<div class="medium-12 columns">
-		<p>Alchemy Tips</p>
+		<p style="font-weight: bold;">Alchemy Tips</p>
 	</div>
 	<div class="medium-3 columns">
 		<table class="list">
