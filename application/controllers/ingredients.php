@@ -61,13 +61,31 @@ class Ingredients extends CI_Controller
 	{
 		//most valuable single effects
 		$valuable = Array(34, 4, 6, 30, 49, 11, 38, 39, 40);
+		
 		$effects = Array();
 		foreach ($valuable as $id) {
 			$effects[] = $this->effects->get($id);
 		}
 		
+		//best value ingredients combination: with giant's toe
+		$ingredient = Array();
+		$ingredient[] = Array(44, 6, 51);
+		$ingredient[] = Array(44, 25, 108);
+		$ingredient[] = Array(44, 12, 14);
+		$ingredient[] = Array(44, 108, 87);
+		$ingredient[] = Array(44, 108, 110);
+		
+		$with_giant = Array();
+		foreach ($ingredient as $key => $ids) {
+			$with_giant[$key] = Array();
+			foreach ($ids as $id) {
+				$with_giant[$key][] = $this->ingredients->get($id);
+			}
+		}
+		
 		$data = new stdClass();
 		$data->effects = $effects;
+		$data->with_giant = $with_giant;
 		
 		$navigation = navigation();
 		
