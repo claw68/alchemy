@@ -47,10 +47,6 @@ table th, table td {
 	text-decoration: none;
 }
 
-.navigation > li.nav-active > a {
-	color: #222222;
-}
-
 #navigation {
 	float: left;
 	margin-left: 0px;
@@ -62,10 +58,14 @@ table th, table td {
 
 #navigation li a {
 	color: #fff;
-	padding: 9px 20px;
+	padding: 9px 15px;
 	display: block;
 	font-size: 16px;
 	font-weight: bold;
+}
+
+#navigation li.nav-active a {
+	color: #ccc;
 }
 
 #user-info {
@@ -80,12 +80,17 @@ table th, table td {
 	color: #222;
 }
 
-#effects_table table.list {
-	width: 100%;
+.page-title {
+	padding-bottom: 5px;
 }
 
-#effects_view p, #ingredients_view p {
+.page-title p {
 	font-weight: bold;
+	padding-left: 8px;
+}
+
+#effects_table table.list {
+	width: 100%;
 }
 
 #ingredients_table table.list {

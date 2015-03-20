@@ -1,6 +1,6 @@
 <div id="effects_table" class="row">
-	<div class="medium-12 columns" style="padding-bottom: 5px;">
-		<p style="font-weight: bold;">Effects Table</p>
+	<div class="page-title medium-12 columns">
+		<p>Effects Table</p>
 	</div>
 	<div class="medium-6 columns">
 		<table class="list">
