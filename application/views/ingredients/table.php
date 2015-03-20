@@ -1,5 +1,5 @@
 <div id="ingredients_table" class="row">
-	<div class="medium-12 columns" style="padding-bottom: 15px;">
+	<div class="medium-12 columns" style="padding-bottom: 5px;">
 		<p style="font-weight: bold;">Ingredients Table</p>
 	</div>
 	<div class="medium-12 columns">
