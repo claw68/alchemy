@@ -1,3 +1,12 @@
+## 1.3.3 - March 20, 2015
+
+Fixes:
+
+- Fixed Navigation Highlight current page
+- Fixed Navigation in small screens
+- Fixed Alchemy tips page grid in medium and large screens
+- Fixed Page Titles to have a uniform style
+
 ## 1.3.2 - March 20, 2015
 
 Features:

@@ -1,8 +1,8 @@
 <div id="ingredients_tips" class="row">
-	<div class="medium-12 columns">
-		<p style="font-weight: bold;">Alchemy Tips</p>
+	<div class="page-title medium-12 columns">
+		<p>Alchemy Tips</p>
 	</div>
-	<div class="medium-3 columns">
+	<div class="medium-4 large-3 columns">
 		<table class="list">
 			<tr>
 				<th>Most Valuable Single Effects</th>
@@ -18,7 +18,7 @@
 			<?php } ?>
 		</table>
 	</div>
-	<div class="medium-9 columns">
+	<div class="medium-8 large-9 columns">
 		<table class="list">
 			<tr>
 				<th colspan="3">Best Value Ingredients Combination with Giant's Toe</th>

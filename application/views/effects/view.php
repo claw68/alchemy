@@ -1,5 +1,5 @@
 <div id="effects_view" class="row">
-	<div class="medium-12 columns">
+	<div class="page-title medium-12 columns">
 		<p><?php echo $effect['name']; ?></p>
 	</div>
 	<div class="medium-12 columns">
