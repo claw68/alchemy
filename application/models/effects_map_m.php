@@ -87,18 +87,18 @@ class Effects_map_m extends CI_Model
 					LEFT JOIN (
 						SELECT
 							em.*, e.`name` AS effect_name, e.id AS eid, e.price
-						FROM effects_map em, effects e
+						FROM effects e, effects_map em 
 							LEFT JOIN (
-								SELECT emi.`ingredient`, MAX(e.`price`) price
-								FROM effects_map emi, effects e
-								WHERE emi.`effect` = e.`id` 
-								GROUP BY emi.`ingredient`
-							) emax ON e.`price` = emax.price
-						WHERE em.`effect` = e.`id` AND em.`ingredient` = emax.ingredient
+								SELECT em.`ingredient`, MAX(e.`price`) price
+								FROM effects_map em, effects e
+								WHERE em.`effect` = e.`id` 
+								GROUP BY em.`ingredient`
+							) emax
+							ON em.`ingredient` = emax.ingredient
+						WHERE em.`effect` = e.`id` AND e.`price` = emax.price
+						GROUP BY em.`ingredient`
 						) em_max
-						ON i.`id` = em_max.ingredient
-					GROUP BY i.id";
-						
+						ON i.`id` = em_max.ingredient";
 		$query =  $this->db->query($sql);
 		$results =  $query->result_array();
 		return $results;
