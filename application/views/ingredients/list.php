@@ -1,5 +1,5 @@
 <div>
-	<div style="padding-bottom: 15px;">
+	<div style="padding-bottom: 5px;">
 		<p style="font-weight: bold;">List Ingredients</p>
 	</div>
 	<div style="padding-bottom: 20px;">

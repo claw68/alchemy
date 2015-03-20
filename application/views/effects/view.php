@@ -1,9 +1,12 @@
 <div id="effects_view" class="row">
 	<div class="medium-12 columns">
-		<p><?php echo $effect['name']; ?> - Ingredients List</p>
+		<p><?php echo $effect['name']; ?></p>
 	</div>
 	<div class="medium-12 columns">
 		<table>
+			<tr>
+				<th>Ingredients List</th>
+			</tr>
 			<tr>
 				<td>
 				<?php foreach ($ingredients as $row) { ?>

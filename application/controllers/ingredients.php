@@ -7,6 +7,7 @@ class Ingredients extends CI_Controller
 		parent::__construct();
 		$this->load->model('ingredients_m', 'ingredients');
 		$this->load->model('effects_map_m', 'effects_map');
+		$this->load->model('effects_m', 'effects');
 	}
 
 	public function index()
@@ -54,6 +55,58 @@ class Ingredients extends CI_Controller
 		$navigation = navigation();
 		
 		render_layout('ingredients/view', $data, $navigation);
+	}
+	
+	function tips()
+	{
+		//most valuable single effects
+		$valuable = Array(34, 4, 6, 30, 49, 11, 38, 39, 40);
+		
+		$effects = Array();
+		foreach ($valuable as $id) {
+			$effects[] = $this->effects->get($id);
+		}
+		
+		//best value ingredients combination: with giant's toe
+		$ingredient = Array();
+		$ingredient[] = Array(44, 6, 51);
+		$ingredient[] = Array(44, 25, 108);
+		$ingredient[] = Array(44, 12, 14);
+		$ingredient[] = Array(44, 108, 87);
+		$ingredient[] = Array(44, 108, 110);
+		
+		$with_giant = Array();
+		foreach ($ingredient as $key => $ids) {
+			$with_giant[$key] = Array();
+			foreach ($ids as $id) {
+				$with_giant[$key][] = $this->ingredients->get($id);
+			}
+		}
+		
+		//best value ingredients combination: without giant's toe
+		$ingredient = Array();
+		$ingredient[] = Array(22, 42, 106);
+		$ingredient[] = Array(22, 66, 106);
+		$ingredient[] = Array(22, 66, 70);
+		$ingredient[] = Array(29, 31, 86);
+		$ingredient[] = Array(25, 68, 87);
+		
+		$without_giant = Array();
+		foreach ($ingredient as $key => $ids) {
+			$without_giant[$key] = Array();
+			foreach ($ids as $id) {
+				$without_giant[$key][] = $this->ingredients->get($id);
+			}
+		}
+		
+		$data = new stdClass();
+		$data->effects = $effects;
+		$data->with_giant = $with_giant;
+		$data->without_giant = $without_giant;
+		
+		$navigation = navigation();
+		
+		render_layout('ingredients/tips', $data, $navigation);
 	}
 	
 	function add()
