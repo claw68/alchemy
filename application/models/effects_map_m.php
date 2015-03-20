@@ -48,6 +48,9 @@ class Effects_map_m extends CI_Model
 				i.id,
 				i.name AS ingredient,
 				(em1.price + em2.price + em3.price + em4.price) AS price_total,
+				em_max.eid AS max_id,
+				em_max.effect_name AS max_name,
+				em_max.price AS max_price,
 				em1.eid as em1id, em1.`effect_name` AS `primary`,
 				em2.eid as em2id, em2.`effect_name` AS secondary,
 				em3.eid as em3id, em3.`effect_name` AS tertiary,
@@ -80,7 +83,21 @@ class Effects_map_m extends CI_Model
 							em.*, e.`name` AS effect_name, e.id AS eid, e.price
 						FROM effects_map em, effects e
 						WHERE em.`effect` = e.`id`) em4 
-						ON i.`id` = em4.`ingredient` AND em4.`position` = 4";
+						ON i.`id` = em4.`ingredient` AND em4.`position` = 4
+					LEFT JOIN (
+						SELECT
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
+						FROM effects_map em, effects e
+							LEFT JOIN (
+								SELECT emi.`ingredient`, MAX(e.`price`) price
+								FROM effects_map emi, effects e
+								WHERE emi.`effect` = e.`id` 
+								GROUP BY emi.`ingredient`
+							) emax ON e.`price` = emax.price
+						WHERE em.`effect` = e.`id` AND em.`ingredient` = emax.ingredient
+						) em_max
+						ON i.`id` = em_max.ingredient
+					GROUP BY i.id";
 						
 		$query =  $this->db->query($sql);
 		$results =  $query->result_array();
