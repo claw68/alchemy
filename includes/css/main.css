@@ -28,7 +28,7 @@ table th, table td {
 }
 
 #header {
-	margin: 10px 0px 20px;
+	margin-bottom: 20px;
 }
 
 .navigation {
@@ -41,7 +41,6 @@ table th, table td {
 .navigation > li {
 	display: block;
 	float: left;
-	margin-right: 10px;
 }
 
 .navigation > li > a {
@@ -49,12 +48,24 @@ table th, table td {
 }
 
 .navigation > li.nav-active > a {
-	text-decoration: underline;
+	color: #222222;
 }
 
 #navigation {
 	float: left;
 	margin-left: 0px;
+}
+
+#navigation li {
+	border-right: 1px solid #4e4e4e;
+}
+
+#navigation li a {
+	color: #fff;
+	padding: 9px 20px;
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 #user-info {
