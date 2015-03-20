@@ -10,6 +10,7 @@
 				<th>Secondary</th>
 				<th>Tertiary</th>
 				<th>Quarternary</th>
+				<th>Total</th>
 			</tr>
 			<?php foreach ($ingredients as $row) { ?>
 				<tr>
@@ -36,6 +37,9 @@
 						<a href="<?php echo site_url("effects/view/".$row['em4id']); ?>">
 							<?php echo htmlspecialchars($row["quarternary"], ENT_QUOTES); ?>
 						</a>
+					</td>
+					<td>
+						<?php echo htmlspecialchars($row["price_total"], ENT_QUOTES); ?>
 					</td>
 				</tr>
 			<?php } ?>
