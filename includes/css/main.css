@@ -84,10 +84,6 @@ table th, table td {
 	width: 100%;
 }
 
-#effects_view p, #ingredients_view p {
-	font-weight: bold;
-}
-
 #ingredients_table table.list {
 	width: 100%;
 }
