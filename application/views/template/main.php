@@ -13,6 +13,7 @@
 		
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/modernizr.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/js/jquery.js"></script>
+		<script src="<?php echo site_url(''); ?>includes/js/jquery.tablesorter.min.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/jquery.placeholder.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/js/jquery.ui/jquery.ui.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/foundation.min.js"></script>
