@@ -84,6 +84,10 @@ table th, table td {
 	font-weight: bold;
 }
 
+#content table thead tr th.header {
+	cursor: pointer;
+}
+
 .page-title {
 	padding-bottom: 5px;
 }
