@@ -174,8 +174,9 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT *
 			FROM (
-				SELECT *, COUNT(*) AS `compatible`
+				SELECT em.*, COUNT(*) AS `compatible`, SUM(e.price) AS price
 				FROM effects_map em
+				LEFT JOIN effects e ON em.`effect` = e.`id`
 				WHERE
 					effect IN (
 						SELECT effect 
@@ -187,7 +188,7 @@ class Effects_map_m extends CI_Model
 			) em
 			LEFT JOIN ingredients i ON em.ingredient = i.id
 			WHERE compatible > 1
-			ORDER BY compatible DESC, i.name";
+			ORDER BY price DESC, compatible DESC, i.name";
 		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
 		$results =  $query->result_array();
 		return $results;

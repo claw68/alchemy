@@ -16,16 +16,14 @@
 						</a>
 					</td>
 					<td>
-						<?php $price = 0; ?>
 						<?php foreach ($row['effects'] as $key => $col) { ?>
 							<a href="<?php echo site_url("effects/view/".$col['id']); ?>">
 								<?php echo $col['name']; if($key < sizeof($row['effects']) - 1) echo ", "; ?>
-								<?php $price += $col['price'];?>
 							</a>
 						<?php } ?>
 					</td>
 					<td>
-						<?php echo $price; ?>
+						<?php echo $row['price']; ?>
 					</td>
 				</tr>
 			<?php } ?>
