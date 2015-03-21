@@ -50,6 +50,7 @@
 						<?php foreach ($effect['ingredients'] as $row) { ?>
 							<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
 								<?php echo $row['name']; ?>
+								<?php if(sizeof($row['result']) > 1) echo '('.array_sum(array_column($row['result'], 'price')).')'; ?>
 							</a><br />
 						<?php } ?>
 					</td>
