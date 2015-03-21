@@ -88,6 +88,7 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$with_giant[$key][] = $this->ingredients->get($id);
 			}
+			$with_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
 		}
 		
 		//best value ingredients combination: without giant's toe
