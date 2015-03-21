@@ -1,6 +1,6 @@
 <div id="effects_view" class="row">
 	<div class="page-title medium-12 columns">
-		<p><?php echo $effect['name']; ?></p>
+		<p><?php echo $effect['name']; ?> (<?php echo $effect['price']; ?>)</p>
 	</div>
 	<div class="medium-12 columns">
 		<table>
