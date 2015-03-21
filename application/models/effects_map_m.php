@@ -141,15 +141,28 @@ class Effects_map_m extends CI_Model
 	function list_ingredients_by_effect_not($effect, $not)
 	{
 		$sql = "
-			SELECT i.id, i.name
+			SELECT i.id, i.name, SUM(ep.price) AS price
 			FROM 
 				effects_map em,
 				ingredients i
+				LEFT JOIN (				
+					SELECT em.*, e.id AS eid, e.name, e.`price`
+					FROM effects_map em, effects e
+					WHERE 
+						em.`effect` = e.`id` AND
+						em.`effect` IN (
+							SELECT effect 
+							FROM effects_map em
+							WHERE ingredient = ?
+						)
+				) ep ON ep.ingredient = i.`id`
 			WHERE
 				em.`ingredient` = i.`id` AND
 				em.`effect` = ? AND
-				i.id != ?";
-		$query =  $this->db->query($sql, Array($effect, $not));
+				i.id != ?
+			GROUP BY i.id
+			ORDER BY price DESC, i.name";
+		$query =  $this->db->query($sql, Array($not, $effect, $not));
 		$results =  $query->result_array();
 		return $results;
 	}
