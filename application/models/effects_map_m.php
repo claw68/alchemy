@@ -212,6 +212,24 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
+	function get_combination_result($ingredient1, $ingredient2)
+	{
+		$sql = "
+			SELECT *
+			FROM effects_map em, effects e
+			WHERE 
+				em.`effect` = e.`id`
+				AND em.`ingredient` = ?
+				AND effect IN (
+					SELECT em.`effect`
+					FROM effects_map em, effects e
+					WHERE em.`effect` = e.`id`
+					AND em.`ingredient` = ?)";
+		$query =  $this->db->query($sql, Array($ingredient1, $ingredient2));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
 	function update($id, $data)
 	{
 		$data = $this->_strip_keys($data);
