@@ -67,12 +67,7 @@ class Ingredients extends CI_Controller
 	function tips()
 	{
 		//most valuable single effects
-		$valuable = Array(34, 4, 6, 30, 49, 11, 38, 39, 40);
-		
-		$effects = Array();
-		foreach ($valuable as $id) {
-			$effects[] = $this->effects->get($id);
-		}
+		$effects = $this->effects->list_by_price();
 		
 		//best value ingredients combination: with giant's toe
 		$ingredient = Array();
