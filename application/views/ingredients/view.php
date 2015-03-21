@@ -35,6 +35,7 @@
 					<th>
 						<a href="<?php echo site_url("effects/view/".$effect['id']); ?>">
 							<?php echo $effect['name']; ?>
+							(<?php echo $effect['price']; ?>)
 						</a>
 					</th>
 				</tr>

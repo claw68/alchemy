@@ -157,7 +157,7 @@ class Effects_map_m extends CI_Model
 	function list_effects_by_ingredient($ingredient)
 	{
 		$sql = "
-			SELECT e.id, e.name
+			SELECT e.id, e.name, e.price
 			FROM 
 				effects_map ef,
 				effects e
