@@ -212,20 +212,33 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function get_combination_result($ingredient1, $ingredient2)
+	function list_effects_combination_by_ingredients($ingredient1, $ingredient2, $ingredient3 = false)
 	{
 		$sql = "
 			SELECT *
-			FROM effects_map em, effects e
-			WHERE 
-				em.`effect` = e.`id`
-				AND em.`ingredient` = ?
-				AND effect IN (
-					SELECT em.`effect`
-					FROM effects_map em, effects e
-					WHERE em.`effect` = e.`id`
-					AND em.`ingredient` = ?)";
-		$query =  $this->db->query($sql, Array($ingredient1, $ingredient2));
+			FROM (
+				SELECT em.*, e.id AS eid, e.name, e.`price`, COUNT(*) AS `hits`
+				FROM effects_map em, effects e
+				WHERE em.`effect` = e.`id`
+				AND (
+					em.ingredient = ? 
+					OR em.`ingredient` = ? ";
+		
+		if($ingredient3)
+			$sql .= "OR em.`ingredient` = ? ";
+			
+		$sql .= ")
+				GROUP BY e.id
+			) em
+			WHERE hits > 1";
+		
+		$values = Array();
+		if($ingredient3)
+			$values = Array($ingredient1, $ingredient2, $ingredient3);
+		else 
+			$values = Array($ingredient1, $ingredient2);
+		
+		$query =  $this->db->query($sql, $values);
 		$results =  $query->result_array();
 		return $results;
 	}

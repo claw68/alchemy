@@ -50,7 +50,7 @@ class Ingredients extends CI_Controller
 			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect_not($row['id'], $id);
 			
 			foreach($effects[$key]['ingredients'] as $colkey => $col) {
-				$effects[$key]['ingredients'][$colkey]['result'] = $this->effects_map->get_combination_result($id, $col['id']);
+				$effects[$key]['ingredients'][$colkey]['result'] = $this->effects_map->list_effects_combination_by_ingredients($id, $col['id']);
 			}
 		}
 		
@@ -88,6 +88,7 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$with_giant[$key][] = $this->ingredients->get($id);
 			}
+			$with_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
 		}
 		
 		//best value ingredients combination: without giant's toe
@@ -104,6 +105,7 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$without_giant[$key][] = $this->ingredients->get($id);
 			}
+			$without_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
 		}
 		
 		$data = new stdClass();
