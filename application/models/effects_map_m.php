@@ -128,11 +128,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT i.id, i.name
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ?";
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ?";
 		$query =  $this->db->query($sql, Array($effect));
 		$results =  $query->result_array();
 		return $results;
@@ -141,15 +141,28 @@ class Effects_map_m extends CI_Model
 	function list_ingredients_by_effect_not($effect, $not)
 	{
 		$sql = "
-			SELECT i.id, i.name
+			SELECT i.id, i.name, SUM(ep.price) AS price
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
+				LEFT JOIN (				
+					SELECT em.*, e.id AS eid, e.name, e.`price`
+					FROM effects_map em, effects e
+					WHERE 
+						em.`effect` = e.`id` AND
+						em.`effect` IN (
+							SELECT effect 
+							FROM effects_map em
+							WHERE ingredient = ?
+						)
+				) ep ON ep.ingredient = i.`id`
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ? AND
-				i.id != ?";
-		$query =  $this->db->query($sql, Array($effect, $not));
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ? AND
+				i.id != ?
+			GROUP BY i.id
+			ORDER BY price DESC, i.name";
+		$query =  $this->db->query($sql, Array($not, $effect, $not));
 		$results =  $query->result_array();
 		return $results;
 	}
@@ -159,11 +172,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT e.id, e.name, e.price
 			FROM 
-				effects_map ef,
+				effects_map em,
 				effects e
 			WHERE
-				ef.`effect` = e.`id` AND
-				ef.`ingredient` = ?";
+				em.`effect` = e.`id` AND
+				em.`ingredient` = ?";
 		$query =  $this->db->query($sql, Array($ingredient));
 		$results =  $query->result_array();
 		return $results;
@@ -174,8 +187,9 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT *
 			FROM (
-				SELECT *, COUNT(*) AS `compatible`
+				SELECT em.*, COUNT(*) AS `compatible`, SUM(e.price) AS price
 				FROM effects_map em
+				LEFT JOIN effects e ON em.`effect` = e.`id`
 				WHERE
 					effect IN (
 						SELECT effect 
@@ -187,7 +201,7 @@ class Effects_map_m extends CI_Model
 			) em
 			LEFT JOIN ingredients i ON em.ingredient = i.id
 			WHERE compatible > 1
-			ORDER BY compatible DESC, i.name";
+			ORDER BY price DESC, compatible DESC, i.name";
 		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
 		$results =  $query->result_array();
 		return $results;

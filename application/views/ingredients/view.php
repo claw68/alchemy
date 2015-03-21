@@ -16,16 +16,14 @@
 						</a>
 					</td>
 					<td>
-						<?php $price = 0; ?>
 						<?php foreach ($row['effects'] as $key => $col) { ?>
 							<a href="<?php echo site_url("effects/view/".$col['id']); ?>">
 								<?php echo $col['name']; if($key < sizeof($row['effects']) - 1) echo ", "; ?>
-								<?php $price += $col['price'];?>
 							</a>
 						<?php } ?>
 					</td>
 					<td>
-						<?php echo $price; ?>
+						<?php echo $row['price']; ?>
 					</td>
 				</tr>
 			<?php } ?>
@@ -50,7 +48,7 @@
 						<?php foreach ($effect['ingredients'] as $row) { ?>
 							<a <?php if(sizeof($row['result']) > 1) { ?>class="bold" <?php } ?>href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
 								<?php echo $row['name']; ?>
-								<?php if(sizeof($row['result']) > 1) echo '('.array_sum(array_column($row['result'], 'price')).')'; ?>
+								<?php if($row['price'] > $effect['price']) echo '('.$row['price'].')'; ?>
 							</a><br />
 						<?php } ?>
 					</td>
