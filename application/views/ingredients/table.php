@@ -12,6 +12,7 @@
 					<th>Tertiary</th>
 					<th>Quarternary</th>
 					<th>Most Expensive</th>
+					<th>Price</th>
 					<th>Total</th>
 				</tr>
 			</thead>
@@ -48,7 +49,9 @@
 									<?php echo htmlspecialchars($col["effect_name"], ENT_QUOTES); if($key < sizeof($row['best']) - 1) echo ", "; ?>
 								</a>
 							<?php } ?>
-							(<?php echo htmlspecialchars($row["max_price"], ENT_QUOTES);?>)
+						</td>
+						<td>
+							<?php echo htmlspecialchars($row["max_price"], ENT_QUOTES);?>
 						</td>
 						<td>
 							<?php echo htmlspecialchars($row["price_total"], ENT_QUOTES); ?>
