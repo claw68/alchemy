@@ -128,11 +128,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT i.id, i.name
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ?";
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ?";
 		$query =  $this->db->query($sql, Array($effect));
 		$results =  $query->result_array();
 		return $results;
@@ -143,11 +143,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT i.id, i.name
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ? AND
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ? AND
 				i.id != ?";
 		$query =  $this->db->query($sql, Array($effect, $not));
 		$results =  $query->result_array();
@@ -159,11 +159,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT e.id, e.name, e.price
 			FROM 
-				effects_map ef,
+				effects_map em,
 				effects e
 			WHERE
-				ef.`effect` = e.`id` AND
-				ef.`ingredient` = ?";
+				em.`effect` = e.`id` AND
+				em.`ingredient` = ?";
 		$query =  $this->db->query($sql, Array($ingredient));
 		$results =  $query->result_array();
 		return $results;
