@@ -12,6 +12,7 @@
 					<td>
 						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
 							<?php echo $row['name']; ?>
+							(<?php echo $row['price']; ?>)
 						</a>
 					</td>
 				</tr>

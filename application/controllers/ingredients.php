@@ -22,6 +22,9 @@ class Ingredients extends CI_Controller
 	function table()
 	{
 		$ingredients = $this->effects_map->ingredients_table();
+		foreach ($ingredients as $key => $row) {
+			$ingredients[$key]['best'] = $this->effects_map->list_best_effects_by_ingredient($row['id']);
+		}
 		
 		$data = new stdClass();
 		$data->ingredients = $ingredients;

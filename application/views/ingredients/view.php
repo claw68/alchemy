@@ -6,6 +6,7 @@
 		<table>
 			<tr>
 				<th colspan="2"><?php if(!$compatible) echo "No"; ?> Compatible Ingredients</th>
+				<th>Sell Price</th>
 			</tr>
 			<?php foreach ($compatible as $row) { ?>
 				<tr>
@@ -15,11 +16,16 @@
 						</a>
 					</td>
 					<td>
+						<?php $price = 0; ?>
 						<?php foreach ($row['effects'] as $key => $col) { ?>
 							<a href="<?php echo site_url("effects/view/".$col['id']); ?>">
 								<?php echo $col['name']; if($key < sizeof($row['effects']) - 1) echo ", "; ?>
+								<?php $price += $col['price'];?>
 							</a>
 						<?php } ?>
+					</td>
+					<td>
+						<?php echo $price; ?>
 					</td>
 				</tr>
 			<?php } ?>
@@ -35,6 +41,7 @@
 					<th>
 						<a href="<?php echo site_url("effects/view/".$effect['id']); ?>">
 							<?php echo $effect['name']; ?>
+							(<?php echo $effect['price']; ?>)
 						</a>
 					</th>
 				</tr>

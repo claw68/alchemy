@@ -10,6 +10,8 @@
 				<th>Secondary</th>
 				<th>Tertiary</th>
 				<th>Quarternary</th>
+				<th>Most Expensive</th>
+				<th>Total</th>
 			</tr>
 			<?php foreach ($ingredients as $row) { ?>
 				<tr>
@@ -36,6 +38,17 @@
 						<a href="<?php echo site_url("effects/view/".$row['em4id']); ?>">
 							<?php echo htmlspecialchars($row["quarternary"], ENT_QUOTES); ?>
 						</a>
+					</td>
+					<td>
+						<?php foreach($row['best'] as $key => $col) { ?>
+							<a href="<?php echo site_url("effects/view/".$col['eid']); ?>">
+								<?php echo htmlspecialchars($col["effect_name"], ENT_QUOTES); if($key < sizeof($row['best']) - 1) echo ", "; ?>
+							</a>
+						<?php } ?>
+						(<?php echo htmlspecialchars($row["max_price"], ENT_QUOTES);?>)
+					</td>
+					<td>
+						<?php echo htmlspecialchars($row["price_total"], ENT_QUOTES); ?>
 					</td>
 				</tr>
 			<?php } ?>
