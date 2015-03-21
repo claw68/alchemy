@@ -212,7 +212,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function get_combination_result($ingredient1, $ingredient2)
+	function list_effects_by_two_ingredients($ingredient1, $ingredient2)
 	{
 		$sql = "
 			SELECT *

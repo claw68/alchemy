@@ -50,7 +50,7 @@ class Ingredients extends CI_Controller
 			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect_not($row['id'], $id);
 			
 			foreach($effects[$key]['ingredients'] as $colkey => $col) {
-				$effects[$key]['ingredients'][$colkey]['result'] = $this->effects_map->get_combination_result($id, $col['id']);
+				$effects[$key]['ingredients'][$colkey]['result'] = $this->effects_map->list_effects_by_two_ingredients($id, $col['id']);
 			}
 		}
 		
