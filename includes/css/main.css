@@ -80,6 +80,10 @@ table th, table td {
 	color: #222;
 }
 
+#content a.bold {
+	font-weight: bold;
+}
+
 .page-title {
 	padding-bottom: 5px;
 }
