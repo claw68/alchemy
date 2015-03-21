@@ -12,4 +12,5 @@ $(function() {
 	$(".submit").button();
 	
 	$("#ingredients_table table").tablesorter();
+	$("#effects_table table").tablesorter();
 });
