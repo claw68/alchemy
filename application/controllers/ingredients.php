@@ -105,6 +105,7 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$without_giant[$key][] = $this->ingredients->get($id);
 			}
+			$without_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
 		}
 		
 		$data = new stdClass();
