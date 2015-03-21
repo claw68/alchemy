@@ -10,4 +10,6 @@ $(function() {
 	});
 	$(".view").button();
 	$(".submit").button();
+	
+	$("#ingredients_table table").tablesorter();
 });
