@@ -28,9 +28,9 @@
 				<th>Tertiary</th>
 			</tr>
 			<tr>
-				<td>--</td>
-				<td>--</td>
-				<td>--</td>
+				<td id="primary">--</td>
+				<td id="secondary">--</td>
+				<td id="tertiary">--</td>
 			</tr>
 		</table>
 		<p>Result</p>
