@@ -26,4 +26,19 @@ $(function() {
 			$('#'+calc_mode()).html($(this).text());
 		});
 	});
+	
+	$("#primary").click(function(){
+		$(this).text('--');
+		mode = 0;
+	});
+	
+	$("#secondary").click(function(){
+		$(this).text('--');
+		mode = 1;
+	});
+	
+	$("#tertiary").click(function(){
+		$(this).text('--');
+		mode = 2;
+	});
 });
