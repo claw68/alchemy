@@ -1,3 +1,10 @@
+var mode = 0; //primary
+
+function calc_mode() {
+	var modes = ["primary", "secondary", "tertiary"];
+	return modes[mode];
+}
+
 $(function() {
 	$(".add").button();
 	$(".edit").button();
