@@ -2,11 +2,12 @@
 	<div class="page-title medium-12 columns">
 		<p>Price Calculator</p>
 	</div>
-	<div class="medium-12 columns">
-		<table class="list">
+	<div class="medium-4 columns">
+		<p>Ingredients List</p>
+		<table id="calc_ingredients" class="list">
 			<thead>
 				<tr>
-					<th>Ingredient</th>
+					<th>Ingredients</th>
 				</tr>
 			</thead>
 			<tbody>
