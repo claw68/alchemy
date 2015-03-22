@@ -20,4 +20,10 @@ $(function() {
 	
 	$("#ingredients_table table").tablesorter();
 	$("#effects_table table").tablesorter();
+	
+	$("#calc_ingredients tbody").find('tr').each(function(){
+		$(this).click(function(){
+			$('#'+calc_mode()).html($(this).text());
+		});
+	});
 });
