@@ -1,6 +1,6 @@
 <div id="ingredients_calculator" class="row">
 	<div class="page-title medium-12 columns">
-		<p>Ingredients List</p>
+		<p>Price Calculator</p>
 	</div>
 	<div class="medium-12 columns">
 		<table class="list">
