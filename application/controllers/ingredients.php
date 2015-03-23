@@ -122,6 +122,10 @@ class Ingredients extends CI_Controller
 		render_layout('ingredients/calculator', $data, $navigation);
 	}
 	
+	function calculate($primary, $secondary = 0, $tertiary = 0)
+	{
+	}
+	
 	function add()
 	{
 		$data = new stdClass();
