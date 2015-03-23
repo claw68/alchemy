@@ -1,8 +1,22 @@
 var mode = 0; //primary
+var primary = 0, secondary = 0, tertiary = 0;
 
 function mode_text() {
 	var modes = ["primary", "secondary", "tertiary"];
 	return modes[mode];
+}
+
+function update_vars(value) {
+	if(mode == 0) {
+		primary = value;
+		secondary = 0;
+		tertiary = 0;
+	} else if(mode == 1) {
+		secondary = value;
+		tertiary = 0;
+	} else {
+		tertiary = value;
+	}
 }
 
 function send_data() {
@@ -36,6 +50,7 @@ $(function() {
 	
 	$("#calc_ingredients tbody").find('tr').each(function(){
 		$(this).click(function(){
+			update_vars($(this).find('input').val());
 			$('#'+mode_text()).html($(this).text());
 			send_data();
 		});
