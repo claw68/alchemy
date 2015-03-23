@@ -5,6 +5,19 @@ function calc_mode() {
 	return modes[mode];
 }
 
+function send_data() {
+	$.ajax({
+		url: "calculate/"+primary+"/"+secondary+"/"+tertiary,
+		context: document.body,
+		type: "post",
+		beforeSend :function() {
+			//loading
+		}
+	}).done(function(data) {
+		
+	});
+}
+
 $(function() {
 	$(".add").button();
 	$(".edit").button();
@@ -24,6 +37,7 @@ $(function() {
 	$("#calc_ingredients tbody").find('tr').each(function(){
 		$(this).click(function(){
 			$('#'+calc_mode()).html($(this).text());
+			send_data();
 		});
 	});
 	
