@@ -1,6 +1,6 @@
 var mode = 0; //primary
 
-function calc_mode() {
+function mode_text() {
 	var modes = ["primary", "secondary", "tertiary"];
 	return modes[mode];
 }
@@ -36,7 +36,7 @@ $(function() {
 	
 	$("#calc_ingredients tbody").find('tr').each(function(){
 		$(this).click(function(){
-			$('#'+calc_mode()).html($(this).text());
+			$('#'+mode_text()).html($(this).text());
 			send_data();
 		});
 	});
