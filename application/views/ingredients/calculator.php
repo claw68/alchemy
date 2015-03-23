@@ -13,7 +13,10 @@
 			<tbody>
 				<?php foreach ($ingredients as $row) { ?>
 					<tr>
-						<td><?php echo $row['name']; ?></td>
+						<td>
+							<input type="hidden" class="id" value="<?php echo $row['id']; ?>" />
+							<?php echo $row['name']; ?>
+						</td>
 					</tr>
 				<?php } ?>
 			</tbody>
