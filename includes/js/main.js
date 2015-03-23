@@ -6,6 +6,19 @@ function mode_text() {
 	return modes[mode];
 }
 
+function update_selected(name) {
+	if(mode == 0) {
+		$("#primary").text(name);
+		$("#secondary").text("--");
+		$("#tertiary").text("--");
+	} else if(mode == 1) {
+		$("#secondary").text(name);
+		$("#tertiary").text("--");
+	} else {
+		$("#tertiary").text(name);
+	}
+}
+
 function update_vars(id) {
 	if(mode == 0) {
 		primary = id;
@@ -71,7 +84,7 @@ $(function() {
 	$("#calc_ingredients tbody").find('tr').each(function(){
 		$(this).click(function(){
 			update_vars($(this).find('input').val());
-			$('#'+mode_text()).html($(this).text());
+			update_selected($(this).text());
 			send_data();
 		});
 	});
