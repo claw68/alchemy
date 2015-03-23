@@ -19,6 +19,26 @@ function update_vars(value) {
 	}
 }
 
+function fill_result_table(data) {
+	var table = $("#calc_result");
+	var header = table.find("tr:eq(0)");
+	var total = 0;
+	table.empty();
+	table.append(header);
+	if(data.length > 1) {
+		for(var i = 0; i < data.length; i++) {
+			var row = "<tr><td>"+data[i].name+"</td><td>"+data[i].price+"</td></tr>";
+			total += data[i].price * 1;
+			table.append(row);
+		}
+	} else {
+		var empty = "<tr><td>--</td><td>--</td></tr>";
+		table.append(empty);
+	}
+	var total_row = "<tr><td>Total</td><td>"+total+"</td></tr>";
+	table.append(total_row);
+}
+
 function send_data() {
 	$.ajax({
 		url: "calculate/"+primary+"/"+secondary+"/"+tertiary,

@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td>Total</td>
-				<td>--</td>
+				<td>0</td>
 			</tr>
 		</table>
 	</div>
