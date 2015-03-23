@@ -6,16 +6,16 @@ function mode_text() {
 	return modes[mode];
 }
 
-function update_vars(value) {
+function update_vars(id) {
 	if(mode == 0) {
-		primary = value;
+		primary = id;
 		secondary = 0;
 		tertiary = 0;
 	} else if(mode == 1) {
-		secondary = value;
+		secondary = id;
 		tertiary = 0;
 	} else {
-		tertiary = value;
+		tertiary = id;
 	}
 }
 
