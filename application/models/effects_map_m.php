@@ -182,7 +182,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function list_compatible_ingredients($ingredient)
+	function list_ideal_ingredients($ingredient)
 	{
 		$sql = "
 			SELECT *
@@ -207,7 +207,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function list_compatible_effects($compatible, $ingredient)
+	function list_effects_by_two_ingredients($ingredient1, $ingredient2)
 	{
 		$sql = "
 			SELECT *
@@ -221,7 +221,7 @@ class Effects_map_m extends CI_Model
 					WHERE ingredient = ?
 				)
 			ORDER BY e.name";
-		$query =  $this->db->query($sql, Array($compatible, $ingredient));
+		$query =  $this->db->query($sql, Array($ingredient1, $ingredient2));
 		$results =  $query->result_array();
 		return $results;
 	}

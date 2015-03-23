@@ -5,10 +5,10 @@
 	<div class="medium-12 columns">
 		<table>
 			<tr>
-				<th colspan="2"><?php if(!$compatible) echo "No"; ?> Compatible Ingredients</th>
-				<th>Sell Price</th>
+				<th colspan="2"><?php if(!$ideal) echo "No"; ?> Ideal Ingredients</th>
+				<?php if($ideal) { ?><th>Sell Price</th><?php } ?>
 			</tr>
-			<?php foreach ($compatible as $row) { ?>
+			<?php foreach ($ideal as $row) { ?>
 				<tr>
 					<td>
 						<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
