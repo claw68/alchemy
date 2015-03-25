@@ -82,12 +82,14 @@ function send_data() {
 	$.ajax({
 		url: "calculate/"+primary+"/"+secondary+"/"+tertiary,
 		context: document.body,
+		dataType: "json",
 		type: "post",
 		beforeSend :function() {
 			//loading
 		}
 	}).done(function(data) {
-		
+		fill_ingredients_table(data.ingredients);
+		fill_result_table(data.result);
 	});
 }
 
