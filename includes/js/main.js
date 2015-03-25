@@ -56,7 +56,7 @@ function fill_ingredients_table(data) {
 			table.append(row);
 		}
 	} else {
-		var empty = "<tr><td>--</td><td>--</td></tr>";
+		var empty = "<tr><td>--</td></tr>";
 		table.append(empty);
 	}
 }
