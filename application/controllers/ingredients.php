@@ -124,6 +124,16 @@ class Ingredients extends CI_Controller
 	
 	function calculate($primary, $secondary = 0, $tertiary = 0)
 	{
+		$data = new stdClass();
+		
+		$data->ingredients = Array();
+		$data->result = Array();
+		if($primary && $secondary == 0 && $tertiary == 0) {
+			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
+		}
+		
+		echo json_encode($data);
 	}
 	
 	function add()
