@@ -131,6 +131,9 @@ class Ingredients extends CI_Controller
 		if($primary && $secondary == 0 && $tertiary == 0) {
 			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
 			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
+		} else if($primary && $secondary && $tertiary == 0) {
+			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary);
 		}
 		
 		echo json_encode($data);
