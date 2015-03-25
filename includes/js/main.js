@@ -48,8 +48,11 @@ function fill_ingredients_table(data) {
 	table.append(header);
 	if(data.length > 1) {
 		for(var i = 0; i < data.length; i++) {
-			var row = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td></tr>";
+			var row = $("<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td></tr>");
 			total += data[i].price * 1;
+			row.click(function(){
+				row_click_handler(this);
+			});
 			table.append(row);
 		}
 	} else {
