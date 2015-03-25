@@ -77,8 +77,11 @@ function fill_result_table(data) {
 		var empty = "<tr><td>--</td><td>--</td></tr>";
 		table.append(empty);
 	}
-	var total_row = "<tr><td>Total</td><td>"+total+"</td></tr>";
-	table.append(total_row);
+	
+	if(data.length > 1) {
+		var total_row = "<tr><td>Total</td><td>"+total+"</td></tr>";
+		table.append(total_row);
+	}
 }
 
 function send_data() {
