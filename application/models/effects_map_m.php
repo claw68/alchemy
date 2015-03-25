@@ -240,7 +240,7 @@ class Effects_map_m extends CI_Model
 		
 		if($ingredient3)
 			$sql .= "OR em.`ingredient` = ? ";
-			
+		
 		$sql .= ")
 				GROUP BY e.id
 			) em
@@ -257,7 +257,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function list_compatible_ingredients($ingredient)
+	function list_compatible_ingredients($ingredient1, $ingredient2 = false)
 	{
 		$sql = "
 			SELECT i.*
@@ -267,12 +267,25 @@ class Effects_map_m extends CI_Model
 				effect IN (
 					SELECT effect
 					FROM effects_map
-					WHERE ingredient = ?
-				)
-				AND i.id != ?
-			GROUP BY i.id
+					WHERE ingredient = ? ";
+		
+		if($ingredient2)
+			$sql .= "OR ingredient = ? ";
+		
+		$sql .= ")
+				AND i.id != ? ";
+		
+		if($ingredient2)
+			$sql .= "AND i.id != ? ";
+		
+		$sql .= "GROUP BY i.id
 			ORDER BY i.name";
-		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
+		
+		if($ingredient2)
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient2, $ingredient1, $ingredient2));
+		else
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient1));
+		
 		$results =  $query->result_array();
 		return $results;
 	}
