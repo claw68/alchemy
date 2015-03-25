@@ -1,11 +1,6 @@
 var mode = 0; //primary
 var primary = 0, secondary = 0, tertiary = 0;
 
-function mode_text() {
-	var modes = ["primary", "secondary", "tertiary"];
-	return modes[mode];
-}
-
 function update_selected(name) {
 	if(mode == 0) {
 		$("#primary").text(name);
