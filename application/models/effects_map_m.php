@@ -182,7 +182,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function list_compatible_ingredients($ingredient)
+	function list_ideal_ingredients($ingredient)
 	{
 		$sql = "
 			SELECT *
@@ -207,7 +207,7 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
-	function list_compatible_effects($compatible, $ingredient)
+	function list_effects_by_two_ingredients($ingredient1, $ingredient2)
 	{
 		$sql = "
 			SELECT *
@@ -221,7 +221,7 @@ class Effects_map_m extends CI_Model
 					WHERE ingredient = ?
 				)
 			ORDER BY e.name";
-		$query =  $this->db->query($sql, Array($compatible, $ingredient));
+		$query =  $this->db->query($sql, Array($ingredient1, $ingredient2));
 		$results =  $query->result_array();
 		return $results;
 	}
@@ -240,7 +240,7 @@ class Effects_map_m extends CI_Model
 		
 		if($ingredient3)
 			$sql .= "OR em.`ingredient` = ? ";
-			
+		
 		$sql .= ")
 				GROUP BY e.id
 			) em
@@ -253,6 +253,39 @@ class Effects_map_m extends CI_Model
 			$values = Array($ingredient1, $ingredient2);
 		
 		$query =  $this->db->query($sql, $values);
+		$results =  $query->result_array();
+		return $results;
+	}
+	
+	function list_compatible_ingredients($ingredient1, $ingredient2 = false)
+	{
+		$sql = "
+			SELECT i.*
+			FROM effects_map em
+			LEFT JOIN ingredients i ON em.`ingredient` = i.id
+			WHERE
+				effect IN (
+					SELECT effect
+					FROM effects_map
+					WHERE ingredient = ? ";
+		
+		if($ingredient2)
+			$sql .= "OR ingredient = ? ";
+		
+		$sql .= ")
+				AND i.id != ? ";
+		
+		if($ingredient2)
+			$sql .= "AND i.id != ? ";
+		
+		$sql .= "GROUP BY i.id
+			ORDER BY i.name";
+		
+		if($ingredient2)
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient2, $ingredient1, $ingredient2));
+		else
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient1));
+		
 		$results =  $query->result_array();
 		return $results;
 	}

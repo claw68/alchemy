@@ -109,6 +109,14 @@ table th, table td {
 	font-weight: bold;
 }
 
+#calc_ingredients tr {
+	cursor: pointer;
+}
+
+#calc_selected td {
+	cursor: pointer;
+}
+
 #uploaded {
 	width: 100px;
 }

@@ -40,9 +40,9 @@ class Ingredients extends CI_Controller
 		if (!$ingredient)
 			redirect('/ingredients/table');
 		
-		$compatible = $this->effects_map->list_compatible_ingredients($id);
-		foreach ($compatible as $key => $row) {
-			$compatible[$key]['effects'] = $this->effects_map->list_compatible_effects($row['ingredient'], $id);
+		$ideal = $this->effects_map->list_ideal_ingredients($id);
+		foreach ($ideal as $key => $row) {
+			$ideal[$key]['effects'] = $this->effects_map->list_effects_by_two_ingredients($row['ingredient'], $id);
 		}
 		
 		$effects = $this->effects_map->list_effects_by_ingredient($id);
@@ -57,7 +57,7 @@ class Ingredients extends CI_Controller
 		$data = new stdClass();
 		$data->ingredient = $ingredient;
 		$data->effects = $effects;
-		$data->compatible = $compatible;
+		$data->ideal = $ideal;
 		
 		$navigation = navigation();
 		
@@ -111,6 +111,36 @@ class Ingredients extends CI_Controller
 		$navigation = navigation();
 		
 		render_layout('ingredients/tips', $data, $navigation);
+	}
+
+	function calculator()
+	{
+		$data = new stdClass();
+		$data->ingredients = $this->ingredients->all();
+		
+		$navigation = navigation();
+		render_layout('ingredients/calculator', $data, $navigation);
+	}
+	
+	function calculate($primary, $secondary = 0, $tertiary = 0)
+	{
+		$data = new stdClass();
+		
+		$data->ingredients = Array();
+		$data->result = Array();
+		if($primary == 0 && $secondary == 0 && $tertiary == 0) {
+			$data->ingredients = $this->ingredients->all();
+		} else if($primary && $secondary == 0 && $tertiary == 0) {
+			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
+		} else if($primary && $secondary && $tertiary == 0) {
+			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary);
+		} else if($primary && $secondary && $tertiary) {
+			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $tertiary);
+		}
+		
+		echo json_encode($data);
 	}
 	
 	function add()
