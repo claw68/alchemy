@@ -257,6 +257,26 @@ class Effects_map_m extends CI_Model
 		return $results;
 	}
 	
+	function list_compatible_ingredients($ingredient)
+	{
+		$sql = "
+			SELECT i.*
+			FROM effects_map em
+			LEFT JOIN ingredients i ON em.`ingredient` = i.id
+			WHERE
+				effect IN (
+					SELECT effect
+					FROM effects_map
+					WHERE ingredient = ?
+				)
+				AND i.id != ?
+			GROUP BY i.id
+			ORDER BY i.name";
+		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
 	function update($id, $data)
 	{
 		$data = $this->_strip_keys($data);
