@@ -32,6 +32,14 @@ function update_vars(id) {
 	}
 }
 
+function row_click_handler(el) {
+	update_vars($(el).find('input').val());
+	update_selected($(el).text());
+	if(mode < 2)
+		mode++;
+	send_data();
+}
+
 function fill_ingredients_table(data) {
 	var table = $("#calc_ingredients");
 	var header = table.find("tr:eq(0)");
@@ -101,9 +109,7 @@ $(function() {
 	
 	$("#calc_ingredients tbody").find('tr').each(function(){
 		$(this).click(function(){
-			update_vars($(this).find('input').val());
-			update_selected($(this).text());
-			send_data();
+			row_click_handler(this);
 		});
 	});
 	
