@@ -102,17 +102,23 @@ $(function(){
 	});
 	
 	$("#primary").click(function(){
-		$(this).text('--');
 		mode = 0;
+		update_vars(0);
+		update_selected("--");
+		send_data();
 	});
 	
 	$("#secondary").click(function(){
-		$(this).text('--');
 		mode = 1;
+		update_vars(0);
+		update_selected("--");
+		send_data();
 	});
 	
 	$("#tertiary").click(function(){
-		$(this).text('--');
 		mode = 2;
+		update_vars(0);
+		update_selected("--");
+		send_data();
 	});
 });
