@@ -260,9 +260,10 @@ class Effects_map_m extends CI_Model
 	function list_compatible_ingredients($ingredient1, $ingredient2 = false)
 	{
 		$sql = "
-			SELECT i.*
+			SELECT i.*, SUM(e.price) as price
 			FROM effects_map em
 			LEFT JOIN ingredients i ON em.`ingredient` = i.id
+			LEFT JOIN effects e ON em.effect = e.id
 			WHERE
 				effect IN (
 					SELECT effect
@@ -279,7 +280,7 @@ class Effects_map_m extends CI_Model
 			$sql .= "AND i.id != ? ";
 		
 		$sql .= "GROUP BY i.id
-			ORDER BY i.name";
+			ORDER BY price DESC, i.name";
 		
 		if($ingredient2)
 			$query =  $this->db->query($sql, Array($ingredient1, $ingredient2, $ingredient1, $ingredient2));
