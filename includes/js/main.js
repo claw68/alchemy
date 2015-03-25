@@ -32,6 +32,24 @@ function update_vars(id) {
 	}
 }
 
+function fill_ingredients_table(data) {
+	var table = $("#calc_ingredients");
+	var header = table.find("tr:eq(0)");
+	var total = 0;
+	table.empty();
+	table.append(header);
+	if(data.length > 1) {
+		for(var i = 0; i < data.length; i++) {
+			var row = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td></tr>";
+			total += data[i].price * 1;
+			table.append(row);
+		}
+	} else {
+		var empty = "<tr><td>--</td><td>--</td></tr>";
+		table.append(empty);
+	}
+}
+
 function fill_result_table(data) {
 	var table = $("#calc_result");
 	var header = table.find("tr:eq(0)");
