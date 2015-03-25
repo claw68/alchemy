@@ -109,14 +109,14 @@ $(function(){
 	});
 	
 	$("#secondary").click(function(){
-		mode = 1;
+		if(mode > 1)
+			mode = 1;
 		update_vars(0);
 		update_selected("--");
 		send_data();
 	});
 	
 	$("#tertiary").click(function(){
-		mode = 2;
 		update_vars(0);
 		update_selected("--");
 		send_data();
