@@ -43,7 +43,15 @@ function fill_ingredients_table(data) {
 	table.append(header);
 	if(data.length > 0) {
 		for(var i = 0; i < data.length; i++) {
-			var row = $("<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td></tr>");
+			var row_string = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name;
+			
+			if(data[i].price)
+				row_string += " ("+data[i].price+")";
+			
+			row_string += "</td></tr>";
+			
+			var row = $(row_string);
+			
 			total += data[i].price * 1;
 			row.click(function(){
 				row_click_handler(this);
