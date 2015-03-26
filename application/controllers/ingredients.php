@@ -135,18 +135,15 @@ class Ingredients extends CI_Controller
 			
 			foreach($ingredients as $key => $secondary) {
 				$ing = $this->effects_map->list_compatible_ingredients($primary, $secondary['id']);
+				$max = 0;
 				foreach ($ing as $colkey => $col) {
-					$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary['id'], $col['id']);
-					$ing[$colkey]['price'] = array_sum(array_column($price, 'price'));
+					$effects = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary['id'], $col['id']);
+					$price = array_sum(array_column($effects, 'price'));
+					if($price > $max)
+						$max = $price;
 				}
 				
-				$price = Array();
-				foreach ($ing as $colkey => $col) {
-					$price[$colkey]  = $col['price'];
-				}
-				
-				array_multisort($price, SORT_DESC, $ing);
-				$ingredients[$key]['price'] = $ing[0]['price'];
+				$ingredients[$key]['price'] = $max;
 			}
 			
 			$price = Array();
