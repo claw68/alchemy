@@ -131,7 +131,32 @@ class Ingredients extends CI_Controller
 		if($primary == 0 && $secondary == 0 && $tertiary == 0) {
 			$data->ingredients = $this->ingredients->all();
 		} else if($primary && $secondary == 0 && $tertiary == 0) {
-			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			$ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			
+			foreach($ingredients as $key => $secondary) {
+				$ing = $this->effects_map->list_compatible_ingredients($primary, $secondary['id']);
+				foreach ($ing as $colkey => $col) {
+					$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary['id'], $col['id']);
+					$ing[$colkey]['price'] = array_sum(array_column($price, 'price'));
+				}
+				
+				$price = Array();
+				foreach ($ing as $colkey => $col) {
+					$price[$colkey]  = $col['price'];
+				}
+				
+				array_multisort($price, SORT_DESC, $ing);
+				$ingredients[$key]['price'] = $ing[0]['price'];
+			}
+			
+			$price = Array();
+			foreach ($ingredients as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $ingredients);
+			
+			$data->ingredients = $ingredients;
 			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
 		} else if($primary && $secondary && $tertiary == 0) {
 			$ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
