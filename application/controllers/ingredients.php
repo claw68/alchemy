@@ -134,7 +134,20 @@ class Ingredients extends CI_Controller
 			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
 			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
 		} else if($primary && $secondary && $tertiary == 0) {
-			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			$ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			foreach ($ingredients as $key => $row) {
+				$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $row['id']);
+				$ingredients[$key]['price'] = array_sum(array_column($price, 'price'));
+			}
+			
+			$price = Array();
+			foreach ($ingredients as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $ingredients);
+			
+			$data->ingredients = $ingredients;
 			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary);
 		} else if($primary && $secondary && $tertiary) {
 			$ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
