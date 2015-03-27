@@ -82,6 +82,15 @@ class Max_price_index_m extends CI_Model
 			return FALSE;
 	}
 	
+	function get_max_price_by_ingredients($primary, $secondary) {
+		$query = $this->db->get_where($this->table, array('primary' => $primary, 'secondary' => $secondary));
+		$results =  $query->result_array();
+		if ($query->num_rows() > 0)
+			return $results[0];
+		else
+			return FALSE;
+	}
+	
 	function list_best_value_combination($ingredient = false)
 	{
 		$sql = "
