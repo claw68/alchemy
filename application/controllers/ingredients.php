@@ -161,12 +161,13 @@ class Ingredients extends CI_Controller
 						$max = $price;
 				}
 				
-				$ingredients[$key]['price'] = $max;
+				$ingredients[$key]['price'] = $price;
+				$ingredients[$key]['max'] = $max;
 			}
 			
 			$price = Array();
 			foreach ($ingredients as $key => $row) {
-				$price[$key]  = $row['price'];
+				$price[$key]  = $row['max'];
 			}
 			
 			array_multisort($price, SORT_DESC, $ingredients);
