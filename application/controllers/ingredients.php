@@ -51,6 +51,9 @@ class Ingredients extends CI_Controller
 			$effects[$key]['ingredients'] = $this->effects_map->list_ingredients_by_effect_not($row['id'], $id);
 			
 			foreach($effects[$key]['ingredients'] as $colkey => $col) {
+				$max = $this->max_price->get_max_price_by_ingredients($id, $col['id']);
+				$effects[$key]['ingredients'][$colkey]['max'] = $max['price'];
+				
 				$effects[$key]['ingredients'][$colkey]['result'] = $this->effects_map->list_effects_combination_by_ingredients($id, $col['id']);
 			}
 		}
