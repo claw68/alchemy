@@ -8,6 +8,14 @@ function preload(image) {
 var loading_img = "../includes/images/loading.gif";
 preload(loading_img);
 
+function loading(target) {
+	var header = $(target).find('tr:eq(0)');
+	var col_count = header.find('th').length;
+	$(target).empty();
+	$(target).append(header);
+	$(target).append("<tr><td colspan='"+col_count+"' style='text-align:center;'><img src='"+loading_img+"' /></td><tr/>");
+}
+
 function update_selected(name) {
 	if(mode == 0) {
 		$("#primary").text(name);
@@ -113,7 +121,8 @@ function send_data() {
 		dataType: "json",
 		type: "post",
 		beforeSend :function() {
-			//loading
+			loading("#calc_ingredients");
+			loading("#calc_result");
 		}
 	}).done(function(data) {
 		fill_ingredients_table(data.ingredients);
