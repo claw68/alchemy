@@ -212,8 +212,10 @@ class Ingredients extends CI_Controller
 		echo json_encode($data);
 	}
 
-	function matrix($generate = false) {
-		$ingredients = $this->ingredients->all();
+	function matrix($page = 1, $generate = false) {
+		$limit = 5;
+		$offset = ($page - 1)*$limit;
+		$ingredients = $this->ingredients->all($limit, $offset);
 		foreach ($ingredients as $pri_key => $primary) {
 			$secondary_list = $this->effects_map->list_compatible_ingredients($primary['id']);
 			$ingredients[$pri_key]['secondary'] = $secondary_list; 
