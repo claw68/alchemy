@@ -1,6 +1,21 @@
 var mode = 0; //primary
 var primary = 0, secondary = 0, tertiary = 0;
 
+function preload(image) {
+	$('<img/>')[0].src = image;
+}
+
+var loading_img = "../includes/images/loading.gif";
+preload(loading_img);
+
+function loading(target) {
+	var header = $(target).find('tr:eq(0)');
+	var col_count = header.find('th').length;
+	$(target).empty();
+	$(target).append(header);
+	$(target).append("<tr><td colspan='"+col_count+"' style='text-align:center;'><img src='"+loading_img+"' /></td><tr/>");
+}
+
 function update_selected(name) {
 	if(mode == 0) {
 		$("#primary").text(name);
@@ -29,7 +44,7 @@ function update_vars(id) {
 
 function row_click_handler(el) {
 	update_vars($(el).find('input').val());
-	update_selected($(el).text());
+	update_selected($(el).find('td:eq(0)').text());
 	if(mode < 2)
 		mode++;
 	send_data();
@@ -37,19 +52,39 @@ function row_click_handler(el) {
 
 function fill_ingredients_table(data) {
 	var table = $("#calc_ingredients");
-	var header = table.find("tr:eq(0)");
+	var header_string = "<thead><tr><th>Ingredient</th>";
+	
+	if(data[0].price)
+		header_string += "<th>Price</th>";
+	
+	if(data[0].max)
+		header_string += "<th>Max</th>";
+	
+	header_string += "</tr></thead><tbody></tbody>";
 	var total = 0;
 	table.empty();
-	table.append(header);
+	table.append(header_string);
 	if(data.length > 0) {
 		for(var i = 0; i < data.length; i++) {
-			var row = $("<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td></tr>");
+			var row_string = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td>";
+			
+			if(data[i].price)
+				row_string += "<td>"+data[i].price+"</td>";
+			
+			if(data[i].max)
+				row_string += "<td>"+data[i].max+"</td>";
+			
+			row_string += "</tr>";
+			
+			var row = $(row_string);
+			
 			total += data[i].price * 1;
 			row.click(function(){
 				row_click_handler(this);
 			});
-			table.append(row);
+			table.find('tbody').append(row);
 		}
+		table.tablesorter();
 	} else {
 		var empty = "<tr><td>--</td></tr>";
 		table.append(empty);
@@ -86,7 +121,8 @@ function send_data() {
 		dataType: "json",
 		type: "post",
 		beforeSend :function() {
-			//loading
+			loading("#calc_ingredients");
+			loading("#calc_result");
 		}
 	}).done(function(data) {
 		fill_ingredients_table(data.ingredients);

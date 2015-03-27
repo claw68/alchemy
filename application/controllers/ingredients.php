@@ -83,8 +83,17 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$with_giant[$key][] = $this->ingredients->get($id);
 			}
-			$with_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
+			$result = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
+			$with_giant[$key]['result'] = $result;
+			$with_giant[$key]['price'] = array_sum(array_column($result, 'price'));
 		}
+		
+		$price = Array();
+		foreach ($with_giant as $key => $row) {
+			$price[$key] = $row['price'];
+		}
+		
+		array_multisort($price, SORT_DESC, $with_giant);
 		
 		//best value ingredients combination: without giant's toe
 		$ingredient = Array();
@@ -100,8 +109,17 @@ class Ingredients extends CI_Controller
 			foreach ($ids as $id) {
 				$without_giant[$key][] = $this->ingredients->get($id);
 			}
-			$without_giant[$key]['result'] = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
+			$result = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
+			$without_giant[$key]['result'] = $result;
+			$without_giant[$key]['price'] = array_sum(array_column($result, 'price'));
 		}
+		
+		$price = Array();
+		foreach ($without_giant as $key => $row) {
+			$price[$key] = $row['price'];
+		}
+		
+		array_multisort($price, SORT_DESC, $without_giant);
 		
 		$data = new stdClass();
 		$data->effects = $effects;
@@ -131,12 +149,62 @@ class Ingredients extends CI_Controller
 		if($primary == 0 && $secondary == 0 && $tertiary == 0) {
 			$data->ingredients = $this->ingredients->all();
 		} else if($primary && $secondary == 0 && $tertiary == 0) {
-			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			$ingredients = $this->effects_map->list_compatible_ingredients($primary);
+			
+			foreach($ingredients as $key => $secondary) {
+				$ing = $this->effects_map->list_compatible_ingredients($primary, $secondary['id']);
+				$max = 0;
+				foreach ($ing as $colkey => $col) {
+					$effects = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary['id'], $col['id']);
+					$price = array_sum(array_column($effects, 'price'));
+					if($price > $max)
+						$max = $price;
+				}
+				
+				$ingredients[$key]['price'] = $price;
+				$ingredients[$key]['max'] = $max;
+			}
+			
+			$price = Array();
+			foreach ($ingredients as $key => $row) {
+				$price[$key]  = $row['max'];
+			}
+			
+			array_multisort($price, SORT_DESC, $ingredients);
+			
+			$data->ingredients = $ingredients;
 			$data->result = $this->effects_map->list_effects_by_ingredient($primary);
 		} else if($primary && $secondary && $tertiary == 0) {
-			$data->ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			$ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			foreach ($ingredients as $key => $row) {
+				$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $row['id']);
+				$ingredients[$key]['price'] = array_sum(array_column($price, 'price'));
+			}
+			
+			$price = Array();
+			foreach ($ingredients as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $ingredients);
+			
+			$data->ingredients = $ingredients;
 			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary);
 		} else if($primary && $secondary && $tertiary) {
+			$ingredients = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			foreach ($ingredients as $key => $row) {
+				$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $row['id']);
+				$ingredients[$key]['price'] = array_sum(array_column($price, 'price'));
+			}
+			
+			$price = Array();
+			foreach ($ingredients as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $ingredients);
+			
+			$data->ingredients = $ingredients;
 			$data->result = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $tertiary);
 		}
 		
