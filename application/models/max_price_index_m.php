@@ -48,6 +48,30 @@ class Max_price_index_m extends CI_Model
 		$this->db->update($this->table, $data);
 	}
 	
+	function save($data)
+	{
+		if($row = $this->find($data['primary'], $data['secondary'], $data['tertiary'])) {
+			$update($row['id'], $data);
+			return $row['id'];
+		} else {
+			return $this->add($data);
+		}
+	}
+	
+	function find($primary, $secondary, $tertiary)
+	{
+		$this->db->where('primary', $primary);
+		$this->db->where('secondary', $secondary);
+		$this->db->where('tertiary', $tertiary);
+		
+		$query = $this->db->get($this->table);
+		$results =  $query->result_array();
+		if ($query->num_rows() > 0)
+			return $results[0];
+		else
+			return FALSE;
+	}
+	
 	function get($id)
 	{
 		$query = $this->db->get_where($this->table, array('id' => $id));
