@@ -1,6 +1,13 @@
 var mode = 0; //primary
 var primary = 0, secondary = 0, tertiary = 0;
 
+function preload(image) {
+	$('<img/>')[0].src = image;
+}
+
+var loading_img = "../includes/images/loading.gif";
+preload(loading_img);
+
 function update_selected(name) {
 	if(mode == 0) {
 		$("#primary").text(name);
