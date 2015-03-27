@@ -131,17 +131,12 @@ class Ingredients extends CI_Controller
 			$ingredients = $this->effects_map->list_compatible_ingredients($primary);
 			
 			foreach($ingredients as $key => $secondary) {
-				$ing = $this->effects_map->list_compatible_ingredients($primary, $secondary['id']);
-				$max = 0;
-				foreach ($ing as $colkey => $col) {
-					$effects = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary['id'], $col['id']);
-					$price = array_sum(array_column($effects, 'price'));
-					if($price > $max)
-						$max = $price;
-				}
+				$max = $this->max_price->get_max_price_by_ingredients($primary, $secondary['id']);
 				
-				$ingredients[$key]['price'] = $price;
-				$ingredients[$key]['max'] = $max;
+				if($max)
+					$ingredients[$key]['max'] = $max['price'];
+				else 
+					$ingredients[$key]['max'] = $secondary['price'];
 			}
 			
 			$price = Array();
