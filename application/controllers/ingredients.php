@@ -8,6 +8,7 @@ class Ingredients extends CI_Controller
 		$this->load->model('ingredients_m', 'ingredients');
 		$this->load->model('effects_map_m', 'effects_map');
 		$this->load->model('effects_m', 'effects');
+		$this->load->model('max_price_index_m', 'max_price');
 	}
 
 	public function index()
