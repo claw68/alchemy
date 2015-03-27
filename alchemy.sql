@@ -121,6 +121,19 @@ CREATE TABLE `login_attempts` (
 
 /*Data for the table `login_attempts` */
 
+/*Table structure for table `max_price_index` */
+
+DROP TABLE IF EXISTS `max_price_index`;
+
+CREATE TABLE `max_price_index` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `max_price_index` */
+
 /*Table structure for table `object` */
 
 DROP TABLE IF EXISTS `object`;
@@ -130,11 +143,11 @@ CREATE TABLE `object` (
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `object` */
 
-insert  into `object`(`id`,`name`,`create_date`) values (1,'ingredients','2015-03-17 17:27:55'),(2,'effects','2015-03-17 17:33:07'),(3,'effects_map','2015-03-17 19:50:58');
+insert  into `object`(`id`,`name`,`create_date`) values (1,'ingredients','2015-03-17 17:27:55'),(2,'effects','2015-03-17 17:33:07'),(3,'effects_map','2015-03-17 19:50:58'),(4,'max_price_index','2015-03-27 20:45:28');
 
 /*Table structure for table `uploads` */
 
