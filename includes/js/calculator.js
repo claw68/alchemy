@@ -29,7 +29,7 @@ function update_vars(id) {
 
 function row_click_handler(el) {
 	update_vars($(el).find('input').val());
-	update_selected($(el).text());
+	update_selected($(el).find('td:eq(0)').text());
 	if(mode < 2)
 		mode++;
 	send_data();
@@ -37,18 +37,29 @@ function row_click_handler(el) {
 
 function fill_ingredients_table(data) {
 	var table = $("#calc_ingredients");
-	var header = table.find("tr:eq(0)");
+	var header_string = "<thead><tr><th>Ingredient</th>";
+	
+	if(data[0].price)
+		header_string += "<th>Price</th>";
+	
+	if(data[0].max)
+		header_string += "<th>Max</th>";
+	
+	header_string += "</tr></thead><tbody></tbody>";
 	var total = 0;
 	table.empty();
-	table.append(header);
+	table.append(header_string);
 	if(data.length > 0) {
 		for(var i = 0; i < data.length; i++) {
-			var row_string = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name;
+			var row_string = "<tr><td><input type='hidden' class='id' value='"+data[i].id+"' />"+data[i].name+"</td>";
 			
 			if(data[i].price)
-				row_string += " ("+data[i].price+")";
+				row_string += "<td>"+data[i].price+"</td>";
 			
-			row_string += "</td></tr>";
+			if(data[i].max)
+				row_string += "<td>"+data[i].max+"</td>";
+			
+			row_string += "</tr>";
 			
 			var row = $(row_string);
 			
@@ -56,8 +67,9 @@ function fill_ingredients_table(data) {
 			row.click(function(){
 				row_click_handler(this);
 			});
-			table.append(row);
+			table.find('tbody').append(row);
 		}
+		table.tablesorter();
 	} else {
 		var empty = "<tr><td>--</td></tr>";
 		table.append(empty);
