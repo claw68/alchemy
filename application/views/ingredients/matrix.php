@@ -23,5 +23,8 @@
 				</table>
 			</div>
 		<?php } ?>
+		<div class="medium-12 columns">
+			<a href="<?php echo site_url('/ingredients/matrix/'.($page+1).'/'.$generate); ?>">More Ingredients</a>
+		</div>
 	<?php } ?>
 </div>
