@@ -34,9 +34,9 @@ class Ingredients_m extends CI_Model
 		return $this->db->insert_id();
 	}
 	
-	function all()
+	function all($limit = null, $offset = null)
 	{
-		$query = $this->db->get($this->table);
+		$query = $this->db->get($this->table, $limit, $offset);
 		$results =  $query->result_array();
 		return $results;
 	}
