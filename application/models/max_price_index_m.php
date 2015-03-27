@@ -51,7 +51,7 @@ class Max_price_index_m extends CI_Model
 	function save($data)
 	{
 		if($row = $this->find($data['primary'], $data['secondary'], $data['tertiary'])) {
-			$update($row['id'], $data);
+			$this->update($row['id'], $data);
 			return $row['id'];
 		} else {
 			return $this->add($data);
