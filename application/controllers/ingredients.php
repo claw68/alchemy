@@ -234,6 +234,15 @@ class Ingredients extends CI_Controller
 				
 				$ingredients[$pri_key]['secondary'][$sec_key]['tertiary'] = $tertiary_list;
 				
+				if($generate) {
+					$data = Array();
+					$data['primary'] = $primary['id'];
+					$data['secondary'] = $secondary['id'];
+					$data['tertiary'] = $tertiary_list[0]['id'];
+					$data['price'] = $tertiary_list[0]['price'];
+					
+					$this->max_price->save($data);
+				}
 			}
 		}
 		
