@@ -85,7 +85,7 @@ class Max_price_index_m extends CI_Model
 	function list_best_value_combination($ingredient = false)
 	{
 		$sql = "
-			SELECT *
+			SELECT *, CONCAT_WS(',',LEAST(`primary`, secondary, tertiary), GREATEST(`primary`, secondary, tertiary)) AS ids
 			FROM max_price_index mpi
 			WHERE
 				mpi.`primary` NOT IN (
@@ -108,6 +108,7 @@ class Max_price_index_m extends CI_Model
 				$sql .= " AND mpi.`primary` = ? ";
 		
 		$sql .= " 
+			GROUP BY ids
 			ORDER BY price DESC
 			LIMIT 0,15";
 		if($ingredient)

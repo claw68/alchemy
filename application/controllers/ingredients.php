@@ -86,30 +86,19 @@ class Ingredients extends CI_Controller
 		}
 		
 		//best value ingredients combination: without giant's toe
-		$ingredient = Array();
-		$ingredient[] = Array(22, 42, 106);
-		$ingredient[] = Array(22, 66, 106);
-		$ingredient[] = Array(22, 66, 70);
-		$ingredient[] = Array(29, 31, 86);
-		$ingredient[] = Array(25, 68, 87);
+		$ingredient = $this->max_price->list_best_value_combination();
 		
 		$without_giant = Array();
-		foreach ($ingredient as $key => $ids) {
+		foreach ($ingredient as $key => $row) {
 			$without_giant[$key] = Array();
-			foreach ($ids as $id) {
-				$without_giant[$key][] = $this->ingredients->get($id);
-			}
-			$result = $this->effects_map->list_effects_combination_by_ingredients($ids[0], $ids[1], $ids[2]);
+			$without_giant[$key][] = $this->ingredients->get($row['primary']);
+			$without_giant[$key][] = $this->ingredients->get($row['secondary']);
+			$without_giant[$key][] = $this->ingredients->get($row['tertiary']);
+			
+			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
 			$without_giant[$key]['result'] = $result;
 			$without_giant[$key]['price'] = array_sum(array_column($result, 'price'));
 		}
-		
-		$price = Array();
-		foreach ($without_giant as $key => $row) {
-			$price[$key] = $row['price'];
-		}
-		
-		array_multisort($price, SORT_DESC, $without_giant);
 		
 		$data = new stdClass();
 		$data->effects = $effects;
