@@ -80,6 +80,14 @@ table th, table td {
 	color: #222;
 }
 
+#content a.bold {
+	font-weight: bold;
+}
+
+#content table thead tr th.header {
+	cursor: pointer;
+}
+
 .page-title {
 	padding-bottom: 5px;
 }
@@ -99,6 +107,14 @@ table th, table td {
 
 #ingredients_view table th a {
 	font-weight: bold;
+}
+
+#calc_ingredients tr {
+	cursor: pointer;
+}
+
+#calc_selected td {
+	cursor: pointer;
 }
 
 #uploaded {

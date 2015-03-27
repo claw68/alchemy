@@ -47,6 +47,10 @@ class Effects_map_m extends CI_Model
 			SELECT
 				i.id,
 				i.name AS ingredient,
+				(em1.price + em2.price + em3.price + em4.price) AS price_total,
+				em_max.eid AS max_id,
+				em_max.effect_name AS max_name,
+				em_max.price AS max_price,
 				em1.eid as em1id, em1.`effect_name` AS `primary`,
 				em2.eid as em2id, em2.`effect_name` AS secondary,
 				em3.eid as em3id, em3.`effect_name` AS tertiary,
@@ -55,33 +59,66 @@ class Effects_map_m extends CI_Model
 				ingredients i
 					LEFT JOIN (
 						SELECT 
-							em.*, e.`name` AS effect_name, e.id as eid
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
 						FROM effects_map em, effects e 
 						WHERE em.`effect` = e.`id`) em1 
 						ON i.`id` = em1.`ingredient` AND em1.`position` = 1
 					
 					LEFT JOIN (
 						SELECT
-							em.*, e.`name` AS effect_name, e.id as eid
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
 						FROM effects_map em, effects e 
 						WHERE em.`effect` = e.`id`) em2
 						ON i.`id` = em2.`ingredient` AND em2.`position` = 2
 						
 					LEFT JOIN (
 						SELECT
-							em.*, e.`name` AS effect_name, e.id as eid
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
 						FROM effects_map em, effects e
 						WHERE em.`effect` = e.`id`) em3 
 						ON i.`id` = em3.`ingredient` AND em3.`position` = 3
 					
 					LEFT JOIN (
 						SELECT 
-							em.*, e.`name` AS effect_name, e.id as eid
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
 						FROM effects_map em, effects e
 						WHERE em.`effect` = e.`id`) em4 
-						ON i.`id` = em4.`ingredient` AND em4.`position` = 4";
-						
+						ON i.`id` = em4.`ingredient` AND em4.`position` = 4
+					LEFT JOIN (
+						SELECT
+							em.*, e.`name` AS effect_name, e.id AS eid, e.price
+						FROM effects e, effects_map em 
+							LEFT JOIN (
+								SELECT em.`ingredient`, MAX(e.`price`) price
+								FROM effects_map em, effects e
+								WHERE em.`effect` = e.`id` 
+								GROUP BY em.`ingredient`
+							) emax
+							ON em.`ingredient` = emax.ingredient
+						WHERE em.`effect` = e.`id` AND e.`price` = emax.price
+						GROUP BY em.`ingredient`
+						) em_max
+						ON i.`id` = em_max.ingredient";
 		$query =  $this->db->query($sql);
+		$results =  $query->result_array();
+		return $results;
+	}
+	
+	function list_best_effects_by_ingredient($ingredient)
+	{
+		$sql = "
+			SELECT
+				em.*, e.`name` AS effect_name, e.id AS eid, e.price
+			FROM effects e, effects_map em 
+				LEFT JOIN (
+					SELECT em.`ingredient`, MAX(e.`price`) price
+					FROM effects_map em, effects e
+					WHERE em.`effect` = e.`id`
+					GROUP BY em.`ingredient`
+				) emax
+				ON em.`ingredient` = emax.ingredient
+			WHERE em.`effect` = e.`id` AND e.`price` = emax.price AND em.`ingredient` = ?";
+		$query =  $this->db->query($sql, Array($ingredient));
 		$results =  $query->result_array();
 		return $results;
 	}
@@ -91,11 +128,11 @@ class Effects_map_m extends CI_Model
 		$sql = "
 			SELECT i.id, i.name
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ?";
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ?";
 		$query =  $this->db->query($sql, Array($effect));
 		$results =  $query->result_array();
 		return $results;
@@ -104,15 +141,28 @@ class Effects_map_m extends CI_Model
 	function list_ingredients_by_effect_not($effect, $not)
 	{
 		$sql = "
-			SELECT i.id, i.name
+			SELECT i.id, i.name, SUM(ep.price) AS price
 			FROM 
-				effects_map ef,
+				effects_map em,
 				ingredients i
+				LEFT JOIN (				
+					SELECT em.*, e.id AS eid, e.name, e.`price`
+					FROM effects_map em, effects e
+					WHERE 
+						em.`effect` = e.`id` AND
+						em.`effect` IN (
+							SELECT effect 
+							FROM effects_map em
+							WHERE ingredient = ?
+						)
+				) ep ON ep.ingredient = i.`id`
 			WHERE
-				ef.`ingredient` = i.`id` AND
-				ef.`effect` = ? AND
-				i.id != ?";
-		$query =  $this->db->query($sql, Array($effect, $not));
+				em.`ingredient` = i.`id` AND
+				em.`effect` = ? AND
+				i.id != ?
+			GROUP BY i.id
+			ORDER BY price DESC, i.name";
+		$query =  $this->db->query($sql, Array($not, $effect, $not));
 		$results =  $query->result_array();
 		return $results;
 	}
@@ -120,25 +170,26 @@ class Effects_map_m extends CI_Model
 	function list_effects_by_ingredient($ingredient)
 	{
 		$sql = "
-			SELECT e.id, e.name
+			SELECT e.id, e.name, e.price
 			FROM 
-				effects_map ef,
+				effects_map em,
 				effects e
 			WHERE
-				ef.`effect` = e.`id` AND
-				ef.`ingredient` = ?";
+				em.`effect` = e.`id` AND
+				em.`ingredient` = ?";
 		$query =  $this->db->query($sql, Array($ingredient));
 		$results =  $query->result_array();
 		return $results;
 	}
 	
-	function list_compatible_ingredients($ingredient)
+	function list_ideal_ingredients($ingredient)
 	{
 		$sql = "
 			SELECT *
 			FROM (
-				SELECT *, COUNT(*) AS `compatible`
+				SELECT em.*, COUNT(*) AS `compatible`, SUM(e.price) AS price
 				FROM effects_map em
+				LEFT JOIN effects e ON em.`effect` = e.`id`
 				WHERE
 					effect IN (
 						SELECT effect 
@@ -150,13 +201,13 @@ class Effects_map_m extends CI_Model
 			) em
 			LEFT JOIN ingredients i ON em.ingredient = i.id
 			WHERE compatible > 1
-			ORDER BY compatible DESC, i.name";
+			ORDER BY price DESC, compatible DESC, i.name";
 		$query =  $this->db->query($sql, Array($ingredient, $ingredient));
 		$results =  $query->result_array();
 		return $results;
 	}
 	
-	function list_compatible_effects($compatible, $ingredient)
+	function list_effects_by_two_ingredients($ingredient1, $ingredient2)
 	{
 		$sql = "
 			SELECT *
@@ -170,7 +221,72 @@ class Effects_map_m extends CI_Model
 					WHERE ingredient = ?
 				)
 			ORDER BY e.name";
-		$query =  $this->db->query($sql, Array($compatible, $ingredient));
+		$query =  $this->db->query($sql, Array($ingredient1, $ingredient2));
+		$results =  $query->result_array();
+		return $results;
+	}
+	
+	function list_effects_combination_by_ingredients($ingredient1, $ingredient2, $ingredient3 = false)
+	{
+		$sql = "
+			SELECT *
+			FROM (
+				SELECT em.*, e.id AS eid, e.name, e.`price`, COUNT(*) AS `hits`
+				FROM effects_map em, effects e
+				WHERE em.`effect` = e.`id`
+				AND (
+					em.ingredient = ? 
+					OR em.`ingredient` = ? ";
+		
+		if($ingredient3)
+			$sql .= "OR em.`ingredient` = ? ";
+		
+		$sql .= ")
+				GROUP BY e.id
+			) em
+			WHERE hits > 1";
+		
+		$values = Array();
+		if($ingredient3)
+			$values = Array($ingredient1, $ingredient2, $ingredient3);
+		else 
+			$values = Array($ingredient1, $ingredient2);
+		
+		$query =  $this->db->query($sql, $values);
+		$results =  $query->result_array();
+		return $results;
+	}
+	
+	function list_compatible_ingredients($ingredient1, $ingredient2 = false)
+	{
+		$sql = "
+			SELECT i.*, SUM(e.price) as price
+			FROM effects_map em
+			LEFT JOIN ingredients i ON em.`ingredient` = i.id
+			LEFT JOIN effects e ON em.effect = e.id
+			WHERE
+				effect IN (
+					SELECT effect
+					FROM effects_map
+					WHERE ingredient = ? ";
+		
+		if($ingredient2)
+			$sql .= "OR ingredient = ? ";
+		
+		$sql .= ")
+				AND i.id != ? ";
+		
+		if($ingredient2)
+			$sql .= "AND i.id != ? ";
+		
+		$sql .= "GROUP BY i.id
+			ORDER BY price DESC, i.name";
+		
+		if($ingredient2)
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient2, $ingredient1, $ingredient2));
+		else
+			$query =  $this->db->query($sql, Array($ingredient1, $ingredient1));
+		
 		$results =  $query->result_array();
 		return $results;
 	}
