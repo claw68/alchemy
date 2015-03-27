@@ -210,6 +210,19 @@ class Ingredients extends CI_Controller
 		
 		echo json_encode($data);
 	}
+
+	function matrix($generate = false) {
+		$ingredients = $this->ingredients->all();
+		foreach ($ingredients as $pri_key => $primary) {
+			$ingredients[$pri_key]['secondary'] = $this->effects_map->list_compatible_ingredients($primary['id']);
+		}
+		
+		$data = new stdClass();
+		$data->ingredients = $ingredients;
+		
+		$navigation = navigation();
+		render_layout('ingredients/matrix', $data, $navigation);
+	}
 	
 	function add()
 	{
