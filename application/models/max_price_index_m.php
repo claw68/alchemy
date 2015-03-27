@@ -81,4 +81,41 @@ class Max_price_index_m extends CI_Model
 		else
 			return FALSE;
 	}
+	
+	function list_best_value_combination($ingredient = false)
+	{
+		$sql = "
+			SELECT *
+			FROM max_price_index mpi
+			WHERE
+				mpi.`primary` NOT IN (
+					SELECT i.id 
+					FROM ingredients i 
+					WHERE addon != 0
+				) AND
+				mpi.`secondary` NOT IN (
+					SELECT i.id 
+					FROM ingredients i 
+					WHERE addon != 0
+				) AND
+				mpi.`tertiary` NOT IN (
+					SELECT i.id 
+					FROM ingredients i 
+					WHERE addon != 0
+				) ";
+		
+		if($ingredient)
+				$sql .= " AND mpi.`primary` = ? ";
+		
+		$sql .= " 
+			ORDER BY price DESC
+			LIMIT 0,15";
+		if($ingredient)
+			$query =  $this->db->query($sql, Array($ingredient));
+		else
+			$query =  $this->db->query($sql);
+		
+		$results =  $query->result_array();
+		return $results;
+	}
 }
