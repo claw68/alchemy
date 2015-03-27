@@ -215,7 +215,26 @@ class Ingredients extends CI_Controller
 	function matrix($generate = false) {
 		$ingredients = $this->ingredients->all();
 		foreach ($ingredients as $pri_key => $primary) {
-			$ingredients[$pri_key]['secondary'] = $this->effects_map->list_compatible_ingredients($primary['id']);
+			$secondary_list = $this->effects_map->list_compatible_ingredients($primary['id']);
+			$ingredients[$pri_key]['secondary'] = $secondary_list; 
+			foreach ($secondary_list as $sec_key => $secondary) {
+				$tertiary_list = $this->effects_map->list_compatible_ingredients($primary['id'], $secondary['id']);
+				
+				foreach ($tertiary_list as $ter_key => $tertiary) {
+					$price = $this->effects_map->list_effects_combination_by_ingredients($primary['id'], $secondary['id'], $tertiary['id']);
+					$tertiary_list[$ter_key]['price'] = array_sum(array_column($price, 'price'));
+				}
+				
+				$price = Array();
+				foreach ($tertiary_list as $ter_key => $tertiary) {
+					$price[$ter_key]  = $tertiary['price'];
+				}
+				
+				array_multisort($price, SORT_DESC, $tertiary_list);
+				
+				$ingredients[$pri_key]['secondary'][$sec_key]['tertiary'] = $tertiary_list;
+				
+			}
 		}
 		
 		$data = new stdClass();
