@@ -1,3 +1,4 @@
+<script src="<?php echo site_url(''); ?>includes/js/matrix.js"></script>
 <div id="ingredients_matrix" class="row">
 	<div class="page-title medium-12 columns">
 		<p>Ingredients Matrix</p>
