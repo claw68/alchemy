@@ -195,33 +195,6 @@ class Ingredients extends CI_Controller
 		foreach ($ingredients as $pri_key => $primary) {
 			$secondary_list = $this->effects_map->list_compatible_ingredients($primary['id']);
 			$ingredients[$pri_key]['secondary'] = $secondary_list; 
-			foreach ($secondary_list as $sec_key => $secondary) {
-				$tertiary_list = $this->effects_map->list_compatible_ingredients($primary['id'], $secondary['id']);
-				
-				foreach ($tertiary_list as $ter_key => $tertiary) {
-					$price = $this->effects_map->list_effects_combination_by_ingredients($primary['id'], $secondary['id'], $tertiary['id']);
-					$tertiary_list[$ter_key]['price'] = array_sum(array_column($price, 'price'));
-				}
-				
-				$price = Array();
-				foreach ($tertiary_list as $ter_key => $tertiary) {
-					$price[$ter_key]  = $tertiary['price'];
-				}
-				
-				array_multisort($price, SORT_DESC, $tertiary_list);
-				
-				$ingredients[$pri_key]['secondary'][$sec_key]['tertiary'] = $tertiary_list;
-				
-				if($generate != 0) {
-					$data = Array();
-					$data['primary'] = $primary['id'];
-					$data['secondary'] = $secondary['id'];
-					$data['tertiary'] = $tertiary_list[0]['id'];
-					$data['price'] = $tertiary_list[0]['price'];
-					
-					$this->max_price->save($data);
-				}
-			}
 		}
 		
 		$data = new stdClass();
