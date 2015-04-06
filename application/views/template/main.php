@@ -20,6 +20,7 @@
 		<script>$(document).foundation();</script>
 		<script src="<?php echo site_url(''); ?>includes/js/main.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/rem.js"></script>
+		<script>var site_url = "<?php echo site_url(); ?>";</script>
 	</head>
 	<body>
 		<div id="wrapper" class="row container">
