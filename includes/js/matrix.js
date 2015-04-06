@@ -21,3 +21,14 @@ function toggle_table(row, primary, secondary) {
 		get_tertiary_table(row, primary, secondary);
 	}
 }
+
+$(function(){
+	$(".secondary").each(function(){
+		$(this).click(function(){
+			var primary = $(this).parent().find('input').val();
+			var secondary = $(this).find('input').val();
+			
+			toggle_table(this, primary, secondary);
+		});
+	});
+});
