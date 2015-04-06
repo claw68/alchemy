@@ -132,14 +132,11 @@ table th, table td {
 	font-size: 15px;
 }
 
-#ingredients_matrix .secondary {
-	cursor: pointer;
-}
-
 #ingredients_matrix .secondary p {
 	margin: 0;
 	padding: 3px 15px;
 	font-size: 14px;
+	cursor: pointer;
 }
 
 #ingredients_matrix .next p {
