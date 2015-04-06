@@ -139,6 +139,16 @@ table th, table td {
 	cursor: pointer;
 }
 
+#ingredients_matrix .secondary table {
+	margin-left: 15px;
+	margin-bottom: 0px;
+}
+
+#ingredients_matrix .secondary table td {
+	font-size: 13px;
+	color: #6f6f6f;
+}
+
 #ingredients_matrix .next p {
 	margin: 0px;
 	padding: 20px 10px 10px;
