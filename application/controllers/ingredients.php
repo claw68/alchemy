@@ -205,6 +205,37 @@ class Ingredients extends CI_Controller
 		render_layout('ingredients/matrix', $data, $navigation);
 	}
 	
+	function tertiary($primary = 0, $secondary = 0) {
+		if($primary != 0 && $secondary != 0) {
+			$tertiary = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			
+			foreach ($tertiary as $key => $row) {
+				$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $row['id']);
+				$tertiary[$key]['price'] = array_sum(array_column($price, 'price'));
+			}
+			
+			$price = Array();
+			foreach ($tertiary as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $tertiary);
+			
+			$save = Array();
+			$save['primary'] = $primary;
+			$save['secondary'] = $secondary;
+			$save['tertiary'] = $tertiary[0]['id'];
+			$save['price'] = $tertiary[0]['price'];
+			
+			$this->max_price->save($save);
+			
+			$data = new stdClass();
+			$data->tertiary = $tertiary;
+			
+			$this->load->view('ingredients/tertiary', $data);
+		}
+	}
+	
 	function add()
 	{
 		$data = new stdClass();
