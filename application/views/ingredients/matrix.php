@@ -11,7 +11,7 @@
 			<?php foreach ($ingredient['secondary'] as $secondary) { ?>
 				<div class="secondary">
 					<input type="hidden" class="secondary-id" value="<?php echo $secondary['id']; ?>" />
-					<p>+ <?php echo $secondary['name']; ?></p>
+					<p><?php echo $secondary['name']; ?> <span>+</span></p>
 				</div>
 			<?php } ?>
 		</div>
