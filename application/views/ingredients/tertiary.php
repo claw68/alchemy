@@ -1,8 +1,4 @@
 <table>
-	<tr>
-		<th>Ingredients</th>
-		<th>Price</th>
-	</tr>
 	<?php foreach ($tertiary as $row) { ?>
 		<tr>
 			<td>
