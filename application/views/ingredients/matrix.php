@@ -4,13 +4,16 @@
 	</div>
 	<?php foreach ($ingredients as $key => $ingredient) { ?>
 		<div class="primary medium-12 columns">
+			<input type="hidden" class="primary-id" value="<?php echo $ingredient['id']; ?>" />
 			<p><?php echo $ingredient['name']; ?></p>
+			
+			<?php foreach ($ingredient['secondary'] as $secondary) { ?>
+				<div class="secondary">
+					<input type="hidden" class="secondary-id" value="<?php echo $secondary['id']; ?>" />
+					<p>+ <?php echo $secondary['name']; ?></p>
+				</div>
+			<?php } ?>
 		</div>
-		<?php foreach ($ingredient['secondary'] as $secondary) { ?>
-			<div class="secondary medium-12 columns">
-				<p>+ <?php echo $secondary['name']; ?></p>
-			</div>
-		<?php } ?>
 	<?php } ?>
 	<div class="next medium-12 columns">
 		<p><a href="<?php echo site_url('/ingredients/matrix/'.($page+1)); ?>">Next Page >></a></p>

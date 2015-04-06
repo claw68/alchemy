@@ -125,7 +125,7 @@ table th, table td {
 	margin-bottom: 0px;
 }
 
-#ingredients_matrix .primary p {
+#ingredients_matrix .primary > p {
 	margin: 0;
 	padding: 25px 10px 10px;
 	font-weight: bold;
