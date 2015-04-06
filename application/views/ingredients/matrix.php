@@ -1,8 +1,11 @@
 <div id="ingredients_matrix" class="row">
 	<?php foreach ($ingredients as $key => $ingredient) { ?>
+		<div class="primary medium-12 columns">
+			<p><?php echo $ingredient['name']; ?></p>
+		</div>
 		<?php foreach ($ingredient['secondary'] as $secondary) { ?>
-			<div class="page-title medium-12 columns">
-				<p><?php echo $ingredient['name']; ?> + <?php echo $secondary['name']; ?></p>
+			<div class="secondary medium-12 columns">
+				<p>+ <?php echo $secondary['name']; ?></p>
 			</div>
 		<?php } ?>
 	<?php } ?>
