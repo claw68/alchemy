@@ -1,3 +1,4 @@
+<script src="<?php echo site_url(''); ?>includes/js/calculator.js"></script>
 <div id="ingredients_calculator" class="row">
 	<div class="page-title medium-12 columns">
 		<p>Price Calculator</p>

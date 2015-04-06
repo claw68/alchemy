@@ -116,7 +116,7 @@ function fill_result_table(data) {
 
 function send_data() {
 	$.ajax({
-		url: "calculate/"+primary+"/"+secondary+"/"+tertiary,
+		url: site_url+"ingredients/calculate/"+primary+"/"+secondary+"/"+tertiary,
 		context: document.body,
 		dataType: "json",
 		type: "post",

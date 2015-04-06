@@ -117,6 +117,49 @@ table th, table td {
 	cursor: pointer;
 }
 
+#ingredients_matrix .page-title {
+	padding-bottom: 0px;
+}
+
+#ingredients_matrix .page-title p {
+	margin-bottom: 0px;
+}
+
+#ingredients_matrix .primary > p {
+	margin: 0;
+	padding: 25px 10px 10px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#ingredients_matrix .secondary p {
+	margin: 0;
+	padding: 3px 15px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#ingredients_matrix .secondary table {
+	margin-left: 15px;
+	margin-bottom: 0px;
+}
+
+#ingredients_matrix .secondary table td {
+	font-size: 13px;
+	color: #6f6f6f;
+}
+
+#ingredients_matrix .next p {
+	margin: 0px;
+	padding: 20px 10px 10px;
+}
+
+#ingredients_matrix .next p a {
+	font-weight: bold;
+	color: #6f6f6f;
+	font-size: 15px;
+}
+
 #uploaded {
 	width: 100px;
 }

@@ -188,49 +188,52 @@ class Ingredients extends CI_Controller
 		echo json_encode($data);
 	}
 
-	function matrix($page = 1, $generate = 1) {
+	function matrix($page = 1) {
 		$limit = 5;
-		$offset = ($page - 1)*$limit;
+		$offset = ($page - 1) * $limit;
 		$ingredients = $this->ingredients->all($limit, $offset);
 		foreach ($ingredients as $pri_key => $primary) {
 			$secondary_list = $this->effects_map->list_compatible_ingredients($primary['id']);
 			$ingredients[$pri_key]['secondary'] = $secondary_list; 
-			foreach ($secondary_list as $sec_key => $secondary) {
-				$tertiary_list = $this->effects_map->list_compatible_ingredients($primary['id'], $secondary['id']);
-				
-				foreach ($tertiary_list as $ter_key => $tertiary) {
-					$price = $this->effects_map->list_effects_combination_by_ingredients($primary['id'], $secondary['id'], $tertiary['id']);
-					$tertiary_list[$ter_key]['price'] = array_sum(array_column($price, 'price'));
-				}
-				
-				$price = Array();
-				foreach ($tertiary_list as $ter_key => $tertiary) {
-					$price[$ter_key]  = $tertiary['price'];
-				}
-				
-				array_multisort($price, SORT_DESC, $tertiary_list);
-				
-				$ingredients[$pri_key]['secondary'][$sec_key]['tertiary'] = $tertiary_list;
-				
-				if($generate != 0) {
-					$data = Array();
-					$data['primary'] = $primary['id'];
-					$data['secondary'] = $secondary['id'];
-					$data['tertiary'] = $tertiary_list[0]['id'];
-					$data['price'] = $tertiary_list[0]['price'];
-					
-					$this->max_price->save($data);
-				}
-			}
 		}
 		
 		$data = new stdClass();
 		$data->page = $page;
-		$data->generate = $generate;
 		$data->ingredients = $ingredients;
 		
 		$navigation = navigation();
 		render_layout('ingredients/matrix', $data, $navigation);
+	}
+	
+	function tertiary($primary = 0, $secondary = 0) {
+		if($primary != 0 && $secondary != 0) {
+			$tertiary = $this->effects_map->list_compatible_ingredients($primary, $secondary);
+			
+			foreach ($tertiary as $key => $row) {
+				$price = $this->effects_map->list_effects_combination_by_ingredients($primary, $secondary, $row['id']);
+				$tertiary[$key]['price'] = array_sum(array_column($price, 'price'));
+			}
+			
+			$price = Array();
+			foreach ($tertiary as $key => $row) {
+				$price[$key]  = $row['price'];
+			}
+			
+			array_multisort($price, SORT_DESC, $tertiary);
+			
+			$save = Array();
+			$save['primary'] = $primary;
+			$save['secondary'] = $secondary;
+			$save['tertiary'] = $tertiary[0]['id'];
+			$save['price'] = $tertiary[0]['price'];
+			
+			$this->max_price->save($save);
+			
+			$data = new stdClass();
+			$data->tertiary = $tertiary;
+			
+			$this->load->view('ingredients/tertiary', $data);
+		}
 	}
 	
 	function add()
