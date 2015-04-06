@@ -12,7 +12,7 @@
 			</div>
 		<?php } ?>
 	<?php } ?>
-	<div class="medium-12 columns">
-		<a href="<?php echo site_url('/ingredients/matrix/'.($page+1).'/'.$generate); ?>">More Ingredients</a>
+	<div class="next medium-12 columns">
+		<p><a href="<?php echo site_url('/ingredients/matrix/'.($page+1).'/'.$generate); ?>">Next Page >></a></p>
 	</div>
 </div>
