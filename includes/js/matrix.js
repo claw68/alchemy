@@ -17,8 +17,10 @@ function toggle_table(row, primary, secondary) {
 	
 	if(table_exist) {
 		table.remove();
+		$(row).find('p span').text('+');
 	} else {
 		get_tertiary_table(row, primary, secondary);
+		$(row).find('p span').text('-');
 	}
 }
 
