@@ -89,7 +89,7 @@ class Ingredients extends CI_Controller
 		}
 		
 		//best value ingredients combination: without giant's toe
-		$ingredient = $this->max_price->list_best_value_combination();
+		$ingredient = $this->max_price->list_best_value_combination(false, 40);
 		
 		$without_giant = Array();
 		foreach ($ingredient as $key => $row) {
