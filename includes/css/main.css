@@ -109,6 +109,10 @@ table th, table td {
 	font-weight: bold;
 }
 
+#ingredients_tips table th:first-child {
+	width: 590px;
+}
+
 #calc_ingredients tr {
 	cursor: pointer;
 }
