@@ -91,7 +91,7 @@ class Max_price_index_m extends CI_Model
 			return FALSE;
 	}
 	
-	function list_best_value_combination($ingredient = false)
+	function list_best_value_combination($ingredient = false, $limit = 15)
 	{
 		$sql = "
 			SELECT *, CONCAT_WS(',',
@@ -131,11 +131,11 @@ class Max_price_index_m extends CI_Model
 		$sql .= " 
 			GROUP BY ids
 			ORDER BY price DESC
-			LIMIT 0,15";
+			LIMIT 0, ?";
 		if($ingredient)
-			$query =  $this->db->query($sql, Array($ingredient));
+			$query =  $this->db->query($sql, Array($ingredient, $limit));
 		else
-			$query =  $this->db->query($sql);
+			$query =  $this->db->query($sql, Array($limit));
 		
 		$results =  $query->result_array();
 		return $results;
