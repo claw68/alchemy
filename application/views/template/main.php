@@ -19,8 +19,8 @@
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/foundation.min.js"></script>
 		<script>$(document).foundation();</script>
 		<script src="<?php echo site_url(''); ?>includes/js/main.js"></script>
-		<script src="<?php echo site_url(''); ?>includes/js/calculator.js"></script>
 		<script src="<?php echo site_url(''); ?>includes/foundation/js/vendor/rem.js"></script>
+		<script>var site_url = "<?php echo site_url(); ?>";</script>
 	</head>
 	<body>
 		<div id="wrapper" class="row container">
