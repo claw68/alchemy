@@ -1,11 +1,33 @@
 var mode = 0; //primary
 var primary = 0, secondary = 0, tertiary = 0;
 
+function eval_value(ing) {
+	if(ing != 0 && ing*1 == ing ) {
+		return ing;
+	} else {
+		return false;
+	}
+}
+
+function preload_ingredient() {
+	var sel_primary = eval_value(selected_primary);
+	var sel_secondary = eval_value(selected_secondary);
+	if(sel_primary) {
+		var el = $("#calc_ingredients :input[value="+sel_primary+"]").parent().parent();
+		row_click_handler(el, false);
+		if(sel_secondary) {
+			var sec_el = $("#calc_ingredients :input[value="+sel_secondary+"]").parent().parent();
+			if(sec_el.length > 0)
+				row_click_handler(sec_el);
+		}
+	}
+}
+
 function preload(image) {
 	$('<img/>')[0].src = image;
 }
 
-var loading_img = "../includes/images/loading.gif";
+var loading_img = site_url + "/includes/images/loading.gif";
 preload(loading_img);
 
 function loading(target) {
@@ -42,12 +64,13 @@ function update_vars(id) {
 	}
 }
 
-function row_click_handler(el) {
+function row_click_handler(el, async) {
+	async = typeof async !== 'undefined' ? async : true;
 	update_vars($(el).find('input').val());
 	update_selected($(el).find('td:eq(0)').text());
 	if(mode < 2)
 		mode++;
-	send_data();
+	send_data(async);
 }
 
 function fill_ingredients_table(data) {
@@ -114,11 +137,13 @@ function fill_result_table(data) {
 	}
 }
 
-function send_data() {
+function send_data(async) {
+	async = typeof async !== 'undefined' ? async : true;
 	$.ajax({
 		url: site_url+"ingredients/calculate/"+primary+"/"+secondary+"/"+tertiary,
 		context: document.body,
 		dataType: "json",
+		async: async,
 		type: "post",
 		beforeSend :function() {
 			loading("#calc_ingredients");
@@ -157,4 +182,6 @@ $(function(){
 		update_selected("--");
 		send_data();
 	});
+	
+	preload_ingredient();
 });
