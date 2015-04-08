@@ -72,55 +72,65 @@ class Ingredients extends CI_Controller
 	
 	function tips()
 	{
-		//most valuable single effects
-		$effects = $this->effects->list_by_price();
+		//all ingredients
+		$ingredients = $this->ingredients->all();
 		
-		//best value ingredients combination: with giant's toe
-		$ingredient = $this->max_price->list_best_value_combination(44);
+		//best value ingredient combination of an ingredient
+		$by_ingredient = $this->_best_value($ingredients[0]['id'], 30, TRUE); //default: first ingredient
 		
-		$with_giant = Array();
-		foreach ($ingredient as $key => $row) {
-			$with_giant[$key] = Array();
-			$with_giant[$key][] = $this->ingredients->get($row['primary']);
-			$with_giant[$key][] = $this->ingredients->get($row['secondary']);
-			$with_giant[$key][] = $this->ingredients->get($row['tertiary']);
-			
-			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
-			$with_giant[$key]['result'] = $result;
-			$with_giant[$key]['price'] = array_sum(array_column($result, 'price'));
-		}
-		
-		//best value ingredients combination: without giant's toe
-		$ingredient = $this->max_price->list_best_value_combination(false, 40);
-		
-		$without_giant = Array();
-		foreach ($ingredient as $key => $row) {
-			$without_giant[$key] = Array();
-			$without_giant[$key][] = $this->ingredients->get($row['primary']);
-			$without_giant[$key][] = $this->ingredients->get($row['secondary']);
-			$without_giant[$key][] = $this->ingredients->get($row['tertiary']);
-			
-			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
-			$without_giant[$key]['result'] = $result;
-			$without_giant[$key]['price'] = array_sum(array_column($result, 'price'));
-		}
+		//best value ingredients combination of all ingredients
+		$all_ingredients = $this->_best_value(FALSE, 101, FALSE);
 		
 		$data = new stdClass();
-		$data->effects = $effects;
-		$data->with_giant = $with_giant;
-		$data->without_giant = $without_giant;
+		$data->ingredients = $ingredients;
+		$data->by_ingredient = $by_ingredient;
+		$data->all_ingredients = $all_ingredients;
 		
 		$navigation = navigation();
 		
 		render_layout('ingredients/tips', $data, $navigation);
 	}
 
-	function calculator($primary = 0, $secondary = 0)
+	function tips_table($id)
+	{
+		echo $this->_best_value($id, 30, TRUE);
+	}
+
+	private function _best_value($id = FALSE, $limit = 30, $all = FALSE)
+	{
+		//best value ingredient combination of an ingredient
+		if($id)
+			$info = $this->ingredients->get($id);
+		else 
+			$info = FALSE;
+		$ingredient = $this->max_price->list_best_value_combination($id, $limit, $all);
+		
+		$combinations = Array();
+		foreach ($ingredient as $key => $row) {
+			$combinations[$key] = Array();
+			$combinations[$key][] = $this->ingredients->get($row['primary']);
+			$combinations[$key][] = $this->ingredients->get($row['secondary']);
+			$combinations[$key][] = $this->ingredients->get($row['tertiary']);
+			
+			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
+			$combinations[$key]['result'] = $result;
+			$combinations[$key]['price'] = array_sum(array_column($result, 'price'));
+		}
+		
+		$data = new stdClass();
+		$data->info = $info;
+		$data->combinations = $combinations;
+		
+		return $this->load->view('ingredients/best_value', $data, TRUE);
+	}
+
+	function calculator($primary = 0, $secondary = 0, $tertiary = 0)
 	{
 		$data = new stdClass();
 		$data->ingredients = $this->ingredients->all();
 		$data->primary = $primary;
 		$data->secondary = $secondary;
+		$data->tertiary = $tertiary;
 		
 		$navigation = navigation();
 		render_layout('ingredients/calculator', $data, $navigation);

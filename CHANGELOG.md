@@ -1,3 +1,10 @@
+## 1.4.2 - April 9, 2015
+
+Features:
+
+- Added tertiary ingredient support for calcator preloading script
+- Updated tips page to support all ingredients instead of Giant's Toe only
+
 ## 1.4.1 - April 8, 2015
 
 Features:

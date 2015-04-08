@@ -91,7 +91,7 @@ class Max_price_index_m extends CI_Model
 			return FALSE;
 	}
 	
-	function list_best_value_combination($ingredient = false, $limit = 15, $all = false)
+	function list_best_value_combination($ingredient = FALSE, $limit = 15, $all = FALSE)
 	{
 		$sql = "
 			SELECT *, CONCAT_WS(',',
