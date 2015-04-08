@@ -44,7 +44,6 @@ class Effects_m extends CI_Model
 	function list_by_price()
 	{
 		$this->db->order_by('price', 'desc');
-		$this->db->limit(10);
 		$query = $this->db->get($this->table);
 		$results =  $query->result_array();
 		return $results;

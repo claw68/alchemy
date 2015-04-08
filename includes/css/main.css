@@ -109,6 +109,14 @@ table th, table td {
 	font-weight: bold;
 }
 
+#ingredients_tips table th:first-child {
+	width: 650px;
+}
+
+#ingredients_tips table td:first-child {
+	width: 210px;
+}
+
 #calc_ingredients tr {
 	cursor: pointer;
 }
@@ -130,6 +138,7 @@ table th, table td {
 	padding: 25px 10px 10px;
 	font-weight: bold;
 	font-size: 15px;
+	color: #000000;
 }
 
 #ingredients_matrix .secondary p {
@@ -137,6 +146,7 @@ table th, table td {
 	padding: 3px 15px;
 	font-size: 14px;
 	cursor: pointer;
+	color: #000000;
 }
 
 #ingredients_matrix .secondary table {
@@ -146,7 +156,6 @@ table th, table td {
 
 #ingredients_matrix .secondary table td {
 	font-size: 13px;
-	color: #6f6f6f;
 }
 
 #ingredients_matrix .next p {

@@ -5,7 +5,7 @@
 	<div class="medium-4 large-3 columns">
 		<table class="list">
 			<tr>
-				<th>Most Valuable Single Effects</th>
+				<th>Single Effects By Price</th>
 			</tr>
 			<?php foreach ($effects as $row) { ?>
 				<tr>
