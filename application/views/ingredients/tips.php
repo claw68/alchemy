@@ -5,14 +5,13 @@
 	<div class="medium-4 large-3 columns">
 		<table class="list">
 			<tr>
-				<th>Single Effects By Price</th>
+				<th>Ingredients</th>
 			</tr>
-			<?php foreach ($effects as $row) { ?>
+			<?php foreach ($ingredients as $row) { ?>
 				<tr>
 					<td>
-						<a href="<?php echo site_url("effects/view/".$row['id']); ?>">
+						<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
 							<?php echo $row['name']; ?>
-							(<?php echo $row['price']; ?>)
 						</a>
 					</td>
 				</tr>

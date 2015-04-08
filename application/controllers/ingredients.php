@@ -72,8 +72,8 @@ class Ingredients extends CI_Controller
 	
 	function tips()
 	{
-		//most valuable single effects
-		$effects = $this->effects->list_by_price();
+		//all ingredients
+		$ingredients = $this->ingredients->all();
 		
 		//best value ingredients combination: with giant's toe
 		$ingredient = $this->max_price->list_best_value_combination(44);
@@ -106,7 +106,7 @@ class Ingredients extends CI_Controller
 		}
 		
 		$data = new stdClass();
-		$data->effects = $effects;
+		$data->ingredients = $ingredients;
 		$data->with_giant = $with_giant;
 		$data->without_giant = $without_giant;
 		
