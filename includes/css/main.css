@@ -110,7 +110,11 @@ table th, table td {
 }
 
 #ingredients_tips table th:first-child {
-	width: 590px;
+	width: 650px;
+}
+
+#ingredients_tips table td:first-child {
+	width: 210px;
 }
 
 #calc_ingredients tr {
