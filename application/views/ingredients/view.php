@@ -49,8 +49,9 @@
 							<a <?php if(sizeof($row['result']) > 1) { ?>class="bold" <?php } ?>href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
 								<?php echo $row['name']; ?>
 								<?php if($row['price'] > $effect['price']) echo '('.$row['price'].')'; ?>
-								[<?php echo $row['max']; ?>]
-							</a><br />
+							</a>
+							[<a href="<?php echo site_url("ingredients/calculator/".$ingredient['id']."/".$row['id']); ?>"><?php echo $row['max']; ?></a>]
+							<br />
 						<?php } ?>
 					</td>
 				</tr>
