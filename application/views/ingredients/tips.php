@@ -37,7 +37,9 @@
 						</td>
 					<?php if($key > 1) break; } ?>
 					<td>
-						<?php echo array_sum(array_column($row['result'], 'price')); ?>
+						<a href="<?php echo site_url("ingredients/calculator/".$row[0]['id']."/".$row[1]['id'])."/".$row[2]['id']; ?>">
+							<?php echo array_sum(array_column($row['result'], 'price')); ?>
+						</a>
 					</td>
 				</tr>
 			<?php } ?>
