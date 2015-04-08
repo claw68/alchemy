@@ -12,3 +12,11 @@ function get_tips_table(ingredient) {
 	});
 }
 
+$(function(){
+	$("#select_ingredient_tips").find('tr').each(function() {
+		$(this).click(function(){
+			var ingredient = $(this).find('input').val();
+			get_tips_table(ingredient);
+		});
+	});
+});
