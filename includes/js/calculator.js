@@ -122,11 +122,13 @@ function fill_result_table(data) {
 	}
 }
 
-function send_data() {
+function send_data(async) {
+	async = typeof async !== 'undefined' ? async : true;
 	$.ajax({
 		url: site_url+"ingredients/calculate/"+primary+"/"+secondary+"/"+tertiary,
 		context: document.body,
 		dataType: "json",
+		async: async,
 		type: "post",
 		beforeSend :function() {
 			loading("#calc_ingredients");
