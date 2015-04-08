@@ -9,6 +9,20 @@ function eval_value(ing) {
 	}
 }
 
+function preload_ingredient() {
+	var sel_primary = eval_value(selected_primary);
+	var sel_secondary = eval_value(selected_secondary);
+	if(sel_primary) {
+		var el = $("#calc_ingredients :input[value="+sel_primary+"]").parent().parent();
+		row_click_handler(el, false);
+		if(sel_secondary) {
+			var sec_el = $("#calc_ingredients :input[value="+sel_secondary+"]").parent().parent();
+			if(sec_el.length > 0)
+				row_click_handler(sec_el);
+		}
+	}
+}
+
 function preload(image) {
 	$('<img/>')[0].src = image;
 }
@@ -168,4 +182,6 @@ $(function(){
 		update_selected("--");
 		send_data();
 	});
+	
+	preload_ingredient();
 });
