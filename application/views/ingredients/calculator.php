@@ -1,6 +1,7 @@
 <script>
 	var selected_primary = "<?php echo $primary; ?>"; 
 	var selected_secondary = "<?php echo $secondary; ?>";
+	var selected_tertiary = "<?php echo $tertiary; ?>";
 </script>
 <script src="<?php echo site_url(''); ?>includes/js/calculator.js"></script>
 <div id="ingredients_calculator" class="row">
