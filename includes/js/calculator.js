@@ -5,7 +5,7 @@ function preload(image) {
 	$('<img/>')[0].src = image;
 }
 
-var loading_img = "../includes/images/loading.gif";
+var loading_img = site_url + "/includes/images/loading.gif";
 preload(loading_img);
 
 function loading(target) {
