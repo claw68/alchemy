@@ -1,3 +1,16 @@
+## 1.4.1 - April 8, 2015
+
+Features:
+
+- Optimized Matrix Page by hiding tables at load and showing only on click
+- Added calculator ingredients preloading script
+- Link max price in ingredient table and view to calculator page with ingredients pre selected
+
+Fixes:
+
+- Fixed javascript paths to use global site_url variable 
+- Fixed best value table in tips page to display accurate data
+
 ## 1.4.0 - March 28, 2015
 
 Features:
