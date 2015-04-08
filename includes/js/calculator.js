@@ -50,12 +50,13 @@ function update_vars(id) {
 	}
 }
 
-function row_click_handler(el) {
+function row_click_handler(el, async) {
+	async = typeof async !== 'undefined' ? async : true;
 	update_vars($(el).find('input').val());
 	update_selected($(el).find('td:eq(0)').text());
 	if(mode < 2)
 		mode++;
-	send_data();
+	send_data(async);
 }
 
 function fill_ingredients_table(data) {
