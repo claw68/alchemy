@@ -12,13 +12,19 @@ function eval_value(ing) {
 function preload_ingredient() {
 	var sel_primary = eval_value(selected_primary);
 	var sel_secondary = eval_value(selected_secondary);
+	var sel_tertiary = eval_value(selected_tertiary);
 	if(sel_primary) {
 		var el = $("#calc_ingredients :input[value="+sel_primary+"]").parent().parent();
 		row_click_handler(el, false);
 		if(sel_secondary) {
 			var sec_el = $("#calc_ingredients :input[value="+sel_secondary+"]").parent().parent();
 			if(sec_el.length > 0)
-				row_click_handler(sec_el);
+				row_click_handler(sec_el, false);
+			if(selected_tertiary) {
+				var ter_el = $("#calc_ingredients :input[value="+selected_tertiary+"]").parent().parent();
+				if(ter_el.length > 0)
+					row_click_handler(ter_el);
+			}
 		}
 	}
 }

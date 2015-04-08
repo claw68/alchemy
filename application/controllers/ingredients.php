@@ -124,12 +124,13 @@ class Ingredients extends CI_Controller
 		return $this->load->view('ingredients/best_value', $data, TRUE);
 	}
 
-	function calculator($primary = 0, $secondary = 0)
+	function calculator($primary = 0, $secondary = 0, $tertiary = 0)
 	{
 		$data = new stdClass();
 		$data->ingredients = $this->ingredients->all();
 		$data->primary = $primary;
 		$data->secondary = $secondary;
+		$data->tertiary = $tertiary;
 		
 		$navigation = navigation();
 		render_layout('ingredients/calculator', $data, $navigation);
