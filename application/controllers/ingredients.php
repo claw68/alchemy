@@ -76,20 +76,7 @@ class Ingredients extends CI_Controller
 		$ingredients = $this->ingredients->all();
 		
 		//best value ingredient combination of an ingredient
-		$current_ingredient = $ingredients[0]; //default to first
-		$ingredient = $this->max_price->list_best_value_combination($current_ingredient['id'], 30, true);
-		
-		$by_ingredient = Array();
-		foreach ($ingredient as $key => $row) {
-			$by_ingredient[$key] = Array();
-			$by_ingredient[$key][] = $this->ingredients->get($row['primary']);
-			$by_ingredient[$key][] = $this->ingredients->get($row['secondary']);
-			$by_ingredient[$key][] = $this->ingredients->get($row['tertiary']);
-			
-			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
-			$by_ingredient[$key]['result'] = $result;
-			$by_ingredient[$key]['price'] = array_sum(array_column($result, 'price'));
-		}
+		$by_ingredient = $this->_best_value($ingredients[0]['id']); //default: first ingredient
 		
 		//best value ingredients combination: without giant's toe
 		$ingredient = $this->max_price->list_best_value_combination(false, 101);
@@ -108,13 +95,37 @@ class Ingredients extends CI_Controller
 		
 		$data = new stdClass();
 		$data->ingredients = $ingredients;
-		$data->current_ingredient = $current_ingredient;
 		$data->by_ingredient = $by_ingredient;
 		$data->all_ingredients = $all_ingredients;
 		
 		$navigation = navigation();
 		
 		render_layout('ingredients/tips', $data, $navigation);
+	}
+
+	private function _best_value($id) 
+	{
+		//best value ingredient combination of an ingredient
+		$info = $this->ingredients->get($id);
+		$ingredient = $this->max_price->list_best_value_combination($id, 30, true);
+		
+		$by_ingredient = Array();
+		foreach ($ingredient as $key => $row) {
+			$by_ingredient[$key] = Array();
+			$by_ingredient[$key][] = $this->ingredients->get($row['primary']);
+			$by_ingredient[$key][] = $this->ingredients->get($row['secondary']);
+			$by_ingredient[$key][] = $this->ingredients->get($row['tertiary']);
+			
+			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
+			$by_ingredient[$key]['result'] = $result;
+			$by_ingredient[$key]['price'] = array_sum(array_column($result, 'price'));
+		}
+		
+		$data = new stdClass();
+		$data->info = $info;
+		$data->by_ingredient = $by_ingredient;
+		
+		return $this->load->view('ingredients/best_value', $data, TRUE);
 	}
 
 	function calculator($primary = 0, $secondary = 0)
