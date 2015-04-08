@@ -103,6 +103,11 @@ class Ingredients extends CI_Controller
 		render_layout('ingredients/tips', $data, $navigation);
 	}
 
+	function tips_table($id)
+	{
+		echo $this->_best_value($id);
+	}
+
 	private function _best_value($id) 
 	{
 		//best value ingredient combination of an ingredient
