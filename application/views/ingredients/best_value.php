@@ -1,9 +1,9 @@
 <table class="list">
 	<tr>
-		<th colspan="3">Best Value Ingredients Combination with <?php echo $info['name']; ?></th>
+		<th colspan="3">Best Value Ingredients Combination <?php if($info) { ?>with <?php echo $info['name']; ?> <?php } else { ?> of All Ingredients<?php } ?></th>
 		<th>Sell Price</th>
 	</tr>
-	<?php foreach ($by_ingredient as $row) { ?>
+	<?php foreach ($combinations as $row) { ?>
 		<tr>
 			<?php foreach ($row as $key => $col) { ?>
 				<td>
