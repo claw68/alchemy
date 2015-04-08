@@ -1,3 +1,4 @@
+<script src="<?php echo site_url(''); ?>includes/js/tips.js"></script>
 <div id="ingredients_tips" class="row">
 	<div class="page-title medium-12 columns">
 		<p>Alchemy Tips</p>
