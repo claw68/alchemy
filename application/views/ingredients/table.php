@@ -14,6 +14,7 @@
 					<th>Most Expensive</th>
 					<th>Price</th>
 					<th>Total</th>
+					<th>Max</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,6 +56,11 @@
 						</td>
 						<td>
 							<?php echo htmlspecialchars($row["price_total"], ENT_QUOTES); ?>
+						</td>
+						<td>
+							<a href="<?php echo site_url("ingredients/calculator/".$row['max']['primary']."/".$row['max']['secondary']); ?>">
+								<?php echo htmlspecialchars($row["max"]['price'], ENT_QUOTES);?>
+							</a>
 						</td>
 					</tr>
 				<?php } ?>
