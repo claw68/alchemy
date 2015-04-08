@@ -21,7 +21,7 @@
 	<div class="medium-8 large-9 columns">
 		<table class="list">
 			<tr>
-				<th colspan="3">Best Value Ingredients Combination with Giant's Toe</th>
+				<th colspan="3">Best Value Ingredients Combination with <?php echo $current_ingredient['name']; ?></th>
 				<th>Sell Price</th>
 			</tr>
 			<?php foreach ($by_ingredient as $row) { ?>

@@ -76,7 +76,8 @@ class Ingredients extends CI_Controller
 		$ingredients = $this->ingredients->all();
 		
 		//best value ingredient combination of an ingredient
-		$ingredient = $this->max_price->list_best_value_combination($ingredients[0]['id'], 30, true);
+		$current_ingredient = $ingredients[0]; //default to first
+		$ingredient = $this->max_price->list_best_value_combination($current_ingredient['id'], 30, true);
 		
 		$by_ingredient = Array();
 		foreach ($ingredient as $key => $row) {
@@ -107,6 +108,7 @@ class Ingredients extends CI_Controller
 		
 		$data = new stdClass();
 		$data->ingredients = $ingredients;
+		$data->current_ingredient = $current_ingredient;
 		$data->by_ingredient = $by_ingredient;
 		$data->without_giant = $without_giant;
 		
