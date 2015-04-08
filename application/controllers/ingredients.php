@@ -92,25 +92,25 @@ class Ingredients extends CI_Controller
 		}
 		
 		//best value ingredients combination: without giant's toe
-		$ingredient = $this->max_price->list_best_value_combination(false, 40);
+		$ingredient = $this->max_price->list_best_value_combination(false, 101);
 		
-		$without_giant = Array();
+		$all_ingredients = Array();
 		foreach ($ingredient as $key => $row) {
-			$without_giant[$key] = Array();
-			$without_giant[$key][] = $this->ingredients->get($row['primary']);
-			$without_giant[$key][] = $this->ingredients->get($row['secondary']);
-			$without_giant[$key][] = $this->ingredients->get($row['tertiary']);
+			$all_ingredients[$key] = Array();
+			$all_ingredients[$key][] = $this->ingredients->get($row['primary']);
+			$all_ingredients[$key][] = $this->ingredients->get($row['secondary']);
+			$all_ingredients[$key][] = $this->ingredients->get($row['tertiary']);
 			
 			$result = $this->effects_map->list_effects_combination_by_ingredients($row['primary'], $row['secondary'], $row['tertiary']);
-			$without_giant[$key]['result'] = $result;
-			$without_giant[$key]['price'] = array_sum(array_column($result, 'price'));
+			$all_ingredients[$key]['result'] = $result;
+			$all_ingredients[$key]['price'] = array_sum(array_column($result, 'price'));
 		}
 		
 		$data = new stdClass();
 		$data->ingredients = $ingredients;
 		$data->current_ingredient = $current_ingredient;
 		$data->by_ingredient = $by_ingredient;
-		$data->without_giant = $without_giant;
+		$data->all_ingredients = $all_ingredients;
 		
 		$navigation = navigation();
 		

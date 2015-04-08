@@ -42,10 +42,10 @@
 		</table>
 		<table class="list">
 			<tr>
-				<th colspan="3">Best Value Ingredients Combination without Giant's Toe</th>
+				<th colspan="3">Best Value Ingredients Combination of All Ingredients</th>
 				<th>Sell Price</th>
 			</tr>
-			<?php foreach ($without_giant as $row) { ?>
+			<?php foreach ($all_ingredients as $row) { ?>
 				<tr>
 					<?php foreach ($row as $key => $col) { ?>
 						<td>
