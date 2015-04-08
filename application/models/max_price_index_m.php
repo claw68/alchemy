@@ -91,7 +91,7 @@ class Max_price_index_m extends CI_Model
 			return FALSE;
 	}
 	
-	function list_best_value_combination($ingredient = false, $limit = 15)
+	function list_best_value_combination($ingredient = false, $limit = 15, $all = false)
 	{
 		$sql = "
 			SELECT *, CONCAT_WS(',',
@@ -109,7 +109,9 @@ class Max_price_index_m extends CI_Model
 				GREATEST(`primary`, secondary, tertiary)) AS ids
 			FROM max_price_index mpi
 			WHERE
-				mpi.`primary` NOT IN (
+				1 = 1 ";
+			if(!$all)
+				$sql .= " AND mpi.`primary` NOT IN (
 					SELECT i.id 
 					FROM ingredients i 
 					WHERE addon != 0
