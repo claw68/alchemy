@@ -1,6 +1,14 @@
 var mode = 0; //primary
 var primary = 0, secondary = 0, tertiary = 0;
 
+function eval_value(ing) {
+	if(ing != 0 && ing*1 == ing ) {
+		return ing;
+	} else {
+		return false;
+	}
+}
+
 function preload(image) {
 	$('<img/>')[0].src = image;
 }
