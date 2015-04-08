@@ -25,6 +25,8 @@ class Ingredients extends CI_Controller
 		$ingredients = $this->effects_map->ingredients_table();
 		foreach ($ingredients as $key => $row) {
 			$ingredients[$key]['best'] = $this->effects_map->list_best_effects_by_ingredient($row['id']);
+			$max = $this->max_price->list_best_value_combination($row['id'], 1, true);
+			$ingredients[$key]['max'] = $max[0];
 		}
 		
 		$data = new stdClass();
