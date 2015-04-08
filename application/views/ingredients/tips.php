@@ -4,16 +4,15 @@
 		<p>Alchemy Tips</p>
 	</div>
 	<div class="medium-4 large-3 columns">
-		<table class="list">
+		<table id="select_ingredient_tips" class="list">
 			<tr>
-				<th>Ingredients</th>
+				<th>Select Ingredient for Tips</th>
 			</tr>
 			<?php foreach ($ingredients as $row) { ?>
 				<tr>
 					<td>
-						<a href="<?php echo site_url("ingredients/view/".$row['id']); ?>">
-							<?php echo $row['name']; ?>
-						</a>
+						<input type="hidden" class="id" value="<?php echo $row['id']; ?>" />
+						<?php echo $row['name']; ?>
 					</td>
 				</tr>
 			<?php } ?>
