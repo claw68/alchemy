@@ -24,7 +24,7 @@
 				<th colspan="3">Best Value Ingredients Combination with Giant's Toe</th>
 				<th>Sell Price</th>
 			</tr>
-			<?php foreach ($with_giant as $row) { ?>
+			<?php foreach ($by_ingredient as $row) { ?>
 				<tr>
 					<?php foreach ($row as $key => $col) { ?>
 						<td>
