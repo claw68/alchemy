@@ -20,7 +20,9 @@
 		</table>
 	</div>
 	<div class="medium-8 large-9 columns">
-		<?php echo $by_ingredient; ?>
+		<div id="by_ingredient_cont">
+			<?php echo $by_ingredient; ?>
+		</div>
 		<table class="list">
 			<tr>
 				<th colspan="3">Best Value Ingredients Combination of All Ingredients</th>
