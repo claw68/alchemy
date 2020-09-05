@@ -6,8 +6,8 @@
 		
 		$datanav = new stdClass;
 		$datanav->navigation = $nav;
-		$datanav->user_id = $ci->tank_auth->get_user_id();
-		$datanav->username = $ci->tank_auth->get_username();
+		$datanav->user_id = 1;
+		$datanav->username = "admin";
 		$datanav->profile = $ci->users->get_profile_by_user_id($datanav->user_id);
 		
 		$navigation = $ci->load->view('template/navigation', $datanav, TRUE);
